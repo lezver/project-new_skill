@@ -1,0 +1,26 @@
+@mixin breakpoint($point) {
+  @if $point ==mob {
+    @media screen and(max-width: 375px) {
+      @content;
+    }
+  }
+
+  @if $point ==tab {
+    @media screen and(min-width: 376px) and(max-width: 768px) {
+      @content;
+    }
+  }
+
+  @if $point ==des {
+    @media screen and(min-width: 769px) {
+      @content;
+    }
+  }
+}
+@mixin min-device-pixel() {
+  @media screen and (min-device-pixel-ratio: 2),
+    screen and (min-resolution: 192dpi),
+    screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}

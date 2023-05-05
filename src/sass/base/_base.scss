@@ -1,0 +1,51 @@
+html,
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: $almost-black;
+  scroll-behavior: smooth;
+  cursor: url('../images/cursor-default.png'), default;
+}
+a {
+  text-decoration: none;
+}
+a,
+button {
+  cursor: url('../images/cursor-pointer.png'), pointer;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+fieldset {
+  margin: 0;
+  padding: 0;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+button {
+  margin: 0;
+  padding: 0;
+}
+svg {
+  display: block;
+}
+.container {
+  margin: 0 auto;
+  @include breakpoint(mob) {
+    padding: 0 20px;
+  }
+  @include breakpoint(tab) {
+    padding: 0 32px;
+  }
+  @include breakpoint(des) {
+    padding: 0 24px;
+    max-width: 1392px;
+  }
+}

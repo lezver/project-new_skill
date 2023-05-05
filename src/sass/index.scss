@@ -1,2 +1,14 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './utils/mixins';
+@import './utils/placeholders';
+@import './utils/variables';
+@import './base/container-dflex';
+@import './components/header';
+@import './components/home';
+@import './components/categories';
+@import './components/support-ukraine';
+@import './components/shopping-list';
+@import './components/sing-up';
+@import './components/modal-book';
+@import './components/scroll-up';
+@import './components/loader';

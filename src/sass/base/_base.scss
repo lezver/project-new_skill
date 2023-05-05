@@ -51,9 +51,7 @@ svg {
 }
 .container {
   margin: 0 auto;
-  @include breakpoint(mob) {
-    padding: 0 20px;
-  }
+  padding: 0 20px;
   @include breakpoint(tab) {
     padding: 0 32px;
   }

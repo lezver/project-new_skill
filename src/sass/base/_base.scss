@@ -1,18 +1,31 @@
+@font-face {
+  font-family: 'DMSans-400';
+  src: url('../fonts/dmsans-regular.woff2') format('woff2'),
+    url('../fonts/dmsans-regular.woff') format('woff');
+}
+@font-face {
+  font-family: 'DMSans-500';
+  src: url('../fonts/dmsans-medium.woff2') format('woff2'),
+    url('../fonts/dmsans-medium.woff') format('woff');
+}
+@font-face {
+  font-family: 'DMSans-700';
+  src: url('../fonts/dmsans-bold.woff2') format('woff2'),
+    url('../fonts/dmsans-bold.woff') format('woff');
+}
+
 html,
 body {
-  font-family: 'Montserrat', sans-serif;
-  font-size: 16px;
-  color: $almost-black;
+  font-family: 'DMSans-400';
+  font-size: 14px;
+  color: $black;
   scroll-behavior: smooth;
-  cursor: url('../images/cursor-default.png'), default;
 }
+
 a {
   text-decoration: none;
 }
-a,
-button {
-  cursor: url('../images/cursor-pointer.png'), pointer;
-}
+
 p,
 h1,
 h2,

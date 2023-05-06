@@ -20,89 +20,7 @@ const checkBtn = async e => {
     }, 1000);
   }
 };
-
-const createMurkupBestForMob = arr => {
-  const maukup = arr.reduce((acc, { books: [book] }) => {
-    const { book_image, title, author, list_name } = book;
-    const img = `<img src="${book_image}" alt="book" />`;
-    return (
-      acc +
-      `
-      <li class="item__mob">
-        <p>${list_name}</p>
-        <div>
-          ${img ? img : refs.mobCap}
-          <button type="button" data-open-modal>quick view</button>
-        </div>
-        <h2>${title}</h2>
-        <span>${author}</span>
-        <button class="category-btn" type="button" data-category="${list_name}">see more</button>
-      </li>
-      `
-    );
-  }, '');
-
-  refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
-
-  refs.homeItems.innerHTML = maukup;
-
-  refs.homeItems.addEventListener('click', checkBtn);
-};
-const createMurkupBestForTab = arr => {
-  const maukup = arr.reduce(
-    (acc, { list_name, books: [firstbook, secondBook, thirdBook] }) => {
-      const img1 = `<img src="${firstbook.book_image}" alt="book" />`;
-      const img2 = `<img src="${secondBook.book_image}" alt="book" />`;
-      const img3 = `<img src="${thirdBook.book_image}" alt="book" />`;
-
-      return (
-        acc +
-        `
-      <li class="item__tab">
-      <p>${list_name}</p>
-        <ul>
-          <li>
-            <div>
-              ${img1 ? img1 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
-            </div>
-            <h2>${firstbook.title}</h2>
-            <span>${firstbook.author}</span>
-          </li>
-          <li>
-            <div>
-              ${img2 ? img2 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
-            </div>
-            <h2>${secondBook.title}</h2>
-            <span>${secondBook.author}</span>
-          </li>
-          <li>
-            <div>
-              ${img3 ? img3 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
-            </div>
-            <h2>${thirdBook.title}</h2>
-            <span>${thirdBook.author}</span>
-          </li>
-        </ul>
-        <button class="category-btn" type="button" data-category="${list_name}">
-          see more
-        </button>
-      </li>
-      `
-      );
-    },
-    ''
-  );
-
-  refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
-
-  refs.homeItems.innerHTML = maukup;
-
-  refs.homeItems.addEventListener('click', checkBtn);
-};
-const createMurkupBestForDesk = arr => {
+const createMurkupBestBooks = arr => {
   const maukup = arr.reduce(
     (
       acc,
@@ -120,7 +38,7 @@ const createMurkupBestForDesk = arr => {
       return (
         acc +
         `
-      <li class="item__desk">
+      <li class="home__item">
       <p>${list_name}</p>
         <ul>
           <li>
@@ -181,21 +99,11 @@ const createMurkupBestForDesk = arr => {
   refs.homeItems.addEventListener('click', checkBtn);
 };
 
-const checkOfWidth = data => {
-  if (window.innerWidth <= 577) {
-    createMurkupBestForMob(data);
-  } else if (window.innerWidth > 577 && window.innerWidth < 851) {
-    createMurkupBestForTab(data);
-  } else {
-    createMurkupBestForDesk(data);
-  }
-};
-
 const fetchTopBooks = async url => {
   try {
     const response = await axios.get(url);
 
-    await checkOfWidth(response.data);
+    await createMurkupBestBooks(response.data);
   } catch (error) {
     console.log(error);
   }

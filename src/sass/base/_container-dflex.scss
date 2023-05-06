@@ -27,13 +27,13 @@
     }
     @include breakpoint(des) {
       flex-direction: column;
-      flex-basis: 26.33%;
+      flex-basis: 26.3%;
       gap: 86px;
     }
   }
   & > .main {
     @include breakpoint(des) {
-      flex-basis: 73.67%;
+      flex-basis: 73.7%;
     }
   }
 }

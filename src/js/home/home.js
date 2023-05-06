@@ -4,6 +4,28 @@ import { refs } from './refsOfTags';
 
 const URL = 'https://books-backend.p.goit.global/books/top-books';
 
+const createMarkupCategories = arr => {
+  const markup = arr.reduce((acc, { book_image, title, author }) => {
+    const img = `<img src="${book_image}" alt="book" />`;
+
+    return (
+      acc +
+      `
+      <li class="home__item-category">
+        <div>
+          ${img ? img : refs.mobCap}
+          <button type="button" data-open-modal>quick view</button>
+        </div>
+        <h2>${title}</h2>
+        <span>${author}</span>
+      </li>
+      `
+    );
+  }, '');
+
+  refs.homeItems.innerHTML = markup;
+};
+
 const checkBtn = async e => {
   const categoryBtn = document.querySelector('.category-btn');
   if (e.target.className === categoryBtn.className) {
@@ -12,7 +34,8 @@ const checkBtn = async e => {
     const fetchCategoryBooks = await axios.get(
       'https://books-backend.p.goit.global/books/category?category=' + category
     );
-
+    await createMarkupCategories(fetchCategoryBooks.data);
+    refs.homeItems.classList.add('home__items-category');
     e.target.disabled = true;
 
     setTimeout(() => {
@@ -21,8 +44,9 @@ const checkBtn = async e => {
   }
 };
 
-const createMurkupBestBooks = arr => {
-  const maukup = arr.reduce(
+const createMarkupBestBooks = arr => {
+  refs.homeItems.classList.remove('home__items-category');
+  const markup = arr.reduce(
     (
       acc,
       {
@@ -95,7 +119,7 @@ const createMurkupBestBooks = arr => {
 
   refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
 
-  refs.homeItems.innerHTML = maukup;
+  refs.homeItems.innerHTML = markup;
 
   refs.homeItems.addEventListener('click', checkBtn);
 };
@@ -104,7 +128,7 @@ const fetchTopBooks = async url => {
   try {
     const response = await axios.get(url);
 
-    await createMurkupBestBooks(response.data);
+    await createMarkupBestBooks(response.data);
   } catch (error) {
     console.log(error);
   }

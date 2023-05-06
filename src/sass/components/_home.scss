@@ -1,12 +1,259 @@
 .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  h1 {
-    font-size: 55px;
-    color: #000;
+}
+.home__title {
+  font-family: 'DMSans-700';
+  font-size: 32px;
+  color: $blue;
+  margin-bottom: 40px;
+  & > span {
+    color: $black;
   }
-  background-color: #73da37;
+}
+.home__items {
+  @extend %list-style;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 50px;
+}
+.item__mob {
+  max-width: 335px;
+  & > p {
+    color: $almost-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+  & > div {
+    cursor: pointer;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    & > img {
+      border-radius: 8px;
+    }
+    & > button {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: $yellow;
+      height: 27%;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      font-family: 'DMSans-500';
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform $time $time-distribution,
+        background $time $time-distribution;
+    }
+    &:hover,
+    &:focus {
+      & > button {
+        transform: translateY(0%);
+        &:active {
+          background-color: $almost-gray;
+        }
+      }
+    }
+  }
+  & > h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+  & > span {
+    display: block;
+    font-family: 'DMSans-400italic';
 
-  height: 500px;
+    font-size: 12px;
+    line-height: 1.16;
+    margin-bottom: 8px;
+    color: $almost-gray;
+  }
+  & > button {
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    font-family: 'DMSans-700';
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 2px solid $blue;
+    border-radius: 40px;
+    transition: color $time $time-distribution,
+      background $time $time-distribution;
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $blue;
+    }
+  }
+}
+
+.item__tab {
+  & > p {
+    color: $almost-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+  & > ul {
+    @extend %list-style;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 20px;
+    & li {
+      & > div {
+        cursor: pointer;
+        margin-bottom: 14px;
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+        & > img {
+          border-radius: 8px;
+        }
+        & > button {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background-color: $yellow;
+          height: 27%;
+          width: 100%;
+          border: none;
+          cursor: pointer;
+          font-family: 'DMSans-500';
+          text-transform: uppercase;
+          transform: translateY(100%);
+          transition: transform $time $time-distribution,
+            background $time $time-distribution;
+        }
+        &:hover,
+        &:focus {
+          & > button {
+            transform: translateY(0%);
+            &:active {
+              background-color: $almost-gray;
+            }
+          }
+        }
+      }
+      & > h2 {
+        font-size: 16px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+      & > span {
+        display: block;
+        font-family: 'DMSans-400italic';
+
+        font-size: 12px;
+        line-height: 1.16;
+        color: $almost-gray;
+      }
+    }
+  }
+  & > button {
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    font-family: 'DMSans-700';
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 2px solid $blue;
+    border-radius: 40px;
+    transition: color $time $time-distribution,
+      background $time $time-distribution;
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $blue;
+    }
+  }
+}
+.item__desk {
+  & > p {
+    color: $almost-gray;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 18px;
+  }
+  & > ul {
+    @extend %list-style;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+    & li {
+      & > div {
+        cursor: pointer;
+        margin-bottom: 14px;
+        overflow: hidden;
+        border-radius: 8px;
+        position: relative;
+        & > img {
+          border-radius: 8px;
+        }
+        & > button {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          background-color: $yellow;
+          height: 27%;
+          width: 100%;
+          border: none;
+          cursor: pointer;
+          font-family: 'DMSans-500';
+          text-transform: uppercase;
+          transform: translateY(100%);
+          transition: transform $time $time-distribution,
+            background $time $time-distribution;
+        }
+        &:hover,
+        &:focus {
+          & > button {
+            transform: translateY(0%);
+            &:active {
+              background-color: $almost-gray;
+            }
+          }
+        }
+      }
+      & > h2 {
+        font-size: 16px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+      }
+      & > span {
+        display: block;
+        font-family: 'DMSans-400italic';
+
+        font-size: 12px;
+        line-height: 1.16;
+        color: $almost-gray;
+      }
+    }
+  }
+  & > button {
+    cursor: pointer;
+    display: block;
+    margin-left: auto;
+    font-family: 'DMSans-700';
+    background-color: transparent;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: 2px solid $blue;
+    border-radius: 40px;
+    transition: color $time $time-distribution,
+      background $time $time-distribution;
+    &:hover,
+    &:focus {
+      color: $white;
+      background-color: $blue;
+    }
+  }
 }

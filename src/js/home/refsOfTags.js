@@ -1,4 +1,4 @@
-export default refs = {
+const refs = {
   homeItems: document.querySelector('.home__items'),
   homeTitle: document.querySelector('.home__title'),
   mobCap: `<img
@@ -10,3 +10,5 @@ export default refs = {
   alt="cap"
 />`,
 };
+
+export { refs };

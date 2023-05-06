@@ -1,6 +1,6 @@
 import axios from 'axios';
 import debounce from 'lodash.debounce';
-import { homeItems, mobCap, homeTitle, categoryBtn } from './refsOfTags';
+import { refs } from './refsOfTags';
 
 const URL = 'https://books-backend.p.goit.global/books/top-books';
 
@@ -20,6 +20,7 @@ const checkBtn = async e => {
     }, 1000);
   }
 };
+
 const createMurkupBestBooks = arr => {
   const maukup = arr.reduce(
     (

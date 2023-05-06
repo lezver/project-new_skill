@@ -1,0 +1,139 @@
+ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  h3{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+  .empty-list{
+    width:265px;
+    height: 50vh;
+    background-image: url(../images/png/shopping-list/mob/books.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 20vh auto;
+    text-align: center;
+  }
+.shopping-list-item{
+    display: flex;
+    gap: 14px;
+    height: 170px;
+     width:100%;
+    padding: 14px;
+    border: 2px solid rgba(79, 46, 232, 0.4);
+    border-radius: 16px;
+  
+    & .book_image {
+      width:100px;
+      height: 100%;
+    }
+  }
+  .description-info{
+    overflow: hidden;
+    & p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: pre-wrap;
+    } 
+  }
+  .icon{
+    fill: white;
+    width: 16px;
+    height: 16px;
+  }
+  .qwe{
+    display: flex;
+    justify-content: space-between;
+  }
+  .button{
+    border-radius: 50%;
+    width: 28px;
+    min-width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: #4F2EE8;
+    border: none;
+  }
+  .link-amazon{
+    width: 32px;
+    height: 11px;
+  }
+  .link-applebooks{
+    width: 16px;
+    height: 16px;
+  }
+  .link-bookshop{
+    width: 16px;
+    height: 16px;
+  }
+  .asd{
+    display: flex;
+    justify-content: space-between;
+  }
+  .list{
+    display: flex;
+    gap: 8px;
+  }
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+  .book-tittle{
+    font-family: 'DM Sans';
+    font-size: 16px;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+  }
+  .page-tittle{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.18;
+    letter-spacing: -0.04em;
+  }
+  .list-name{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: 0.03em;
+    color: #B4AFAF;
+  }
+  .description{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.04em;
+    color: #111111;
+  }
+  .author{
+    font-family: 'DM Sans';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing: -0.04em;
+    color: #B4AFAF;
+  }
+  .book-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+  }

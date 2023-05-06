@@ -1,1 +1,1 @@
-
+const test = 'ffff';

@@ -8,6 +8,11 @@ import appleImage2 from '../../images/png/modal-book/book@2x.png'
 import bookshopImage1 from '../../images/png/modal-book/book-shop.png'
 import bookshopImage2 from '../../images/png/modal-book/book-shop@2x.png'
 
+import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
+import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
+import booksImageTabDes1 from '../../images/png/shopping-list/tab-vs-desk/books.png';
+import booksImageTabDes2 from '../../images/png/shopping-list/tab-vs-desk/books@2x.png';
+
 const galleryEl = document.querySelector('.gallery');
 const emptyListEl = document.querySelector('.shopping-list-empty');
 const savedSettings = localStorage.getItem('shopping_list');
@@ -21,7 +26,6 @@ function qqq(event) {
   const target = event.target.closest('.button');
   console.log(target.id)
   const index = parsedSettings.map(element => element._id).indexOf(target.id)
-  console.log(index)
   parsedSettings.splice(index,1)
   // localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))
   console.log(parsedSettings)
@@ -49,9 +53,10 @@ function onListener() {
 };
 
 function buildEmptyList(){
-  return `<div class="empty-list">
+  return `
     <p>This page is empty, add some books and proceed to order.</p>
-  </div>`
+    <img srcset=" ${booksImageMob1} 1x, ${booksImageMob2} 2x"   src="${booksImageMob1}" alt="">
+  `
 }
 buildBooks(parsedSettings);
 function buildBooks({book_image,title,list_name,description,author,_id,buy_links}) {
@@ -94,17 +99,17 @@ function buildBooks({book_image,title,list_name,description,author,_id,buy_links
         <ul class="list">
           <li>
             <a target="_blank" href="${urlAmazon}">
-              <img src="${amazonImage1}" alt="amazon" class="link-amazon">
+              <img srcset="${amazonImage1} 1x, ${amazonImage2} 2x" src="${amazonImage1}" alt="amazon" class="link-amazon">
             </a>
           </li>
           <li>
             <a target="_blank" href="${urlApplebooks}">
-              <img src="${appleImage1}" alt="applebooks" class="link-applebooks">
+              <img srcset="${appleImage1} 1x, ${appleImage2} 2x" src="${appleImage1}" alt="applebooks" class="link-applebooks">
             </a>
           </li>
           <li>
             <a target="_blank" href="${urlBookshop}">
-              <img src="${bookshopImage1}" alt="bookshop" class="link-bookshop">
+              <img srcset="${bookshopImage1} 1x, ${bookshopImage2} 2x" src="${bookshopImage1}" alt="bookshop" class="link-bookshop">
             </a>
           </li>
         </ul>

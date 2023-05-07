@@ -2,35 +2,125 @@ ul{
     list-style: none;
     padding: 0;
     margin: 0;
-  }
+}
   h3{
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     white-space: pre-wrap;
-  }
-  .empty-list{
+}
+.shopping-list-empty{
     width:265px;
-    height: 50vh;
-    background-image: url(../images/png/shopping-list/mob/books.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    margin: 20vh auto;
-    text-align: center;
+    margin: 0 auto;
+    & p{
+        margin-top: 120px;
+        text-align: center;
+        font-family: 'DM Sans';
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.28;
+        letter-spacing: -0.02em;
+        color: rgba(0, 0, 0, 0.6);
+        @include breakpoint(tab) {
+            font-size: 18px;
+            line-height: 1.33;
+        }
+        @include breakpoint(des) {
+            font-size: 18px;
+            line-height: 1.33;
+        }
+      }
+}
+
+//   .empty-list{
+//     width:265px;
+//     height: 50vh;
+//     background-image: url(../images/png/shopping-list/mob/books.png);
+//     background-repeat: no-repeat;
+//     background-position: center;
+//     margin: 120px auto;
+//     text-align: center;
+//     & p{
+//         font-family: 'DM Sans';
+//         font-weight: 400;
+//         font-size: 14px;
+//         line-height: 1.28;
+//         letter-spacing: -0.02em;
+//         color: rgba(0, 0, 0, 0.6);
+//         @include breakpoint(tab) {
+//             font-size: 18px;
+//             line-height: 1.33;
+//         }
+//         @include breakpoint(des) {
+//             font-size: 18px;
+//             line-height: 1.33;
+//         }
+//       }
+//     @media screen and (min-device-pixel-ratio: 2),
+//     screen and (-webkit-min-device-pixel-ratio: 2),
+//     screen and (min-resolution: 192dpi),
+//     screen and (min-resolution: 2dppx) {
+//         background-image: url(../images/png/shopping-list/mob/books@2x.png)
+//     }
+//     @include breakpoint(tab) {
+//         background-image: url(../images/png/shopping-list/tab-vs-desk/books.png);
+//         @media screen and (min-device-pixel-ratio: 2),
+//         screen and (-webkit-min-device-pixel-ratio: 2),
+//         screen and (min-resolution: 192dpi),
+//         screen and (min-resolution: 2dppx){
+//             background-image: url(../images/png/shopping-list/tab-vs-desk/books@2x.png)
+//         }
+//     }
+//     @include breakpoint(des) {
+//         background-image: url(../images/png/shopping-list/tab-vs-desk/books.png);
+//         @media screen and (min-device-pixel-ratio: 2),
+//         screen and (-webkit-min-device-pixel-ratio: 2),
+//         screen and (min-resolution: 192dpi),
+//         screen and (min-resolution: 2dppx){
+//             background-image: url(../images/png/shopping-list/tab-vs-desk/books@2x.png)
+//         }
+//     }
+//   }
+  .shopping-list{
+    
+    padding: 40px 20px;
+    
+    @include breakpoint(tab) {
+      padding: 40px 32px;
+    }
+    @include breakpoint(des) {
+      padding: 40px 24px 40px 0;
+    }
+
   }
 .shopping-list-item{
     display: flex;
     gap: 14px;
     height: 170px;
-     width:100%;
+    width:100%;
     padding: 14px;
     border: 2px solid rgba(79, 46, 232, 0.4);
     border-radius: 16px;
-  
+    @include breakpoint(tab) {
+        gap: 24px;
+        height: 213px;
+        padding: 24px;
+    }
+    @include breakpoint(des) {
+        gap: 24px;
+        height: 213px;
+        padding: 24px;
+    }
     & .book_image {
       width:100px;
       height: 100%;
+      @include breakpoint(tab) {
+        width:116px;
+      }
+      @include breakpoint(des) {
+        width:116px;
+      }
     }
   }
   .description-info{
@@ -61,27 +151,69 @@ ul{
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    background-color: #4F2EE8;
+    background-color: $blue;
     border: none;
   }
   .link-amazon{
     width: 32px;
     height: 11px;
+    filter: grayscale(1);
+    transition: filter $time $time-distribution;
+    @include breakpoint(tab) {
+        width: 48px;
+        height: 15px;
+        transition: filter $time $time-distribution;
+    }
+    @include breakpoint(des) {
+        width: 48px;
+        height: 15px;
+        transition: filter $time $time-distribution;
+    }
+  }
+  .link-amazon:hover, .link-amazon:focus{
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15))grayscale(1);
   }
   .link-applebooks{
     width: 16px;
     height: 16px;
+    filter: grayscale(1);
+    
+    @include breakpoint(tab) {
+        width: 28px;
+        height: 27px;
+    }
+    @include breakpoint(des) {
+        width: 28px;
+        height: 27px;
+    }
+  }
+  .link-applebooks:hover, .link-applebooks:focus{
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15))grayscale(1);
   }
   .link-bookshop{
     width: 16px;
     height: 16px;
+    filter: grayscale(1);
+    @include breakpoint(tab) {
+        width: 32px;
+        height: 30px; 
+    }
+    @include breakpoint(des) {
+        width: 32px;
+        height: 30px;
+    }
+  }
+  .link-bookshop:hover, .link-bookshop:focus{
+    filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15))grayscale(1);
   }
   .asd{
     display: flex;
     justify-content: space-between;
+    align-items: end;
   }
   .list{
     display: flex;
+    align-items: center;
     gap: 8px;
   }
   .gallery{
@@ -93,43 +225,57 @@ ul{
   .book-tittle{
     font-family: 'DM Sans';
     font-size: 16px;
-    line-height: 18px;
+    line-height: 1.12;
     letter-spacing: -0.04em;
+    margin-bottom: 4px;
   }
   .page-tittle{
     font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 700;
     font-size: 32px;
     line-height: 1.18;
     letter-spacing: -0.04em;
+    margin-bottom: 40px;
+    color: #111111;
+    & span{
+        color:$blue;
+    }
+    @include breakpoint(tab) {
+        font-size: 48px;
+        line-height: 1.08;
+    }
+    @include breakpoint(des) {
+        font-size: 48px;
+        line-height: 1.08;
+    }
   }
   .list-name{
     font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.16;
     letter-spacing: 0.03em;
-    color: #B4AFAF;
+    color: $almost-gray;
+    margin-bottom: 8px;
+    @include breakpoint(tab) {
+        margin-bottom: 14px;
+    }
+    @include breakpoint(des) {
+        margin-bottom: 14px;
+    }
   }
   .description{
     font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
     font-size: 14px;
-    line-height: 18px;
+    line-height: 1.28;
     letter-spacing: -0.04em;
-    color: #111111;
+    color: $black;
   }
   .author{
     font-family: 'DM Sans';
     font-style: italic;
-    font-weight: 400;
     font-size: 12px;
-    line-height: 14px;
+    line-height: 1.16;
     letter-spacing: -0.04em;
-    color: #B4AFAF;
+    color: $almost-gray;
   }
   .book-info{
     display: flex;

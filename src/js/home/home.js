@@ -1,5 +1,5 @@
 import axios from 'axios';
-import debounce from 'lodash.debounce';
+import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
 
 const URL = 'https://books-backend.p.goit.global/books/top-books';
@@ -25,6 +25,8 @@ const createMarkupCategories = arr => {
   }, '');
 
   refs.homeItems.innerHTML = markup;
+
+  removeLoader();
 };
 
 const fetchCategoryBooks = async value => {
@@ -38,6 +40,8 @@ const checkBtn = e => {
 
   if (e.target.className === 'category-btn') {
     const category = e.target.dataset.category.replace(/ /g, '+');
+
+    addLoader();
 
     fetchCategoryBooks(category);
 
@@ -122,10 +126,13 @@ const createMarkupBestBooks = arr => {
   refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
 
   refs.homeItems.innerHTML = markup;
+
+  removeLoader();
 };
 
 const fetchTopBooks = async url => {
   try {
+    addLoader();
     const response = await axios.get(url);
 
     await createMarkupBestBooks(response.data);

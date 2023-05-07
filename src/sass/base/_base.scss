@@ -27,6 +27,8 @@ body {
   letter-spacing: -0.04em;
   color: $black;
   scroll-behavior: smooth;
+  position: relative;
+  background-color: $background;
 }
 
 a {

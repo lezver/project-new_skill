@@ -3,6 +3,8 @@ import debounce from 'lodash.debounce';
 import { refs } from './refsOfTags';
 
 const URL = 'https://books-backend.p.goit.global/books/top-books';
+const URL_CATEGORY =
+  'https://books-backend.p.goit.global/books/category?category=';
 
 const createMarkupCategories = arr => {
   const markup = arr.reduce((acc, { book_image, title, author }) => {
@@ -25,28 +27,27 @@ const createMarkupCategories = arr => {
   refs.homeItems.innerHTML = markup;
 };
 
-const checkBtn = async e => {
+const fetchCategoryBooks = async value => {
+  const response = await axios.get(URL_CATEGORY + value);
+
+  await createMarkupCategories(response.data);
+};
+
+const checkBtn = e => {
   const categoryBtn = document.querySelector('.category-btn');
-  try {
-    if (e.target.className === categoryBtn.className) {
-      const category = e.target.dataset.category.replace(/ /g, '+');
 
-      const fetchCategoryBooks = await axios.get(
-        'https://books-backend.p.goit.global/books/category?category=' +
-          category
-      );
-      await createMarkupCategories(fetchCategoryBooks.data);
+  if (e.target.className === 'category-btn') {
+    const category = e.target.dataset.category.replace(/ /g, '+');
 
-      refs.homeItems.classList.add('home__items-category');
+    fetchCategoryBooks(category);
 
-      e.target.disabled = true;
+    refs.homeItems.classList.add('home__items-category');
 
-      setTimeout(() => {
-        e.target.disabled = false;
-      }, 1000);
-    }
-  } catch (error) {
-    return;
+    e.target.disabled = true;
+
+    setTimeout(() => {
+      e.target.disabled = false;
+    }, 1000);
   }
 };
 
@@ -121,8 +122,6 @@ const createMarkupBestBooks = arr => {
   refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
 
   refs.homeItems.innerHTML = markup;
-
-  refs.homeItems.addEventListener('click', checkBtn);
 };
 
 const fetchTopBooks = async url => {
@@ -136,3 +135,5 @@ const fetchTopBooks = async url => {
 };
 
 fetchTopBooks(URL);
+
+refs.homeItems.addEventListener('click', checkBtn);

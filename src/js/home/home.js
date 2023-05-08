@@ -135,7 +135,7 @@ const createMarkupBestBooks = arr => {
 export const fetchTopBooks = async () => {
   try {
     addLoader();
-    const response = await axios.get(url);
+    const response = await axios.get(URL);
 
     await createMarkupBestBooks(response.data);
   } catch (error) {

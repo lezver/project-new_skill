@@ -1,6 +1,13 @@
 .hidden {
   display: none;
 }
+
+.dark {
+  color: rgba(255, 255, 255, 0.6);
+}
+.active-dark {
+  color: #eac645;
+}
 .span-purple {
   color: $blue;
 }
@@ -16,10 +23,10 @@
     display: flex;
     @extend %list-style;
     .categories-list__button {
-      background-color: #f6f6f6;
+      background-color: inherit;
       height: 16px;
       letter-spacing: -0.02em;
-      color: #1119;
+      color: rgba(17, 17, 17, 0.6);
       text-align: left;
       border: none;
       padding-left: 0;

@@ -7,6 +7,9 @@ const [listEl] = document.getElementsByClassName('categories-list');
 const mainListEl = document.querySelector('.home__items');
 const mainTitle = document.querySelector('.main__title-js');
 
+const mode = localStorage.getItem('darkMode');
+console.log(mode);
+
 let idBook = 0;
 let title = '';
 allCategoriesBtn.classList.add('active-categories');

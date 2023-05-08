@@ -62,6 +62,7 @@
     }
 
     @include breakpoint(des) {
+        height: 292px;
         margin-bottom: 40px;
     }
 

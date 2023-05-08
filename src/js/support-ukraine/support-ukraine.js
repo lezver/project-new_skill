@@ -26,7 +26,7 @@ const renderSupportList = items => {
                   srcset="
                   ${img} 1x,
                   ${img2} 2x
-                  "
+                  " 
                 />
               </a>
               `;

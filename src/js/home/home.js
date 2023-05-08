@@ -144,3 +144,12 @@ const fetchTopBooks = async url => {
 fetchTopBooks(URL);
 
 refs.homeItems.addEventListener('click', checkBtn);
+
+const test =
+  'https://books-backend.p.goit.global/books/643282b1e85766588626a080';
+const fetchBook = async test => {
+  const r = await axios.get(test);
+  console.log(r);
+};
+
+fetchBook(test);

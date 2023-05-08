@@ -41,7 +41,7 @@
     font-size: 20px;
     line-height: calc(32 / 28);
     color: $white;
-    @media screen and(min-width: 428px){
+    @media screen and (min-width: 428px){
         font-size: 28px;
     }
 }
@@ -88,7 +88,7 @@
     border: none;
     border-radius: 50%;
     background-color:$white;
-    @media screen and(min-width: 577px) {
+    @media screen and (min-width: 577px) {
             width: 38px;
             height: 38px;
         }

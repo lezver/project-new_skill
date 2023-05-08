@@ -1,24 +1,24 @@
 @mixin breakpoint($point) {
   @if $point ==mob {
-    @media screen and(min-width: 428px) and(max-width: 576px) {
+    @media screen and (min-width: 428px) and (max-width: 576px) {
       @content;
     }
   }
 
   @if $point ==tab {
-    @media screen and(min-width: 577px) and(max-width: 891px) {
+    @media screen and (min-width: 577px) and (max-width: 891px) {
       @content;
     }
   }
 
   @if $point ==tab-header {
-    @media screen and(min-width: 640px) and(max-width: 891px) {
+    @media screen and (min-width: 640px) and (max-width: 891px) {
       @content;
     }
   }
 
   @if $point ==des {
-    @media screen and(min-width: 892px) {
+    @media screen and (min-width: 892px) {
       @content;
     }
   }

@@ -1,6 +1,6 @@
 import { fetchBooks } from './fetchRequest';
 import { refs } from '../home/refsOfTags';
-import { fetchTopBooks } from '../home/home';
+// import { fetchTopBooks } from '../home/home';
 
 const allCategoriesBtn = document.getElementById('allCategoriesBtn');
 const [listEl] = document.getElementsByClassName('categories-list');

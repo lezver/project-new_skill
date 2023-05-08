@@ -1,0 +1,242 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.shopping-list {
+  padding: 40px 0;
+
+  @include breakpoint(tab) {
+    //padding: 40px 32px;
+  }
+  @include breakpoint(des) {
+    //padding: 40px 24px 40px 0;
+  }
+  &-item {
+    display: flex;
+    gap: 14px;
+    height: 170px;
+    width: 100%;
+    padding: 14px;
+    border: 2px solid rgba(79, 46, 232, 0.4);
+    border-radius: 16px;
+    @include breakpoint(tab) {
+      gap: 24px;
+      height: 213px;
+      padding: 24px;
+    }
+    @include breakpoint(des) {
+      gap: 24px;
+      height: 213px;
+      padding: 24px;
+    }
+
+    & .book_image {
+      width: 100px;
+      height: 100%;
+      @include breakpoint(tab) {
+        width: 116px;
+      }
+      @include breakpoint(des) {
+        width: 116px;
+      }
+    }
+    &-action {
+      display: flex;
+      justify-content: space-between;
+    }
+    &-buy {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+    }
+  }
+  .page-tittle {
+    font-family: 'DMSans-700';
+    font-size: 32px;
+    line-height: 1.18;
+    letter-spacing: -0.04em;
+    margin-bottom: 40px;
+    color: $black;
+    & span {
+      color: $blue;
+    }
+    @include breakpoint(tab) {
+      font-size: 48px;
+      line-height: 1.08;
+    }
+    @include breakpoint(des) {
+      font-size: 48px;
+      line-height: 1.08;
+    }
+  }
+  &-empty {
+    width: 265px;
+    margin: 0 auto;
+    & p {
+      margin-top: 120px;
+      text-align: center;
+      font-family: 'DM Sans';
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      color: rgba(0, 0, 0, 0.6);
+      @include breakpoint(tab) {
+        font-size: 18px;
+        line-height: 1.33;
+      }
+      @include breakpoint(des) {
+        font-size: 18px;
+        line-height: 1.33;
+      }
+    }
+  }
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    .book {
+      &-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+      }
+      &-tittle {
+        font-family: 'DM Sans';
+        font-size: 16px;
+        line-height: 1.12;
+        letter-spacing: -0.04em;
+        margin-bottom: 4px;
+      }
+    }
+    h3 {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: pre-wrap;
+    }
+    .list-name {
+      font-family: 'DM Sans';
+      font-size: 12px;
+      line-height: 1.16;
+      letter-spacing: 0.03em;
+      color: $almost-gray;
+      margin-bottom: 8px;
+      @include breakpoint(tab) {
+        margin-bottom: 14px;
+      }
+      @include breakpoint(des) {
+        margin-bottom: 14px;
+      }
+    }
+    .button {
+      border-radius: 50%;
+      width: 28px;
+      min-width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background-color: $blue;
+      border: none;
+    }
+    .basket {
+      width: 16px;
+      height: 16px;
+    }
+
+    .description {
+      font-family: 'DM Sans';
+      font-size: 14px;
+      line-height: 1.28;
+      letter-spacing: -0.04em;
+      color: $black;
+      &-info {
+        overflow: hidden;
+        & p {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          white-space: pre-wrap;
+        }
+      }
+    }
+
+    .author {
+      font-family: 'DM Sans';
+      font-style: italic;
+      font-size: 12px;
+      line-height: 1.16;
+      letter-spacing: -0.04em;
+      color: $almost-gray;
+    }
+    .list-buy {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .link-amazon {
+      width: 32px;
+      height: 11px;
+      filter: grayscale(1);
+      transition: filter $time $time-distribution;
+      @include breakpoint(tab) {
+        width: 48px;
+        height: 15px;
+        transition: filter $time $time-distribution;
+      }
+      @include breakpoint(des) {
+        width: 48px;
+        height: 15px;
+        transition: filter $time $time-distribution;
+      }
+    }
+    .link-amazon:hover,
+    .link-amazon:focus {
+      filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) grayscale(1);
+    }
+    .link-applebooks {
+      width: 16px;
+      height: 16px;
+      filter: grayscale(1);
+
+      @include breakpoint(tab) {
+        width: 28px;
+        height: 27px;
+      }
+      @include breakpoint(des) {
+        width: 28px;
+        height: 27px;
+      }
+    }
+    .link-applebooks:hover,
+    .link-applebooks:focus {
+      filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) grayscale(1);
+    }
+    .link-bookshop {
+      width: 16px;
+      height: 16px;
+      filter: grayscale(1);
+      @include breakpoint(tab) {
+        width: 32px;
+        height: 30px;
+      }
+      @include breakpoint(des) {
+        width: 32px;
+        height: 30px;
+      }
+    }
+    .link-bookshop:hover,
+    .link-bookshop:focus {
+      filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) grayscale(1);
+    }
+  }
+}

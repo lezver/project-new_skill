@@ -37,6 +37,27 @@ const renderSupportList = items => {
 
 renderSupportList(fundArray);
 
+const swiper = new Swiper('.swiper', {
+  direction: 'vertical',
+  spaceBetween: 20,
+  slidesPerView: 'auto',
+  rewind: true,
+
+  navigation: {
+    nextEl: '.swiper-button-next',
+  },
+
+  plugins: {
+    scrollContainer: true,
+  },
+});
+
+swiper.update();
+
+btnSwiperEl.addEventListener('click', () => {
+  swiper.slideNext();
+});
+
 // const imgSlides = document.querySelectorAll('.support__list-item');
 // const sliderBtn = document.querySelector('.support__btn');
 
@@ -68,24 +89,3 @@ renderSupportList(fundArray);
 //   }
 //   verticalSlider(renderSupportList);
 // });
-
-const swiper = new Swiper('.swiper', {
-  direction: 'vertical',
-  //   spaceBetween: 20,
-  slidesPerView: 'auto',
-  rewind: true,
-
-  navigation: {
-    nextEl: '.swiper-button-next',
-  },
-
-  plugins: {
-    scrollContainer: true,
-  },
-});
-
-swiper.update();
-
-btnSwiperEl.addEventListener('click', () => {
-  swiper.slideNext();
-});

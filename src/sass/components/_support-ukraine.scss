@@ -69,9 +69,7 @@
 }
 
 .support__list {
-    list-style: none;
-    padding-left: 0;
-    margin: 0;
+    @extend %list-style;
     display: flex;
     flex-direction: column;
 }
@@ -83,7 +81,7 @@
     }
     width: 38px;
     height: 38px;
-
+    cursor: pointer;
     margin: 0 auto;
 
     display: flex;
@@ -93,6 +91,11 @@
     border: none;
     border-radius: 50%;
     background-color:$white;
+
+        &:hover {
+            transform: scale(1.2);
+            transition: 0.2s;
+        }
 }
 
 .support__btn-icon {
@@ -112,4 +115,8 @@
 .support__link img {
     width: auto;
     filter: grayscale(100%) invert(50%) brightness(200%);
+
+    &:hover {
+            filter: none;
+        }
 }

@@ -14,7 +14,7 @@ const renderSupportList = items => {
               <p class="support__number">${number}</p>
               <a
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 aria-label="company icon"
                 class="support__link"
                 href="${url}"
@@ -23,12 +23,12 @@ const renderSupportList = items => {
                   src="${img}"
                   alt="${title}"
                   class="support__logo"
-                  srcset="
-                  ${img} 1x,
-                  ${img2} 2x
-                  " 
+                  srcset="${img} 1x, ${img2} 2x" 
+                  width="149"
+                  loading="lazy"
                 />
               </a>
+            </li>
               `;
     })
     .join('');

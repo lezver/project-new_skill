@@ -1,14 +1,53 @@
 import axios from 'axios';
-import debounce from 'lodash.debounce';
+import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
+
 import { fetchBooks } from '../categories/fetchRequest';
 
-const checkBtn = async e => {
+const URL = 'https://books-backend.p.goit.global/books/top-books';
+const URL_CATEGORY =
+  'https://books-backend.p.goit.global/books/category?category=';
+
+const createMarkupCategories = arr => {
+  const markup = arr.reduce((acc, { book_image, title, author }) => {
+    const img = `<img loading="lazy" src="${book_image}" alt="book" />`;
+
+    return (
+      acc +
+      `
+      <li class="home__item-category">
+        <div>
+          ${img ? img : refs.mobCap}
+        </div>
+        <h2>${title}</h2>
+        <span>${author}</span>
+      </li>
+      `
+    );
+  }, '');
+
+  refs.homeItems.innerHTML = markup;
+
+  removeLoader();
+};
+
+const fetchCategoryBooks = async value => {
+  const response = await axios.get(URL_CATEGORY + value);
+
+  await createMarkupCategories(response.data);
+};
+
+const checkBtn = e => {
   const categoryBtn = document.querySelector('.category-btn');
-  if (e.target.className === categoryBtn.className) {
+
+  if (e.target.className === 'category-btn') {
     const category = e.target.dataset.category.replace(/ /g, '+');
 
-    await fetchBooks.getBooksByCategory(category);
+    addLoader();
+
+    fetchCategoryBooks(category);
+
+    refs.homeItems.classList.add('home__items-category');
 
     e.target.disabled = true;
 
@@ -18,8 +57,9 @@ const checkBtn = async e => {
   }
 };
 
-const createMurkupBestBooks = arr => {
-  const maukup = arr.reduce(
+const createMarkupBestBooks = arr => {
+  refs.homeItems.classList.remove('home__items-category');
+  const markup = arr.reduce(
     (
       acc,
       {
@@ -27,11 +67,11 @@ const createMurkupBestBooks = arr => {
         books: [firstbook, secondBook, thirdBook, fourthBook, fifthBook],
       }
     ) => {
-      const img1 = `<img src="${firstbook.book_image}" alt="book" />`;
-      const img2 = `<img src="${secondBook.book_image}" alt="book" />`;
-      const img3 = `<img src="${thirdBook.book_image}" alt="book" />`;
-      const img4 = `<img src="${fourthBook.book_image}" alt="book" />`;
-      const img5 = `<img src="${fifthBook.book_image}" alt="book" />`;
+      const img1 = `<img loading="lazy" src="${firstbook.book_image}" alt="book" />`;
+      const img2 = `<img loading="lazy" src="${secondBook.book_image}" alt="book" />`;
+      const img3 = `<img loading="lazy" src="${thirdBook.book_image}" alt="book" />`;
+      const img4 = `<img loading="lazy" src="${fourthBook.book_image}" alt="book" />`;
+      const img5 = `<img loading="lazy" src="${fifthBook.book_image}" alt="book" />`;
 
       return (
         acc +
@@ -42,7 +82,6 @@ const createMurkupBestBooks = arr => {
           <li>
             <div>
               ${img1 ? img1 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
             </div>
             <h2>${firstbook.title}</h2>
             <span>${firstbook.author}</span>
@@ -50,7 +89,6 @@ const createMurkupBestBooks = arr => {
           <li>
             <div>
               ${img2 ? img2 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
             </div>
             <h2>${secondBook.title}</h2>
             <span>${secondBook.author}</span>
@@ -58,7 +96,6 @@ const createMurkupBestBooks = arr => {
           <li>
             <div>
               ${img3 ? img3 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
             </div>
             <h2>${thirdBook.title}</h2>
             <span>${thirdBook.author}</span>
@@ -66,7 +103,6 @@ const createMurkupBestBooks = arr => {
           <li>
             <div>
               ${img4 ? img4 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
             </div>
             <h2>${fourthBook.title}</h2>
             <span>${fourthBook.author}</span>
@@ -74,7 +110,6 @@ const createMurkupBestBooks = arr => {
           <li>
             <div>
               ${img5 ? img5 : refs.mobCap}
-              <button type="button" data-open-modal>quick view</button>
             </div>
             <h2>${fifthBook.title}</h2>
             <span>${fifthBook.author}</span>
@@ -92,18 +127,22 @@ const createMurkupBestBooks = arr => {
 
   refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
 
-  refs.homeItems.innerHTML = maukup;
+  refs.homeItems.innerHTML = markup;
 
-  refs.homeItems.addEventListener('click', checkBtn);
+  removeLoader();
 };
 
 export const fetchTopBooks = async () => {
   try {
-    const response = await fetchBooks.getBestSellers();
-    createMurkupBestBooks(response);
+    addLoader();
+    const response = await axios.get(url);
+
+    await createMarkupBestBooks(response.data);
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchTopBooks();
+fetchTopBooks(URL);
+
+refs.homeItems.addEventListener('click', checkBtn);

@@ -1,13 +1,13 @@
 const refs = {
   homeItems: document.querySelector('.home__items'),
   homeTitle: document.querySelector('.home__title'),
-  mobCap: `<img
+  mobCap: `<img class="img__cap"
   srcset="
-    ./images/png/home/mob/icon.png    1x,
-    ./images/png/home/mob/icon@2x.png 2x
+    ./images/png/home/icon.png    1x,
+    ./images/png/home/icon@2x.png 2x
   "
-  src="./images/png/home/mob/icon.png"
-  alt="cap"
+  src="./images/png/home/icon.png"
+  alt="cap" loading="lazy"
 />`,
 };
 

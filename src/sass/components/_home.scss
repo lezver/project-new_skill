@@ -1,5 +1,6 @@
 .home {
 }
+
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;
@@ -9,6 +10,7 @@
   //   color: $black;
   // }
 }
+
 .home__items {
   @extend %list-style;
   display: flex;
@@ -41,13 +43,20 @@
         overflow: hidden;
         border-radius: 8px;
         position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         & > img {
-          border-radius: 8px;
           object-fit: cover;
           object-position: center;
           width: 335px;
+          // z-index: 1;
         }
-        & > button {
+        &::after {
+          content: 'quick view';
+          display: flex;
+          justify-content: center;
+          align-items: center;
           position: absolute;
           left: 0;
           bottom: 0;
@@ -62,14 +71,9 @@
           transition: transform $time $time-distribution,
             background $time $time-distribution;
         }
-        &:hover,
-        &:focus {
-          & > button {
-            transform: translateY(0%);
-            &:active {
-              background-color: $almost-gray;
-            }
-          }
+        &:hover::after,
+        &:focus::after {
+          transform: translateY(0%);
         }
       }
       & > h2 {
@@ -121,6 +125,8 @@
         display: block;
         width: 218px;
         & > div {
+          width: 218px;
+          height: 316px;
           & > img {
             width: 218px;
             height: 316px;
@@ -140,6 +146,8 @@
         display: block;
         width: 180px;
         & > div {
+          width: 180px;
+          height: 265px;
           & > img {
             width: 180px;
             height: 265px;
@@ -147,5 +155,138 @@
         }
       }
     }
+  }
+}
+
+.home__items.home__items-category {
+  @include breakpoint(tab) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 40px 25px;
+
+    flex-wrap: wrap;
+  }
+  @include breakpoint(des) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px 24px;
+  }
+}
+
+.home__item-category {
+  max-width: 335px;
+  & > div {
+    cursor: pointer;
+    margin-bottom: 14px;
+    overflow: hidden;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > img {
+      object-fit: cover;
+      object-position: center;
+      width: 335px;
+      // z-index: 1;
+    }
+    &::after {
+      content: 'quick view';
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: $yellow;
+      height: 27%;
+      width: 100%;
+      border: none;
+      cursor: pointer;
+      font-family: 'DMSans-500';
+      text-transform: uppercase;
+      transform: translateY(100%);
+      transition: transform $time $time-distribution,
+        background $time $time-distribution;
+    }
+    &:hover::after,
+    &:focus::after {
+      transform: translateY(0%);
+    }
+  }
+  & > h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  & > span {
+    display: block;
+    font-family: 'DMSans-400italic';
+    font-size: 12px;
+    line-height: 1.16;
+    color: $almost-gray;
+  }
+  @include breakpoint(tab) {
+    width: 218px;
+
+    & > div {
+      width: 218px;
+      height: 316px;
+      & > img {
+        width: 218px;
+        height: 316px;
+      }
+    }
+  }
+  @include breakpoint(des) {
+    width: 180px;
+    & > div {
+      width: 180px;
+      height: 265px;
+      & > img {
+        width: 180px;
+        height: 265px;
+      }
+    }
+  }
+}
+
+.home__item > ul > li:nth-child(-n + 5) > div > .img__cap {
+  width: 58px;
+  height: 50px;
+  @include breakpoint(mob) {
+    width: 58px;
+    height: 50px;
+  }
+  @include breakpoint(tab) {
+    width: 58px;
+    height: 50px;
+  }
+  @include breakpoint(des) {
+    width: 58px;
+    height: 50px;
+  }
+}
+
+.home__item-category > div > .img__cap {
+  width: 58px;
+  height: 50px;
+  @include breakpoint(mob) {
+    width: 58px;
+    height: 50px;
+  }
+  @include breakpoint(tab) {
+    width: 58px;
+    height: 50px;
+  }
+  @include breakpoint(des) {
+    width: 58px;
+    height: 50px;
   }
 }

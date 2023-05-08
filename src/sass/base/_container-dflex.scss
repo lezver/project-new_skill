@@ -10,8 +10,6 @@
   @include breakpoint(des) {
     flex-direction: row;
     gap: 40px;
-
-    gap: 40px;
   }
 
   & > .aside-container {

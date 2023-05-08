@@ -1,0 +1,72 @@
+.scroll-up {
+  height: 54px;
+  width: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $blue;
+  border-radius: 50%;
+  outline: 5px solid rgba(80, 46, 232, 0.3);
+  outline-offset: -1px;
+  position: fixed;
+  bottom: 110px;
+  right: 50px;
+  transform: scale(1);
+
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  transition: outline $time $time-distribution,
+    transform $time $time-distribution, opacity $time $time-distribution;
+
+  & > svg {
+    width: 19px;
+    height: 11px;
+    fill: $white;
+    transform: scale(1);
+
+    transition: fill $time $time-distribution,
+      transform $time $time-distribution;
+  }
+  animation: outlineInfin $timeForAnim infinite linear;
+  @keyframes outlineInfin {
+    0% {
+      outline: 5px solid rgba(80, 46, 232, 0.3);
+    }
+    50% {
+      outline: 5px solid rgb(80, 46, 232);
+    }
+    100% {
+      outline: 5px solid rgba(80, 46, 232, 0.3);
+    }
+  }
+  &:hover,
+  &:focus {
+    animation-play-state: paused;
+    transform: scale(1.1);
+
+    & > svg {
+      fill: $yellow;
+      transform: scale(1.2);
+    }
+  }
+  @include breakpoint(mob) {
+    bottom: 110px;
+    right: 50px;
+  }
+  @include breakpoint(tab) {
+    bottom: 120px;
+    right: 55px;
+  }
+  @include breakpoint(des) {
+    bottom: 130px;
+    right: 60px;
+  }
+}
+
+.scroll-up.is-display-none {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}

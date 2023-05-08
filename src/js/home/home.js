@@ -1,17 +1,14 @@
 import axios from 'axios';
 import debounce from 'lodash.debounce';
 import { refs } from './refsOfTags';
-
-const URL = 'https://books-backend.p.goit.global/books/top-books';
+import { fetchBooks } from '../categories/fetchRequest';
 
 const checkBtn = async e => {
   const categoryBtn = document.querySelector('.category-btn');
   if (e.target.className === categoryBtn.className) {
     const category = e.target.dataset.category.replace(/ /g, '+');
 
-    const fetchCategoryBooks = await axios.get(
-      'https://books-backend.p.goit.global/books/category?category=' + category
-    );
+    await fetchBooks.getBooksByCategory(category);
 
     e.target.disabled = true;
 
@@ -100,14 +97,13 @@ const createMurkupBestBooks = arr => {
   refs.homeItems.addEventListener('click', checkBtn);
 };
 
-const fetchTopBooks = async url => {
+export const fetchTopBooks = async () => {
   try {
-    const response = await axios.get(url);
-
-    await createMurkupBestBooks(response.data);
+    const response = await fetchBooks.getBestSellers();
+    createMurkupBestBooks(response);
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchTopBooks(URL);
+fetchTopBooks();

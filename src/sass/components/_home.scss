@@ -3,11 +3,11 @@
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;
-  color: $blue;
+  // color: $blue;
   margin-bottom: 40px;
-  & > span {
-    color: $black;
-  }
+  // & > span {
+  //   color: $black;
+  // }
 }
 .home__items {
   @extend %list-style;

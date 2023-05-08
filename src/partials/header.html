@@ -1,102 +1,93 @@
 <header class="header">
-    <nav class="page-nav">
+  <nav class="page-nav">
+    <a id="logo" href="./index.html" class="header-logo">
+      <svg>
+        <use href="/src/images/icons.svg#icon-logo"></use>
+      </svg>
+      Bookshelf
+    </a>
+
+    <ul class="menu__main is-hidden">
+      <li>
+        <a href="./index.html" class="menu__home link"> Home </a>
+      </li>
+      <li>
         <a
-            href="./index.html"
-            class="header-logo"
+          href="./shopping-list.html"
+          class="menu__shopping link"
+          id="menu__shopping-list"
         >
-            <svg>
-                <use href="/src/images/icons.svg#icon-logo"></use>
-            </svg>
-            Bookshelf
+          Shopping list
+          <svg class="icon-cart" width="13.33" height="16.67">
+            <use href="/src/images/icons.svg#icon-bag"></use>
+          </svg>
         </a>
+      </li>
+    </ul>
 
-        <ul class="menu__main is-hidden">
-            <li>
-                <a
-                href="./index.html"
-                class="menu__home link"
-                >
-                    Home
-                </a>
-            </li>
-            <li>
-                <a
-                href="./shopping-list.html"
-                class="menu__shopping link"
-                id="menu__shopping-list"
-                >
-                    Shopping list
-                    <svg class="icon-cart" width="13.33" height="16.67">
-                        <use href="/src/images/icons.svg#icon-bag"></use>
-                    </svg>
-                </a>
-            </li>
-        </ul>
+    <div class="header-group">
+      <label class="toggle">
+        <input type="checkbox" name="toggle" class="switch" />
+        <span class="slider"></span>
+      </label>
 
-        <div class="header-group">
-            <label class="toggle">
-                <input type="checkbox" name="toggle" class="switch">
-                <span class="slider"></span>
-            </label>
+      <button class="auth__modal-open" type="button">
+        Sign up
+        <img
+          alt="arrow"
+          srcset="
+            /src/images/png/header/long-arrow.png    1x,
+            /src/images/png/header/long-arrow@2x.png 2x
+          "
+        />
+      </button>
 
-            <button class="auth__modal-open" type="button">
-                Sign up
-                <img
-                    alt="arrow"
-                    srcset="
-                        /src/images/png/header/long-arrow.png 1x,
-                        /src/images/png/header/long-arrow@2x.png 2x
-                    "
-                >
-            </button>
+      <button
+        class="menu-toggle js-open-menu"
+        aria-label="open close burger menu"
+      >
+        <svg class="icon-burger" width="24" height="24">
+          <use class="icon-href" href="/src/images/icons.svg#icon-menu"></use>
+        </svg>
+      </button>
+    </div>
 
-            <button
-                class="menu-toggle js-open-menu"
-                aria-label="open close burger menu"
-            >
-                <svg class="icon-burger" width="24" height="24">
-                    <use class="icon-href" href="/src/images/icons.svg#icon-menu"></use>
-                </svg>
-            </button>
-        </div>
-    
-        <div class="modal-mobile-menu is-hidden data-modal">
-            
-            <!--   мобільне дроп меню   -->
-            <ul class="drop-menu is-hidden">
-                <li>
-                    <a class="drop-menu__home link" href="./index.html">Home</a>
-                </li>
-                <li>
-                    <a class="drop-menu__shopping link" href="./shopping-list.html"
-                    >Shopping-list
-                        <svg class="icon-cart" width="14" height="14">
-                            <use href="/src/images/icons.svg#icon-bag"></use>
-                        </svg>
-                    </a>
-                </li>
-            </ul>
+    <div class="modal-mobile-menu is-hidden data-modal">
+      <!--   мобільне дроп меню   -->
+      <ul class="drop-menu is-hidden">
+        <li>
+          <a class="drop-menu__home link" href="./index.html">Home</a>
+        </li>
+        <li>
+          <a class="drop-menu__shopping link" href="./shopping-list.html"
+            >Shopping-list
+            <svg class="icon-cart" width="14" height="14">
+              <use href="/src/images/icons.svg#icon-bag"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
 
-            <!-- кнопка   Log out-->
-            <button class="drop-sign-up-btn sign-up-btn-js is-hidden" type="button">
-                Sign up
-                <img
-                alt="arrow"
-                srcset="
-                    /src/images/png/header/long-arrow.png 1x,
-                    /src/images/png/header/long-arrow@2x.png 2x
-                "
-                >
-            </button>
+      <!-- кнопка   Log out-->
+      <button class="drop-sign-up-btn sign-up-btn-js is-hidden" type="button">
+        Sign up
+        <img
+          alt="arrow"
+          srcset="
+            /src/images/png/header/long-arrow.png    1x,
+            /src/images/png/header/long-arrow@2x.png 2x
+          "
+        />
+      </button>
 
-            <img
-                srcset="
-                    /src/images/png/header/books.png 1x,
-                    /src/images/png/header/books@2x.png 2x
-                "
-                class="modal__books-list"
-                alt="Books"
-            >
-        </div>
-    </nav>
+      <img
+        srcset="
+          /src/images/png/header/books.png    1x,
+          /src/images/png/header/books@2x.png 2x
+        "
+        class="modal__books-list"
+        alt="Books"
+      />
+    </div>
+  </nav>
 </header>

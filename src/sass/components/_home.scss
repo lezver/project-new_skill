@@ -4,10 +4,10 @@
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;
-  color: $blue;
+  color: inherit;
   margin-bottom: 40px;
   & > span {
-    color: $black;
+    color: $blue;
   }
 }
 
@@ -50,7 +50,6 @@
           object-fit: cover;
           object-position: center;
           width: 335px;
-          // z-index: 1;
         }
         &::after {
           content: 'quick view';
@@ -90,6 +89,9 @@
         font-size: 12px;
         line-height: 1.16;
         color: $almost-gray;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
       }
     }
     & > li:not(:first-child) {
@@ -106,6 +108,7 @@
     padding: 14px 28px;
     border: 2px solid $blue;
     border-radius: 40px;
+    color: inherit;
     transition: color $time $time-distribution,
       background $time $time-distribution;
     &:hover,
@@ -231,6 +234,9 @@
     font-size: 12px;
     line-height: 1.16;
     color: $almost-gray;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
   @include breakpoint(tab) {
     width: 218px;

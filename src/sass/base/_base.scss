@@ -19,14 +19,15 @@
     url('../fonts/dmsans-bold.woff') format('woff');
 }
 
-html,
+html {
+  scroll-behavior: smooth;
+}
 body {
   font-family: 'DMSans-400';
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.04em;
   color: $black;
-  scroll-behavior: smooth;
   position: relative;
   background-color: $background;
 }

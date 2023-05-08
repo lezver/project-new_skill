@@ -9,14 +9,19 @@
     <script type="module" src="./shoping-list.js"></script>
   </head>
   <body>
-    <include src="./partials/header.html"></include>
-    <div class="container container-dflex">
-      <div class="aside">
-        <include src="./partials/support-ukraine.html"></include>
-      </div>
-      <main class="main">
-        <include src="./partials/shopping-list.html"></include>
+    <div class="wrapper">
+      <header>
+        <include src="./partials/header.html"></include>
+      </header>
+      <main class="container container-dflex">
+        <aside class="aside">
+          <include src="./partials/support-ukraine.html"></include>
+        </aside>
+        <div class="content">
+          <include src="./partials/shopping-list.html"></include>
+        </div>
       </main>
+      <footer></footer>
     </div>
     <include src="./partials/sing-up.html"></include>
     <include src="./partials/modal-book.html"></include>

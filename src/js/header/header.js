@@ -4,107 +4,109 @@ import debounce from 'lodash.debounce';
 
 //   Перемикач світла/темна тема
 const body = document.body;
+
 const header = document.querySelector('.header');
-const isDarkModeStored = (localStorage.getItem('darkMode') === 'true');
+const isDarkModeStored = localStorage.getItem('darkMode') === 'true';
 let slider = document.querySelector('.switch');
 
 const switchModeElStyles = {
-    body: {
-        lightMode: {
-            bgColor: '#f6f6f6',
-            mainTextColor: '#111111',
-        },
-        darkMode: {
-            bgColor: '#202024',
-            mainTextColor: '#fff',
-        },
+  body: {
+    lightMode: {
+      bgColor: '#f6f6f6',
+      mainTextColor: '#111111',
     },
+    darkMode: {
+      bgColor: '#202024',
+      mainTextColor: '#fff',
+    },
+  },
 
-    header: {
-        lightMode: {
-            bgColor: '#fff',
-            mainTextColor: '#111111',
-            borderColor: '#111111',
-        },
-        darkMode: {
-            bgColor: '#111111',
-            mainTextColor: '#fff',
-            borderColor: '#fff',
-        },
-    }
+  header: {
+    lightMode: {
+      bgColor: '#fff',
+      mainTextColor: '#111111',
+      borderColor: '#111111',
+    },
+    darkMode: {
+      bgColor: '#111111',
+      mainTextColor: '#fff',
+      borderColor: '#fff',
+    },
+  },
 };
 
 slider.addEventListener('change', changeDarkMode);
 
 if (isDarkModeStored) {
-    slider.checked = true;
-    setDarkModeBodyStyle();
-    setDarkModeHeaderStyle();
+  slider.checked = true;
+  setDarkModeBodyStyle();
+  setDarkModeHeaderStyle();
 
-    // body.classList.add('dark');
-    // header.classList.add('dark');
-};
+  // body.classList.add('dark');
+  // header.classList.add('dark');
+}
 
 function changeDarkMode() {
-    const darkModeId = 'darkMode';
-    
-    if (slider.checked) {
-        // body.classList.add('dark');
-        // header.classList.add('dark');
+  const darkModeId = 'darkMode';
 
-        localStorage.setItem(darkModeId, 'true');
-        setDarkModeBodyStyle();
-        setDarkModeHeaderStyle();
-        document.querySelector('.icon-href').setAttribute('fill', 'white');
-    } else {
-        // body.classList.remove('dark');
-        // header.classList.remove('dark');
-        
-        localStorage.setItem(darkModeId, 'false');
-        setLightModeBodyStyle();
-        setLightModeHeaderStyle();
-        document.querySelector('.icon-href').setAttribute('fill', 'black');
-    };
-};
+  if (slider.checked) {
+    // body.classList.add('dark');
+    // header.classList.add('dark');
+
+    localStorage.setItem(darkModeId, 'true');
+    setDarkModeBodyStyle();
+    setDarkModeHeaderStyle();
+    document.querySelector('.icon-href').setAttribute('fill', 'white');
+  } else {
+    // body.classList.remove('dark');
+    // header.classList.remove('dark');
+
+    localStorage.setItem(darkModeId, 'false');
+    setLightModeBodyStyle();
+    setLightModeHeaderStyle();
+    document.querySelector('.icon-href').setAttribute('fill', 'black');
+  }
+}
 
 function setLightModeBodyStyle() {
-    // if (slider.checked) {
-    //     body.style.backgroundColor = bgColor;
-    //     body.style.color = mainTextColor;
-    // } else {
-    //     body.style.backgroundColor = bgColor;
-    //     body.style.color = mainTextColor;
-    // };
-    
-    const { bgColor, mainTextColor } = switchModeElStyles.body.lightMode;
+  // if (slider.checked) {
+  //     body.style.backgroundColor = bgColor;
+  //     body.style.color = mainTextColor;
+  // } else {
+  //     body.style.backgroundColor = bgColor;
+  //     body.style.color = mainTextColor;
+  // };
 
-    body.style.backgroundColor = bgColor;
-    body.style.color = mainTextColor;
-};
+  const { bgColor, mainTextColor } = switchModeElStyles.body.lightMode;
+
+  body.style.backgroundColor = bgColor;
+  body.style.color = mainTextColor;
+}
 
 function setDarkModeBodyStyle() {
-    const { bgColor, mainTextColor } = switchModeElStyles.body.darkMode;
+  const { bgColor, mainTextColor } = switchModeElStyles.body.darkMode;
 
-    body.style.backgroundColor = bgColor;
-    body.style.color = mainTextColor;
-};
+  body.style.backgroundColor = bgColor;
+  body.style.color = mainTextColor;
+}
 
 function setLightModeHeaderStyle() {
-    const { bgColor, mainTextColor, borderColor } = switchModeElStyles.header.lightMode;
+  const { bgColor, mainTextColor, borderColor } =
+    switchModeElStyles.header.lightMode;
 
-    header.style.backgroundColor = bgColor;
-    header.style.color = mainTextColor;
-    header.style.borderColor = borderColor;
-};
+  header.style.backgroundColor = bgColor;
+  header.style.color = mainTextColor;
+  header.style.borderColor = borderColor;
+}
 
 function setDarkModeHeaderStyle() {
-    const { bgColor, mainTextColor, borderColor } = switchModeElStyles.header.darkMode;
+  const { bgColor, mainTextColor, borderColor } =
+    switchModeElStyles.header.darkMode;
 
-    header.style.backgroundColor = bgColor;
-    header.style.color = mainTextColor;
-    header.style.borderColor = borderColor;
-};
-
+  header.style.backgroundColor = bgColor;
+  header.style.color = mainTextColor;
+  header.style.borderColor = borderColor;
+}
 
 //   Відкриття/Закриття модалки для моб.версії
 
@@ -115,24 +117,24 @@ const iconHrefEl = document.querySelector('.icon-href');
 openModalBtnEl.addEventListener('click', toggleModal);
 
 if (isDarkModeStored) {
-    iconHrefEl.setAttribute('fill', 'white');
+  iconHrefEl.setAttribute('fill', 'white');
 } else {
-    iconHrefEl.setAttribute('fill', 'black');
+  iconHrefEl.setAttribute('fill', 'black');
 }
 
 function toggleModal() {
-    if (modalBoxEl.classList.contains('is-hidden')) {
-        modalBoxEl.classList.remove('is-hidden');
-        iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
-        document.body.classList.add('modal-open');
-        // iconHrefEl.setAttribute('width', '20px');
-        // iconHrefEl.setAttribute('height', '20px');
-        return;
-    } else {
-        modalBoxEl.classList.add('is-hidden');
-        iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
-        document.body.classList.remove('modal-open');
-    }
+  if (modalBoxEl.classList.contains('is-hidden')) {
+    modalBoxEl.classList.remove('is-hidden');
+    iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
+    document.body.classList.add('modal-open');
+    // iconHrefEl.setAttribute('width', '20px');
+    // iconHrefEl.setAttribute('height', '20px');
+    return;
+  } else {
+    modalBoxEl.classList.add('is-hidden');
+    iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
+    document.body.classList.remove('modal-open');
+  }
 }
 
 // Виділення жовтим назву поточної сторінки (меню в хедері)
@@ -141,23 +143,23 @@ const menuHomeEl = document.querySelector('.menu__home');
 const menuShoppingEl = document.querySelector('.menu__shopping');
 
 const setCurrentPage = () => {
-    const currentPageName = window.location.pathname;
-    // console.log(currentPageName);
-    // console.log(menuHomeEl);
-    // console.log(menuShoppingEl);
+  const currentPageName = window.location.pathname;
+  // console.log(currentPageName);
+  // console.log(menuHomeEl);
+  // console.log(menuShoppingEl);
 
-    if (
-        currentPageName === '/index.html' ||
-        currentPageName === '/project-new_skill/index.html' ||
-        currentPageName === '/project-new_skill/'
-    ) {
-        menuHomeEl.classList.add('current-page');
-        menuShoppingEl.classList.remove('current-page');
-        return;
-    }
+  if (
+    currentPageName === '/index.html' ||
+    currentPageName === '/project-new_skill/index.html' ||
+    currentPageName === '/project-new_skill/'
+  ) {
+    menuHomeEl.classList.add('current-page');
+    menuShoppingEl.classList.remove('current-page');
+    return;
+  }
 
-    menuShoppingEl.classList.add('current-page');
-    menuHomeEl.classList.remove('current-page');
+  menuShoppingEl.classList.add('current-page');
+  menuHomeEl.classList.remove('current-page');
 };
 
 setCurrentPage();
@@ -168,16 +170,16 @@ const dropMenuHomeEl = document.querySelector('.drop-menu__home');
 const dropMenuShoppingEl = document.querySelector('.drop-menu__shopping');
 
 const dropSetCurrentPage = () => {
-    const dropCurrentPageName = window.location.pathname;
+  const dropCurrentPageName = window.location.pathname;
 
-    if (
-        dropCurrentPageName === '/index.html' ||
-        dropCurrentPageName === '/project-new_skill/index.html'
-    ) {
-        dropMenuHomeEl.classList.add('current-page');
-        return;
-    }
-        dropMenuShoppingEl.classList.add('current-page');
+  if (
+    dropCurrentPageName === '/index.html' ||
+    dropCurrentPageName === '/project-new_skill/index.html'
+  ) {
+    dropMenuHomeEl.classList.add('current-page');
+    return;
+  }
+  dropMenuShoppingEl.classList.add('current-page');
 };
 
 dropSetCurrentPage();

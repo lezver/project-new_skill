@@ -9,16 +9,20 @@
     <script type="module" src="./home.js"></script>
   </head>
   <body>
-    <include src="./partials/header.html"></include>
-    <div class="container container-dflex">
+    <header>
+      <include src="./partials/header.html"></include>
+    </header>
+    <main class="container container-dflex">
       <aside class="aside">
         <include src="./partials/categories.html"></include>
         <include src="./partials/support-ukraine.html"></include>
       </aside>
-      <main class="main">
+      <div class="content">
         <include src="./partials/home.html"></include>
-      </main>
-    </div>
+      </div>
+    </main>
+    <footer></footer>
+
     <include src="./partials/sing-up.html"></include>
     <include src="./partials/modal-book.html"></include>
     <include src="./partials/scroll-up.html"></include>

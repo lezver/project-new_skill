@@ -123,7 +123,7 @@ const createMarkupBestBooks = arr => {
     ''
   );
 
-  refs.homeTitle.innerHTML = '<span>Best Sellers</span> Books';
+  refs.homeTitle.innerHTML = 'Best Sellers <span>Books</span>';
 
   refs.homeItems.innerHTML = markup;
 

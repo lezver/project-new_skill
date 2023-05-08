@@ -5,7 +5,7 @@ import debounce from 'lodash.debounce';
 //   Перемикач світла/темна тема
 const body = document.body;
 
-const header = document.querySelector('.header');
+const header = document.querySelector('.page-nav');
 const isDarkModeStored = localStorage.getItem('darkMode') === 'true';
 let slider = document.querySelector('.switch');
 
@@ -112,6 +112,7 @@ function setDarkModeHeaderStyle() {
 
 const modalBoxEl = document.querySelector('.data-modal');
 const openModalBtnEl = document.querySelector('.js-open-menu');
+const openModalBtnSvgEl = document.querySelector('.icon-burger');
 const iconHrefEl = document.querySelector('.icon-href');
 
 openModalBtnEl.addEventListener('click', toggleModal);
@@ -127,13 +128,15 @@ function toggleModal() {
     modalBoxEl.classList.remove('is-hidden');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
-    // iconHrefEl.setAttribute('width', '20px');
-    // iconHrefEl.setAttribute('height', '20px');
+    openModalBtnSvgEl.style.width = '18px';
+    openModalBtnSvgEl.style.height = '18px';
     return;
   } else {
     modalBoxEl.classList.add('is-hidden');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');
+    openModalBtnSvgEl.style.width = '24px';
+    openModalBtnSvgEl.style.height = '24px';
   }
 }
 

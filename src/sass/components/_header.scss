@@ -17,37 +17,6 @@ body.dark {
     background-color: $gray;
 }
 
-.header {
-    background-color: $white;
-    border: 1.5px solid $black;
-    border-radius: 0px 0px 8px 8px;
-
-    letter-spacing: -0.04em;
-    height: 64px;
-
-    // position: relative;
-
-    // & > .container {
-    //     position: inherit;
-    //     top: 50%;
-    //     transform: translateY(-50%);
-    // }
-
-    &.dark {
-        background-color: $black;
-        border-color: $white;
-        color: $white;
-    }
-
-    @include breakpoint(tab-header) {
-        height: 72px;
-    }
-
-    @include breakpoint(des) {
-        height: 72px;
-    }
-}
-
 .header-logo {
     display: flex;
     flex-direction: row;
@@ -76,6 +45,30 @@ body.dark {
 };
 
 .page-nav {
+    position: relative;
+    z-index: 20;
+
+    background-color: $white;
+    border: 1.5px solid $black;
+    border-radius: 0px 0px 8px 8px;
+
+    letter-spacing: -0.04em;
+    height: 64px;
+
+    &.dark {
+        background-color: $black;
+        border-color: $white;
+        color: $white;
+    }
+
+    @include breakpoint(tab-header) {
+        height: 72px;
+    }
+
+    @include breakpoint(des) {
+        height: 72px;
+    }
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -298,7 +291,7 @@ body.dark {
 .modal-mobile-menu {
     position: absolute;
 
-    top: 64px;
+    top: 0px;
     left: 0px;
 
     width: 100%;
@@ -320,13 +313,16 @@ body.dark {
 
 // Мобільне дроп меню
 .drop-menu {
+    position: relative;
+    z-index: 7;
+    
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     gap: 16px;
 
-    padding-top: 35%;
+    padding-top: 40%;
 
     font-weight: 500;
     text-transform: uppercase;

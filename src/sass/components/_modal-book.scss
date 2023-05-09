@@ -124,12 +124,12 @@
   @include breakpoint(tab) {
     width: 192px;
     height: 281px;
-    margin-bottom: 0px;
+    margin: 0 0;
   }
   @include breakpoint(des) {
     width: 192px;
     height: 281px;
-    margin-bottom: 0px;
+    margin: 0 0;
   }
 }
 
@@ -266,12 +266,12 @@
 
 .black-theme-add-book-button:hover {
   color: $white;
-  background-color: $gray;
+  background-color: $blue;
 }
 
 .black-theme-add-book-button:focus {
   color: $white;
-  background-color: $gray;
+  background-color: $blue;
 }
 
 .remove-book-container {
@@ -320,12 +320,12 @@
 
 .black-theme-remove-book-button:hover {
   color: $white;
-  background-color: $gray;
+  background-color: $blue;
 }
 
 .black-theme-remove-book-button:focus {
   color: $white;
-  background-color: $gray;
+  background-color: $blue;
 }
 
 .remove-book-text {

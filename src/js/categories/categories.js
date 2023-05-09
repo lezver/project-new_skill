@@ -18,6 +18,7 @@ listEl.addEventListener('click', markup);
 const createCategoryList = async () => {
   try {
     const categoriesList = await fetchBooks.getCategoriesList();
+
     const makeNewButtons = categoriesList
       .map(
         category =>

@@ -1,10 +1,6 @@
-import axios from 'axios';
 import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
-
-const URL = 'https://books-backend.p.goit.global/books/top-books';
-const URL_CATEGORY =
-  'https://books-backend.p.goit.global/books/category?category=';
+import { fetchBooks } from '../categories/fetchRequest';
 
 const createMarkupCategories = arr => {
   const markup = arr.reduce((acc, { book_image, title, author, _id }) => {
@@ -29,21 +25,17 @@ const createMarkupCategories = arr => {
   removeLoader();
 };
 
-const fetchCategoryBooks = async value => {
-  const response = await axios.get(URL_CATEGORY + value);
-
-  await createMarkupCategories(response.data);
-};
-
-const checkBtn = e => {
+const findCategory = async e => {
   const categoryBtn = document.querySelector('.category-btn');
 
   if (e.target.className === 'category-btn') {
-    const category = e.target.dataset.category.replace(/ /g, '+');
-
     addLoader();
 
-    fetchCategoryBooks(category);
+    const category = e.target.dataset.category.replace(/ /g, '+');
+
+    const response = await fetchBooks.getBooksByCategory(category);
+
+    await createMarkupCategories(response);
 
     refs.homeItems.classList.add('home__items-category');
 
@@ -130,17 +122,18 @@ const createMarkupBestBooks = arr => {
   removeLoader();
 };
 
-const fetchTopBooks = async url => {
+const fetchTopBooks = async () => {
   try {
     addLoader();
-    const response = await axios.get(url);
 
-    await createMarkupBestBooks(response.data);
+    const response = await fetchBooks.getBestSellers();
+
+    await createMarkupBestBooks(response);
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchTopBooks(URL);
+fetchTopBooks();
 
-refs.homeItems.addEventListener('click', checkBtn);
+refs.homeItems.addEventListener('click', findCategory);

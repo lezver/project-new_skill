@@ -12,13 +12,10 @@
   color: $blue;
 }
 .categories__ul {
-  max-width: 380px;
-  height: 238px;
-  padding-top: 40px;
   background-color: inherit;
-  // margin-bottom: 40px;
   overflow-y: scroll;
   .categories-list {
+    margin-right: 28px;
     flex-direction: column;
     gap: 24px;
     display: flex;
@@ -40,6 +37,24 @@
       text-transform: uppercase;
       font-weight: 700;
     }
+  }
+
+  height: 228px;
+  @media screen and (max-width: 374px) {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+    max-width: auto;
+    width: 335px;
+  }
+  @include breakpoint(tab-aside) {
+    width: 337px;
+    height: 472px;
+  }
+  @include breakpoint(des) {
+    width: 356px;
+    height: 472px;
   }
 }
 

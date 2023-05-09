@@ -1,13 +1,13 @@
 .hidden {
   display: none;
 }
-.dark {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
+// .dark {
+//   color: rgba(255, 255, 255, 0.6) !important;
+// }
 
-.active-dark {
-  color: #eac645 !important;
-}
+// .active-dark {
+//   color: #eac645 !important;
+// }
 .span-purple {
   color: $blue;
 }
@@ -23,7 +23,6 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    // background-color: #000000;
     border-radius: 12px;
     background-color: #aaa7a7;
     &:hover {
@@ -36,9 +35,15 @@
     gap: 24px;
     display: flex;
     @extend %list-style;
+    @include breakpoint(tab) {
+      gap: 32px;
+    }
+    @include breakpoint(des) {
+      gap: 32px;
+    }
+
     .categories-list__button {
       background-color: inherit;
-      height: 16px;
       letter-spacing: -0.02em;
       color: inherit;
       cursor: pointer;

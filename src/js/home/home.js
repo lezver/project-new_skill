@@ -2,7 +2,7 @@ import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
 import { fetchBooks } from '../categories/fetchRequest';
 
-const createMarkupCategories = arr => {
+export const createMarkupCategories = arr => {
   const markup = arr.reduce((acc, { book_image, title, author, _id }) => {
     const img = `<img loading="lazy" src="${book_image}" alt="book" />`;
 
@@ -47,7 +47,7 @@ const findCategory = async e => {
   }
 };
 
-const createMarkupBestBooks = arr => {
+export const createMarkupBestBooks = arr => {
   refs.homeItems.classList.remove('home__items-category');
   const markup = arr.reduce(
     (

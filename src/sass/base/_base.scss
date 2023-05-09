@@ -30,6 +30,22 @@ body {
   color: $black;
   position: relative;
   background-color: $background;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #d8d8d85e;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    // background-color: #000000;
+    border-radius: 12px;
+    background-color: #aaa7a7;
+    &:hover {
+      background-color: #8f8f8f;
+    }
+  }
 }
 
 a {

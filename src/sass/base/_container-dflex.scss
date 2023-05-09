@@ -3,16 +3,19 @@
   flex-direction: column;
   gap: 40px;
   padding-top: 20px;
+  padding-bottom: 20px;
 
   @include breakpoint(tab-aside) {
     flex-direction: column;
     gap: 100px;
     padding-top: 20px;
+    padding-bottom: 20px;
   }
   @include breakpoint(des) {
     flex-direction: row;
     gap: 40px;
     padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   & > .aside {

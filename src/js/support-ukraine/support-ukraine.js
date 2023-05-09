@@ -11,7 +11,6 @@ const renderSupportList = items => {
       const number = (index + 1).toString().padStart(2, '0');
       return `
            <li class="support__list-item swiper-slide">
-              <p class="support__number">${number}</p>
               <a
                 target="_blank"
                 rel="noopener noreferrer nofollow"
@@ -28,6 +27,7 @@ const renderSupportList = items => {
                   loading="lazy"
                 />
               </a>
+              <span class="support__number">${number}</span>
             </li>
               `;
     })
@@ -39,7 +39,7 @@ renderSupportList(fundArray);
 
 const swiper = new Swiper('.swiper', {
   direction: 'vertical',
-  spaceBetween: 20,
+  spaceBetween: 19,
   slidesPerView: 'auto',
   rewind: true,
 

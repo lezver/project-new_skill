@@ -1,0 +1,49 @@
+<div class="sign-up">
+  <div class="sign-up__modal">
+    <button type="button">
+      <svg>
+        <use href="./images/icons.svg#icon-cross"></use>
+      </svg>
+    </button>
+    <form>
+      <lebel>
+        <input
+          type="name"
+          placeholder="name"
+          name="user_name"
+          required
+          pattern="^[a-zA-Z]+$"
+        />
+      </lebel>
+      <lebel>
+        <input
+          type="email"
+          placeholder="email"
+          name="user_email"
+          required
+          title="your@mail.com"
+        />
+        <svg class="sign-up__email">
+          <use href="./images/icons.svg#icon-email"></use>
+        </svg>
+      </lebel>
+      <lebel>
+        <input
+          type="password"
+          placeholder="password"
+          name="user_password"
+          minlength="5"
+          maxlength="12"
+        />
+        <svg class="sign-up__lock">
+          <use href="./images/icons.svg#icon-lock"></use>
+        </svg>
+      </lebel>
+      <button type="submit">sign up</button>
+    </form>
+    <div class="sign-up__links">
+      <a href="">sign up</a>
+      <a href="">sign in</a>
+    </div>
+  </div>
+</div>

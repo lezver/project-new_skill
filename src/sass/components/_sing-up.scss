@@ -1,0 +1,231 @@
+.sign-up {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $blue;
+  z-index: 30;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'DMSans-700';
+
+  transform: scale(0);
+  transition: opacity $time $time-distribution,
+    transform $time $time-distribution;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  @include breakpoint(tab) {
+    background: radial-gradient(circle at top left, $sing-up -50%, $blue 50%);
+  }
+  @include breakpoint(des) {
+    background: radial-gradient(circle at top left, $sing-up -50%, $blue 50%);
+  }
+  &.sign-up-hidden {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: scale(1);
+  }
+}
+.sign-up__modal {
+  max-height: 85vh;
+  overflow-x: auto;
+  margin: 0 15px;
+  padding: 40px 20px;
+  border: 2px solid $black;
+  border-radius: 18px;
+  width: 335px;
+  background-color: $background;
+  font-size: 16px;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+
+  position: relative;
+  & > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    width: 20px;
+    height: 20px;
+
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    > svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+  & > form {
+    margin-bottom: 14px;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    & > lebel {
+      height: 50px;
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      border: 2px solid $black;
+      border-radius: 40px;
+      padding: 0 24px;
+      margin-bottom: 24px;
+
+      & > input {
+        background-color: transparent;
+        border: none;
+        outline: none;
+        width: 100%;
+      }
+      & > input::placeholder {
+        text-transform: uppercase;
+        color: $black;
+      }
+    }
+    & > button {
+      padding: 16px 0;
+      border: none;
+      background-color: $black;
+      border-radius: 40px;
+      text-transform: uppercase;
+      color: $white;
+      cursor: pointer;
+      transition: background $time $time-distribution;
+      letter-spacing: -0.01em;
+      &:hover,
+      &:focus {
+        background-color: rgba(17, 17, 17, 0.5);
+      }
+    }
+  }
+  .sign-up__links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    > a {
+      text-transform: uppercase;
+      @extend %link;
+      color: rgba(17, 17, 17, 0.5);
+      transition: color $time $time-distribution;
+      &:hover,
+      &:focus {
+        color: $blue;
+      }
+    }
+  }
+  @include breakpoint(tab) {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 80px 40px 40px;
+    width: 579px;
+    & > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      width: 28px;
+      height: 28px;
+
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      > svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    & > form {
+      margin-bottom: 20px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      & > lebel {
+        height: 64px;
+        padding: 0 32px 0 40px;
+        margin-bottom: 28px;
+      }
+      & > lebel:nth-child(n + 3) {
+        margin-bottom: 40px;
+      }
+      & > button {
+        padding: 20px 0;
+        line-height: 1.33;
+      }
+    }
+  }
+  @include breakpoint(des) {
+    font-size: 18px;
+    line-height: 1.33;
+    padding: 80px 40px 40px;
+    width: 579px;
+    & > button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: transparent;
+      border: none;
+      width: 28px;
+      height: 28px;
+
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      > svg {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    & > form {
+      margin-bottom: 20px;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      & > lebel {
+        height: 64px;
+        padding: 0 32px 0 40px;
+        margin-bottom: 28px;
+      }
+      & > lebel:nth-child(n + 3) {
+        margin-bottom: 40px;
+      }
+      & > button {
+        padding: 20px 0;
+        line-height: 1.33;
+      }
+    }
+  }
+}
+
+.sign-up__email {
+  width: 12px;
+  height: 15px;
+  @include breakpoint(tab) {
+    width: 23.3px;
+    height: 18.7px;
+  }
+  @include breakpoint(des) {
+    width: 23.3px;
+    height: 18.7px;
+  }
+}
+.sign-up__lock {
+  width: 13.5px;
+  height: 13.5px;
+  @include breakpoint(tab) {
+    width: 21px;
+    height: 21px;
+  }
+  @include breakpoint(des) {
+    width: 21px;
+    height: 21px;
+  }
+}

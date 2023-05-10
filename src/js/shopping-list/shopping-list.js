@@ -65,7 +65,7 @@ if (savedSettings) {
 innerMarkup();
 
 function onClick(event) {
-  const target = event.target.closest('.button');
+  const target = event.target.closest('.shopping-delete-button');
   const index = parsedSettings.map(element => element._id).indexOf(target.id);
   parsedSettings.splice(index, 1);
   // localStorage.setItem('shopping_list', JSON.stringify(parsedSettings));
@@ -102,7 +102,7 @@ function offListener() {
 }
 
 function onListener() {
-  const buttonEl = document.querySelectorAll('.button');
+  const buttonEl = document.querySelectorAll('.shopping-delete-button');
   buttonEl.forEach(element => {
     element.addEventListener('click', onClick);
   });
@@ -110,7 +110,7 @@ function onListener() {
 }
 
 function onClick(event) {
-    const target = event.target.closest('.button');
+    const target = event.target.closest('.shopping-delete-button');
     const index = parsedSettings.map(element => element._id).indexOf(target.id);
     parsedSettings.splice(index, 1);
     innerMarkup();
@@ -169,7 +169,7 @@ function buildBooks({
                     <h3 class = "book-tittle">${title}</h3>
                     <p class = "list-name">${list_name}</p>
                 </div>
-                <button id="${_id}" class="button">
+                <button id="${_id}" class="shopping-delete-button">
                     <img srcset=" ${bookBasket1} 1x, ${bookBasket2} 2x"   src="${bookBasket1}" alt="basket" class = "basket">
                 </button>
             </div>

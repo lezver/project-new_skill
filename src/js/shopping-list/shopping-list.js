@@ -1,20 +1,18 @@
 
+
 import Pagination from 'tui-pagination';
+
 import amazonImage1 from '../../images/png/modal-book/amazon.png';
 import amazonImage2 from '../../images/png/modal-book/amazon@2x.png';
 import appleImage1 from '../../images/png/modal-book/book.png';
 import appleImage2 from '../../images/png/modal-book/book@2x.png';
 import bookshopImage1 from '../../images/png/modal-book/book-shop.png';
 import bookshopImage2 from '../../images/png/modal-book/book-shop@2x.png';
-
-//import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
-//import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
-
 import booksImageMob1 from '../../images/png/shopping-list/books.png';
 import booksImageMob2 from '../../images/png/shopping-list/books@2x.png';
-
 import bookBasket1 from '../../images/png/shopping-list/basket/basket.png';
 import bookBasket2 from '../../images/png/shopping-list/basket/basket@2x.png';
+import svgIcon from '../../images/icons.svg';
 
 const galleryEl = document.querySelector('.gallery');
 const emptyListEl = document.querySelector('.shopping-list-empty');
@@ -25,16 +23,29 @@ let currentPage = 1;
 
 const paginationContainer = document.getElementById('tui-pagination-container');
 let perPage = window.innerWidth <= 576 ? 4 : 3;
+let visiblePages = window.innerWidth <= 576 ? 2 : 3;
 const paginationSettings = {
   totalItems: 100,
   itemsPerPage: perPage,
-  visiblePages: 10,
+  visiblePages: visiblePages,
   centerAlign: true,
   template: {
     moveButton:
-                '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-                    '<span class="tui-ico-{{type}}">{{type}}</span>' +
-                '</a>',
+        '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+            '<span class="tui-ico-{{type}}">' +
+                `<svg >
+                    <use href = "${svgIcon}#icon-pagination-{{type}}"></use>
+                </svg>` +
+            '</span>' +
+        '</a>',
+    disabledMoveButton:
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+            '<span class="tui-ico-{{type}}">' +
+                `<svg >
+                    <use href = "${svgIcon}#icon-pagination-{{type}}"></use>
+                </svg>` +
+            '</span>' +
+        '</span>',
   }
 };
 const paginationInstance = new Pagination(
@@ -108,7 +119,7 @@ function onClick(event) {
   }
 
   function onResize(event) {
-    let _perPage = event.target.innerWidth <= 576 ? 4 : 3
+    const _perPage = event.target.innerWidth <= 576 ? 4 : 3
     if (_perPage != perPage) {
         perPage = _perPage
         paginationInstance.setItemsPerPage(perPage)

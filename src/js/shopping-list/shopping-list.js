@@ -7,11 +7,11 @@ import appleImage2 from '../../images/png/modal-book/book@2x.png';
 import bookshopImage1 from '../../images/png/modal-book/book-shop.png';
 import bookshopImage2 from '../../images/png/modal-book/book-shop@2x.png';
 
-import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
-import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
+//import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
+//import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
 
-//import booksImageMob1 from '../../images/png/shopping-list/books.png';
-//import booksImageMob2 from '../../images/png/shopping-list/books@2x.png';
+import booksImageMob1 from '../../images/png/shopping-list/books.png';
+import booksImageMob2 from '../../images/png/shopping-list/books@2x.png';
 
 import bookBasket1 from '../../images/png/shopping-list/basket/basket.png';
 import bookBasket2 from '../../images/png/shopping-list/basket/basket@2x.png';

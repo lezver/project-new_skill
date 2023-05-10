@@ -260,6 +260,7 @@
 }
 
 .add-book-button {
+  display: block;
   padding: 14px 0px;
   width: 100%;
   border: 2px solid $blue;
@@ -309,12 +310,21 @@
   background-color: $blue;
 }
 
+.add-book-button-none {
+  display: none;
+}
+
 .remove-book-container {
+  display: none;
+}
+
+.remove-book-container-visible {
   display: flex;
   flex-direction: column;
 }
 
 .remove-book-button {
+  display: block;
   padding: 14px 0px;
   width: 100%;
   border: 2px solid $blue;

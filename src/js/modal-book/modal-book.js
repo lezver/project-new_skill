@@ -8,7 +8,7 @@ let bookImage = document.querySelector('.book-image');
 let bookName = document.querySelector('.book-name');
 let bookAuthor = document.querySelector('.book-author');
 let bookDescription = document.querySelector('.book-description');
-const amazonLogo = document.querySelector('.amazon-logo'); //
+const amazonLogo = document.querySelector('.amazon-logo');
 let amazonLink = document.querySelector('.amazon-link');
 let bookLink = document.querySelector('.book-link');
 let bookShopLink = document.querySelector('.book-shop-link');
@@ -28,7 +28,7 @@ listOfBooks.addEventListener('click', e => {
     async function fetchBook() {
       const bookDataObj = await fetchBooks.getBookById(bookID);
       const {
-        id,
+        _id,
         book_image,
         title,
         author,
@@ -36,7 +36,7 @@ listOfBooks.addEventListener('click', e => {
         buy_links: [Amazon, appleBooks, , , bookShop],
       } = bookDataObj;
 
-      modalWindow.id = await id;
+      modalWindow.id = await _id;
       bookImage.src = await book_image;
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
@@ -47,7 +47,7 @@ listOfBooks.addEventListener('click', e => {
         bookDescription.textContent = 'No description';
       } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
 
-      console.log(bookDataObj);
+      // console.log(bookDataObj);
 
       const amazonUrl = await Amazon.url;
       amazonLink.href = amazonUrl;
@@ -58,29 +58,38 @@ listOfBooks.addEventListener('click', e => {
       const bookShopUrl = await bookShop.url;
       bookShopLink.href = await bookShopUrl;
       backdrop.classList.add('backdrop-visible');
-      addBookButton.addEventListener('click', addToShoppingList); // ADD TO SHOPPING LIST
-      function addToShoppingList() {
+      addBookButton.addEventListener('click', toggleBookAtShoppingList); // ADD/REMOVE TO SHOPPING LIST FUNC
+      function toggleBookAtShoppingList() {
         const bookData = {
-          id: id,
+          id: _id,
           Image: book_image,
           Title: title,
           Author: author,
           Description: description,
           buy_links: [Amazon, appleBooks, bookShop],
         };
+
         let shoppingList = localStorage.getItem('shoppingList');
         shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
-        const index = shoppingList.findIndex(item => item.id === id);
-        if (index !== -1) {
-          shoppingList[index] = bookData;
-        } else {
+        const index = shoppingList.find(obj => obj.id === _id);
+        if (!index) {
+          // BOOK ADD
           shoppingList.push(bookData);
+          console.log(addBookButton);
+          addBookButton.classList.add('add-book-button-none');
+          removeBookContainer.classList.add('remove-book-container-visible');
+        } else {
+          // BOOK REMOVE
+          // shoppingList.splice(index, 1);
+          addBookButton.classList.remove('add-book-button-none');
+          removeBookContainer.classList.remove('remove-book-container-visible');
         }
         localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+        addBookButton.removeEventListener('click', toggleBookAtShoppingList);
       }
+
       return;
     }
-
     fetchBook();
   }
 });

@@ -70,7 +70,7 @@
     max-width: 100%;
     display: flex;
     flex-direction: column;
-    & > lebel {
+    & > label {
       height: 50px;
       max-width: 100%;
       display: flex;
@@ -124,7 +124,7 @@
       border: none;
       text-transform: uppercase;
       @extend %link;
-      color: rgba(17, 17, 17, 0.5);
+      color: $almost-gray;
     }
     .sign-up-button-active {
       color: $blue;
@@ -158,12 +158,12 @@
       max-width: 100%;
       display: flex;
       flex-direction: column;
-      & > lebel {
+      & > label {
         height: 64px;
         padding: 0 32px 0 40px;
         margin-bottom: 28px;
       }
-      & > lebel:nth-child(n + 3) {
+      & > label:nth-child(n + 3) {
         margin-bottom: 40px;
       }
       & > button {
@@ -199,12 +199,12 @@
       max-width: 100%;
       display: flex;
       flex-direction: column;
-      & > lebel {
+      & > label {
         height: 64px;
         padding: 0 32px 0 40px;
         margin-bottom: 28px;
       }
-      & > lebel:nth-child(n + 3) {
+      & > label:nth-child(n + 3) {
         margin-bottom: 40px;
       }
       & > button {
@@ -237,5 +237,34 @@
   @include breakpoint(des) {
     width: 21px;
     height: 21px;
+  }
+}
+.dark-mode .sign-up__modal {
+  background-color: $gray;
+  border-color: $background;
+  > button {
+    svg {
+      fill: $background;
+    }
+  }
+  > form {
+    > label {
+      border-color: $background;
+      > input {
+        &::placeholder {
+          color: $background;
+        }
+      }
+      > svg {
+        fill: $background;
+      }
+    }
+    > button {
+      background-color: $background;
+      color: $gray;
+      &:disabled {
+        background-color: $almost-gray;
+      }
+    }
   }
 }

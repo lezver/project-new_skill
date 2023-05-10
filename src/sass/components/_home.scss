@@ -1,6 +1,3 @@
-.home {
-}
-
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;
@@ -117,7 +114,28 @@
       background-color: $blue;
     }
   }
-  @include breakpoint(tab) {
+  @media screen and (min-width: 577px) and (max-width: 766px) {
+    max-width: 100%;
+    & > ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      & li:nth-child(-n + 2) {
+        display: block;
+        width: 218px;
+        & > div {
+          width: 218px;
+          height: 316px;
+          & > img {
+            width: 218px;
+            height: 316px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 766px) and (max-width: 891px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -138,7 +156,70 @@
       }
     }
   }
-  @include breakpoint(des) {
+  @media screen and (min-width: 892px) and (max-width: 1031px) {
+    max-width: 100%;
+    & > ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      & > li:nth-child(-n + 4) {
+        display: block;
+        width: 180px;
+        & > div {
+          width: 180px;
+          height: 265px;
+          & > img {
+            width: 180px;
+            height: 265px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1032px) and (max-width: 1235px) {
+    max-width: 100%;
+    & > ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      & > li:nth-child(-n + 3) {
+        display: block;
+        width: 180px;
+        & > div {
+          width: 180px;
+          height: 265px;
+          & > img {
+            width: 180px;
+            height: 265px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1236px) and (max-width: 1439px) {
+    max-width: 100%;
+    & > ul {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+      & > li:nth-child(-n + 4) {
+        display: block;
+        width: 180px;
+        & > div {
+          width: 180px;
+          height: 265px;
+          & > img {
+            width: 180px;
+            height: 265px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (min-width: 1440px) {
     max-width: 100%;
     & > ul {
       display: flex;

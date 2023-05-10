@@ -14,6 +14,9 @@ const {
   children: [buttonOfClose, signUpForm],
 } = singUpModal;
 
+const signUpButton = singUpModal.children[2].children[0];
+const signIpButton = singUpModal.children[2].children[1];
+
 const closeModalSingUp = e => {
   const buttonOfCloseSvg = buttonOfClose.children[0];
   const buttonOfCloseUse = buttonOfClose.children[0].children[0];
@@ -62,14 +65,36 @@ const checkForm = e => {
 const checkRequired = () => {
   const [name, email, password, buttonSignUp] = signUpForm;
   if (
-    name.value.length >= 2 &&
-    email.value.length >= 15 &&
-    password.value.length >= 5
+    name.checkValidity() &&
+    email.checkValidity() &&
+    password.checkValidity()
   ) {
     buttonSignUp.disabled = false;
     buttonSignUp.style.cursor = 'pointer';
+  } else {
+    buttonSignUp.disabled = true;
+    buttonSignUp.style.cursor = 'auto';
   }
 };
 
 signUpForm.addEventListener('submit', checkForm);
 signUpForm.addEventListener('input', checkRequired);
+
+const createMarkupSignIp = () => {
+  signIpButton.classList.add('sign-up-button-active');
+
+  signUpButton.classList.remove('sign-up-button-active');
+};
+
+createMarkupSignIp();
+
+const createMarkupSignUp = () => {
+  signUpButton.classList.add('sign-up-button-active');
+
+  signIpButton.classList.remove('sign-up-button-active');
+};
+
+signUpButton.addEventListener('click', createMarkupSignUp);
+signIpButton.addEventListener('click', createMarkupSignIp);
+
+createMarkupSignUp();

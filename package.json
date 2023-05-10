@@ -30,6 +30,7 @@
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "console-browserify": "^1.2.0",
+    "os-browserify": "^0.3.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4",

@@ -113,17 +113,19 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    > a {
+    > button {
+      line-height: 1.29;
+      background-color: transparent;
+      cursor: pointer;
+      outline: none;
+      border: none;
       text-transform: uppercase;
       @extend %link;
       color: rgba(17, 17, 17, 0.5);
-      transition: color $time $time-distribution,
-        text-decoration $time $time-distribution;
-      &:hover,
-      &:focus {
-        color: $blue;
-        text-decoration: underline;
-      }
+    }
+    .sign-up-button-active {
+      color: $blue;
+      text-decoration: underline;
     }
   }
   @include breakpoint(tab) {

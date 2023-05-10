@@ -22,6 +22,36 @@
           name="user_email"
           required
           title="your@mail.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <svg class="sign-up__email">
+          <use href="./images/icons.svg#icon-email"></use>
+        </svg>
+      </lebel>
+      <lebel>
+        <input
+          type="password"
+          placeholder="password"
+          name="user_password"
+          minlength="5"
+          maxlength="12"
+          required
+        />
+        <svg class="sign-up__lock">
+          <use href="./images/icons.svg#icon-lock"></use>
+        </svg>
+      </lebel>
+      <button type="submit" disabled>sign up</button>
+    </form>
+    <form>
+      <lebel>
+        <input
+          type="email"
+          placeholder="email"
+          name="user_email"
+          required
+          title="your@mail.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
         <svg class="sign-up__email">
           <use href="./images/icons.svg#icon-email"></use>
@@ -43,8 +73,8 @@
       <button type="submit" disabled>sign up</button>
     </form>
     <div class="sign-up__links">
-      <a href="">sign up</a>
-      <a href="">sign in</a>
+      <button type="button">sign up</button>
+      <button type="button">sign in</button>
     </div>
   </div>
 </div>

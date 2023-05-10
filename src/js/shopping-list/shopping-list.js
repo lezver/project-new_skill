@@ -683,14 +683,6 @@ if (savedSettings) {
 }
 innerMarkup();
 
-function onClick(event) {
-  const target = event.target.closest('.shopping-delete-button');
-  const index = parsedSettings.map(element => element._id).indexOf(target.id);
-  parsedSettings.splice(index, 1);
-  // localStorage.setItem('shopping_list', JSON.stringify(parsedSettings));
-  innerMarkup();
-}
-
 function innerMarkup() {
   offListener();
   if (parsedSettings.length) {
@@ -716,19 +708,19 @@ function getMarkup() {
 }
 
 function offListener() {
-  removeEventListener('click', onClick);
+  removeEventListener('click', onClickShoppingDelete);
   removeEventListener('resize', onResize);
 }
 
 function onListener() {
   const buttonEl = document.querySelectorAll('.shopping-delete-button');
   buttonEl.forEach(element => {
-    element.addEventListener('click', onClick);
+    element.addEventListener('click', onClickShoppingDelete);
   });
   window.addEventListener('resize', onResize);
 }
 
-function onClick(event) {
+function onClickShoppingDelete(event) {
     const target = event.target.closest('.shopping-delete-button');
     const index = parsedSettings.map(element => element._id).indexOf(target.id);
     parsedSettings.splice(index, 1);

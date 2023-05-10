@@ -19,6 +19,12 @@ ul {
     padding: 14px;
     border: 2px solid rgba(79, 46, 232, 0.4);
     border-radius: 16px;
+    box-shadow: inset 0 0 0 rgba($blue, 0.02);
+    transition: all 0.3s ease-in-out;
+
+      &:hover {
+        box-shadow: inset 0 0 150px rgba($blue, 0.4);
+       }
     @include breakpoint(tab) {
       gap: 24px;
       height: 213px;
@@ -51,7 +57,7 @@ ul {
       gap: 2px;
     }
   }
-  .page-tittle {
+  .page-title {
     font-family: 'DMSans-700';
     font-size: 32px;
     line-height: 1.18;
@@ -145,8 +151,17 @@ ul {
       cursor: pointer;
       background-color: $blue;
       border: none;
+      transition: all 0.3s ease-in-out;
+        &:hover {
+         color: $black;
+         box-shadow: inset 0 0 40px rgba($yellow, 1);
+         .basket {
+            filter: invert(1);
+           }
+        }
     }
     .basket {
+        transition: all 0.3s ease-in-out;
       width: 16px;
       height: 16px;
     }
@@ -253,6 +268,8 @@ ul {
     }
   }
 }
+
+// === PAGINATION ===
 
 .pagination {
   padding-top: 20px;
@@ -370,5 +387,55 @@ ul {
   }
   @include breakpoint(des) {
     margin-left: 16px;
+  }
+}
+
+// === DARK MODE ===
+body.dark {
+  .shopping-list {
+    .page-title {
+      color: $white;
+    }
+    &-empty {
+      p {
+        color: rgba(255, 255, 255, 0.6);
+      }
+    }
+    &-item {
+      background-color: $black;
+    }
+    
+    .book-tittle,
+    .description {
+      color: $white;
+    }
+    .link-amazon {
+      filter: brightness(0) invert(1);
+    }
+    .link-amazon:hover,
+    .link-amazon:focus {
+      filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.65)) brightness(0)
+        invert(1);
+    }
+    .link-applebooks:hover,
+    .link-applebooks:focus {
+      filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.65)) grayscale(1);
+    }
+
+    .link-bookshop:hover,
+    .link-bookshop:focus {
+      filter: drop-shadow(0px 3px 3px rgba(255, 255, 255, 0.65)) grayscale(1);
+    }
+
+    .tui-page-btn:not(.tui-first):not(.tui-prev):not(.tui-next):not(.tui-last) {
+        border-color: $white;
+        color: $white;
+      }
+
+      .tui-page-btn.tui-is-selected:not(.tui-first):not(.tui-prev):not(.tui-next):not(.tui-last) {
+        color: $black;
+        background-color: $white;
+      }
+      
   }
 }

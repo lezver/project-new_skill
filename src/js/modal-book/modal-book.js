@@ -22,11 +22,10 @@ const themeMode = localStorage.getItem('darkMode');
 // MODAL WINDOW OPEN
 listOfBooks.addEventListener('click', e => {
   if (e.target.classList.contains('img__wrapper')) {
-    document.body.style.overflow = 'hidden';
-    const bookID = e.target.dataset.id;
+    document.body.classList.add('body-owerflow-hidden');
 
     async function fetchBook() {
-      const bookDataObj = await fetchBooks.getBookById(bookID);
+      const bookDataObj = await fetchBooks.getBookById(e.target.dataset.id);
       const {
         _id,
         book_image,
@@ -47,13 +46,23 @@ listOfBooks.addEventListener('click', e => {
         bookDescription.textContent = 'No description';
       } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
 
-      // console.log(bookDataObj);
-
       const amazonUrl = await Amazon.url;
       amazonLink.href = amazonUrl;
 
       const bookUrl = await appleBooks.url;
       bookLink.href = await bookUrl;
+
+      let shoppingList = localStorage.getItem('shoppingList');
+      shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
+      const index = shoppingList.find(obj => obj.id === _id);
+
+      if (!index) {
+        addBookButton.classList.remove('add-book-button-none');
+        removeBookContainer.classList.remove('remove-book-container-visible');
+      } else {
+        addBookButton.classList.add('add-book-button-none');
+        removeBookContainer.classList.add('remove-book-container-visible');
+      }
 
       const bookShopUrl = await bookShop.url;
       bookShopLink.href = await bookShopUrl;
@@ -69,18 +78,17 @@ listOfBooks.addEventListener('click', e => {
           buy_links: [Amazon, appleBooks, bookShop],
         };
 
-        let shoppingList = localStorage.getItem('shoppingList');
-        shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
-        const index = shoppingList.find(obj => obj.id === _id);
+        // let shoppingList = localStorage.getItem('shoppingList');
+        // shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
+        // const index = shoppingList.find(obj => obj.id === _id);
         if (!index) {
           // BOOK ADD
           shoppingList.push(bookData);
-          console.log(addBookButton);
           addBookButton.classList.add('add-book-button-none');
           removeBookContainer.classList.add('remove-book-container-visible');
         } else {
           // BOOK REMOVE
-          // shoppingList.splice(index, 1);
+          shoppingList.splice(index, 1);
           addBookButton.classList.remove('add-book-button-none');
           removeBookContainer.classList.remove('remove-book-container-visible');
         }

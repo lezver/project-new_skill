@@ -22,53 +22,65 @@ const themeMode = localStorage.getItem('darkMode');
 // MODAL WINDOW OPEN
 listOfBooks.addEventListener('click', e => {
   if (e.target.classList.contains('img__wrapper')) {
-    backdrop.style.display = 'block';
-
+    document.body.style.overflow = 'hidden';
     const bookID = e.target.dataset.id;
 
     async function fetchBook() {
+      const bookDataObj = await fetchBooks.getBookById(bookID);
       const {
-        _id,
+        id,
         book_image,
         title,
         author,
         description,
         buy_links: [Amazon, appleBooks, , , bookShop],
-      } = await fetchBooks.getBookById(bookID);
-      bookImage.src = book_image;
-      bookName.textContent = title;
-      bookAuthor.textContent = author;
+      } = bookDataObj;
+
+      modalWindow.id = await id;
+      bookImage.src = await book_image;
+      bookName.textContent = await title;
+      bookAuthor.textContent = await author;
 
       if (description) {
-        bookDescription.textContent = await description;
+        bookDescription.textContent = description;
       } else {
         bookDescription.textContent = 'No description';
-      }
+      } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
 
-      console.log(await fetchBooks.getBookById(bookID));
+      console.log(bookDataObj);
 
-      const amazonUrl = Amazon.url;
+      const amazonUrl = await Amazon.url;
       amazonLink.href = amazonUrl;
 
-      const bookUrl = appleBooks.url;
-      bookLink.href = bookUrl;
+      const bookUrl = await appleBooks.url;
+      bookLink.href = await bookUrl;
 
-      const bookShopUrl = bookShop.url;
-      bookShopLink.href = bookShopUrl;
-
-      // const savedBook = localStorage.getItem();
-      // if (!savedBook) {
-      //   removeBookContainer.style.display = 'none';
-      //   addBookButton.style.display = 'block';
-      // } else {
-      //   removeBookContainer.style.display = 'block';
-      //   addBookButton.style.display = 'none';
-      // }
-      // addBookButton.addEventListener('click', () => {
-      //   localStorage.setItem('shopping_list', []);
-      // });
+      const bookShopUrl = await bookShop.url;
+      bookShopLink.href = await bookShopUrl;
+      backdrop.classList.add('backdrop-visible');
+      addBookButton.addEventListener('click', addToShoppingList); // ADD TO SHOPPING LIST
+      function addToShoppingList() {
+        const bookData = {
+          id: id,
+          Image: book_image,
+          Title: title,
+          Author: author,
+          Description: description,
+          buy_links: [Amazon, appleBooks, bookShop],
+        };
+        let shoppingList = localStorage.getItem('shoppingList');
+        shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
+        const index = shoppingList.findIndex(item => item.id === id);
+        if (index !== -1) {
+          shoppingList[index] = bookData;
+        } else {
+          shoppingList.push(bookData);
+        }
+        localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+      }
       return;
     }
+
     fetchBook();
   }
 });
@@ -76,15 +88,18 @@ listOfBooks.addEventListener('click', e => {
 // MODAL WINDOW CLOSE
 document.addEventListener('click', e => {
   if (e.target === backdrop) {
-    backdrop.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    backdrop.classList.remove('backdrop-visible');
   } else if (e.target === modalWindowCloseButton) {
-    backdrop.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    backdrop.classList.remove('backdrop-visible');
   }
 });
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
-    backdrop.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    backdrop.classList.remove('backdrop-visible');
   }
 });
 

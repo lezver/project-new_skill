@@ -3,7 +3,7 @@ import styles from '../../sass/utils/_variables.scss';
 import debounce from 'lodash.debounce';
 
 //   Перемикач світла/темна тема
-const body = document.body;
+export const body = document.body;
 const header = document.querySelector('.page-nav');
 const iconMobileMenu = document.querySelector('.menu-toggle');
 const darkModeLocalStored = localStorage.getItem('darkMode');

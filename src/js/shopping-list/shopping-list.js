@@ -131,7 +131,7 @@ function buildBooks({
   list_name,
   description,
   author,
-  _id,
+  id,
   buy_links,
 }) {
   let urlAmazon = '';
@@ -158,7 +158,7 @@ function buildBooks({
                     <h3 class = "book-tittle">${title}</h3>
                     <p class = "list-name">${list_name}</p>
                 </div>
-                <button id="${_id}" class="shopping-delete-button">
+                <button id="${id}" class="shopping-delete-button">
                     <img srcset=" ${bookBasket1} 1x, ${bookBasket2} 2x"   src="${bookBasket1}" alt="basket" class = "basket">
                 </button>
             </div>

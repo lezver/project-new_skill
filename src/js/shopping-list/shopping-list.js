@@ -1,3 +1,5 @@
+
+import Pagination from 'tui-pagination';
 import amazonImage1 from '../../images/png/modal-book/amazon.png';
 import amazonImage2 from '../../images/png/modal-book/amazon@2x.png';
 import appleImage1 from '../../images/png/modal-book/book.png';
@@ -6,40 +8,73 @@ import bookshopImage1 from '../../images/png/modal-book/book-shop.png';
 import bookshopImage2 from '../../images/png/modal-book/book-shop@2x.png';
 import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
 import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
-import booksImageTabDes1 from '../../images/png/shopping-list/tab-vs-desk/books.png';
-import booksImageTabDes2 from '../../images/png/shopping-list/tab-vs-desk/books@2x.png';
 import bookBasket1 from '../../images/png/shopping-list/basket/basket.png';
 import bookBasket2 from '../../images/png/shopping-list/basket/basket@2x.png';
 
 const galleryEl = document.querySelector('.gallery');
 const emptyListEl = document.querySelector('.shopping-list-empty');
+const paginationEl = document.querySelector('.pagination');
 const savedSettings = localStorage.getItem('shopping_list');
+
+let currentPage = 1;
+
+const paginationContainer = document.getElementById('tui-pagination-container');
+let perPage = window.innerWidth <= 576 ? 4 : 3;
+const paginationSettings = {
+  totalItems: 100,
+  itemsPerPage: perPage,
+  visiblePages: 10,
+  centerAlign: true,
+  template: {
+    moveButton:
+                '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+                    '<span class="tui-ico-{{type}}">{{type}}</span>' +
+                '</a>',
+  }
+};
+const paginationInstance = new Pagination(
+  paginationContainer,
+  paginationSettings
+);
+paginationInstance.on('beforeMove', function (eventData) {
+  currentPage = eventData.page;
+  innerMarkup();
+});
+
 let parsedSettings = [];
 if (savedSettings) {
   parsedSettings = JSON.parse(savedSettings);
+  paginationInstance.reset(parsedSettings.length);
 }
 innerMarkup();
 
-function onClick(event) {
-  const target = event.target.closest('.button');
-  const index = parsedSettings.map(element => element._id).indexOf(target.id);
-  parsedSettings.splice(index, 1);
-  // localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))
-  innerMarkup();
-}
-
 function innerMarkup() {
-  removeEventListener('click', onClick);
+  offListener();
   if (parsedSettings.length) {
-    const markup = parsedSettings
+    const markup = getMarkup()
       .map(dataItem => buildBooks(dataItem))
       .join('');
     galleryEl.innerHTML = markup;
     onListener();
+    paginationEl.classList.add('pagination-visible');
+    paginationEl.classList.remove('pagination-hidden');
   } else {
+    paginationEl.classList.add('pagination-hidden');
+    paginationEl.classList.remove('pagination-visible');
     emptyListEl.innerHTML = buildEmptyList();
     galleryEl.innerHTML = ``;
   }
+}
+
+function getMarkup() {
+  const from = 0 + (currentPage - 1) * perPage;
+  const to = perPage + (currentPage - 1) * perPage;
+  return parsedSettings.slice(from, to);
+}
+
+function offListener() {
+  removeEventListener('click', onClick);
+  removeEventListener('resize', onResize);
 }
 
 function onListener() {
@@ -47,7 +82,27 @@ function onListener() {
   buttonEl.forEach(element => {
     element.addEventListener('click', onClick);
   });
+  window.addEventListener('resize', onResize);
 }
+
+function onClick(event) {
+    const target = event.target.closest('.button');
+    const index = parsedSettings.map(element => element._id).indexOf(target.id);
+    parsedSettings.splice(index, 1);
+    innerMarkup();
+    paginationInstance.setTotalItems(parsedSettings.length);
+    paginationInstance.movePageTo(paginationInstance.getCurrentPage());
+  }
+
+  function onResize(event) {
+    let _perPage = event.target.innerWidth <= 576 ? 4 : 3
+    if (_perPage != perPage) {
+        perPage = _perPage
+        paginationInstance.setItemsPerPage(perPage)
+        innerMarkup()
+        paginationInstance.movePageTo(paginationInstance.getCurrentPage());
+    }
+  }
 
 function buildEmptyList() {
   return `
@@ -55,6 +110,7 @@ function buildEmptyList() {
     <img srcset=" ${booksImageMob1} 1x, ${booksImageMob2} 2x" src="${booksImageMob1}" alt="books">
   `;
 }
+
 buildBooks(parsedSettings);
 function buildBooks({
   book_image,

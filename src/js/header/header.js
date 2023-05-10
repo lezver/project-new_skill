@@ -3,129 +3,72 @@ import styles from '../../sass/utils/_variables.scss';
 import debounce from 'lodash.debounce';
 
 //   Перемикач світла/темна тема
-export const body = document.body;
-
+const body = document.body;
 const header = document.querySelector('.page-nav');
-const isDarkModeStored = localStorage.getItem('darkMode') === 'true';
+const iconMobileMenu = document.querySelector('.menu-toggle');
+const darkModeLocalStored = localStorage.getItem('darkMode');
 let slider = document.querySelector('.switch');
 
-const switchModeElStyles = {
-  body: {
-    lightMode: {
-      bgColor: '#f6f6f6',
-      mainTextColor: '#111111',
-    },
-    darkMode: {
-      bgColor: '#202024',
-      mainTextColor: '#fff',
-    },
-  },
-
-  header: {
-    lightMode: {
-      bgColor: '#fff',
-      mainTextColor: '#111111',
-      borderColor: '#111111',
-    },
-    darkMode: {
-      bgColor: '#111111',
-      mainTextColor: '#fff',
-      borderColor: '#fff',
-    },
-  },
-};
-
 slider.addEventListener('change', changeDarkMode);
+// window.addEventListener('storage', syncChangeDarkMode);
 
-if (isDarkModeStored) {
+if (darkModeLocalStored === 'true') {
   slider.checked = true;
-  setDarkModeBodyStyle();
-  setDarkModeHeaderStyle();
-
-  // body.classList.add('dark');
-  // header.classList.add('dark');
+  // slider.setAttribute('checked', '');
+  setDarkModeStyle();
 }
 
 function changeDarkMode() {
   const darkModeId = 'darkMode';
 
+  // if (slider.checked) {
   if (slider.checked) {
-    // body.classList.add('dark');
-    // header.classList.add('dark');
-
+    setDarkModeStyle();
     localStorage.setItem(darkModeId, 'true');
-    setDarkModeBodyStyle();
-    setDarkModeHeaderStyle();
-    document.querySelector('.icon-href').setAttribute('fill', 'white');
   } else {
-    // body.classList.remove('dark');
-    // header.classList.remove('dark');
-
+    setLightModeStyle();
     localStorage.setItem(darkModeId, 'false');
-    setLightModeBodyStyle();
-    setLightModeHeaderStyle();
-    document.querySelector('.icon-href').setAttribute('fill', 'black');
   }
 }
 
-function setLightModeBodyStyle() {
-  // if (slider.checked) {
-  //     body.style.backgroundColor = bgColor;
-  //     body.style.color = mainTextColor;
-  // } else {
-  //     body.style.backgroundColor = bgColor;
-  //     body.style.color = mainTextColor;
-  // };
+// function syncChangeDarkMode(e) {
+//   console.log(e);
 
-  const { bgColor, mainTextColor } = switchModeElStyles.body.lightMode;
+//   console.log(slider.checked.value);
+//   // console.log();
+//   // console.log();
+// }
 
-  body.style.backgroundColor = bgColor;
-  body.style.color = mainTextColor;
+function setLightModeStyle() {
+  body.classList.remove('dark-mode');
+  header.classList.remove('dark-mode');
+  iconMobileMenu.classList.remove('dark-mode');
+  // sliderBall.classList.remove('dark-mode');
 }
 
-function setDarkModeBodyStyle() {
-  const { bgColor, mainTextColor } = switchModeElStyles.body.darkMode;
-
-  body.style.backgroundColor = bgColor;
-  body.style.color = mainTextColor;
+function setDarkModeStyle() {
+  body.classList.add('dark-mode');
+  header.classList.add('dark-mode');
+  iconMobileMenu.classList.add('dark-mode');
+  // sliderBall.classList.add('dark-mode');
 }
 
-function setLightModeHeaderStyle() {
-  const { bgColor, mainTextColor, borderColor } =
-    switchModeElStyles.header.lightMode;
 
-  header.style.backgroundColor = bgColor;
-  header.style.color = mainTextColor;
-  header.style.borderColor = borderColor;
-}
-
-function setDarkModeHeaderStyle() {
-  const { bgColor, mainTextColor, borderColor } =
-    switchModeElStyles.header.darkMode;
-
-  header.style.backgroundColor = bgColor;
-  header.style.color = mainTextColor;
-  header.style.borderColor = borderColor;
-}
-
-//   Відкриття/Закриття модалки для моб.версії
+// Відкриття/Закриття модалки для моб.версії
 
 const modalBoxEl = document.querySelector('.data-modal');
 const openModalBtnEl = document.querySelector('.js-open-menu');
 const openModalBtnSvgEl = document.querySelector('.icon-burger');
+const signUpBtnMobile = document.querySelector('.sign-up-btn-js');
 const iconHrefEl = document.querySelector('.icon-href');
 
 openModalBtnEl.addEventListener('click', toggleModal);
-
-if (isDarkModeStored) {
-  iconHrefEl.setAttribute('fill', 'white');
-} else {
-  iconHrefEl.setAttribute('fill', 'black');
-}
+signUpBtnMobile.addEventListener('click', toggleModal);
 
 function toggleModal() {
   if (modalBoxEl.classList.contains('is-hidden')) {
     modalBoxEl.classList.remove('is-hidden');
+    // body.classList.remove('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
     openModalBtnSvgEl.style.width = '18px';
@@ -133,12 +76,17 @@ function toggleModal() {
     return;
   } else {
     modalBoxEl.classList.add('is-hidden');
+    // body.classList.add('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');
     openModalBtnSvgEl.style.width = '24px';
     openModalBtnSvgEl.style.height = '24px';
   }
 }
+
+// Унеможливлення скролу мобільного меню
+
+
 
 // Виділення жовтим назву поточної сторінки (меню в хедері)
 
@@ -186,32 +134,3 @@ const dropSetCurrentPage = () => {
 };
 
 dropSetCurrentPage();
-
-// Обрізання назви Shopping list при певній довжині екрану
-
-// const mediaQuery = window.matchMedia('(min-width: 577px) and (max-width: 640px)'); // визначаємо порогове значення
-// const menuShoppingRef = document.getElementById('menu__shopping-list');
-// const DEBOUNCE_DELAY = 400;
-
-// function handleMediaChange(event) {
-//     if (event.matches) {
-//         menuShoppingRef.textContent = 'Shopping...'; // змінюємо текстовий вміст елементу
-//     } else {
-//         menuShoppingRef.textContent = '';
-//         menuShoppingRef.insertAdjacentHTML('beforeend', `Shopping list
-//             <svg class="icon-cart" width="13.33" height="16.67">
-//                 <use href="/src/images/icons.svg#icon-email"></use>
-//             </svg>
-//         `); // змінюємо текстовий вміст елементу назад
-//         // menuShoppingRef.setAttribute();
-//     }
-// }
-
-// // function setShortNameShopList() {
-// //     menuShoppingRef.textContent = 'Shopping...';
-// // }
-
-// mediaQuery.addEventListener('change', debounce(handleMediaChange, DEBOUNCE_DELAY)); // додаємо слухача на подію зміни медіа-запиту
-
-// // викликаємо функцію handleMediaChange при завантаженні сторінки, щоб встановити початковий текстовий вміст елементу
-// handleMediaChange(mediaQuery);

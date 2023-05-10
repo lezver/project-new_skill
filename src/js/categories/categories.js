@@ -59,7 +59,7 @@ const createCategoryList = async () => {
 createCategoryList();
 
 const addEventListenerForCategory = buttons => {
-  for (let i = 1; i < buttons.length - 1; i += 1) {
+  for (let i = 1; i < buttons.length; i += 1) {
     buttons[i].addEventListener('click', makeOneCategory);
   }
 };

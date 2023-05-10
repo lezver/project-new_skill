@@ -108,6 +108,9 @@
         background-color: $almost-gray;
       }
     }
+    &.sign-up-hidden {
+      display: none;
+    }
   }
   .sign-up__links {
     display: flex;

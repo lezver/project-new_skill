@@ -11,11 +11,11 @@ const {
 } = refs.signUp;
 
 const {
-  children: [buttonOfClose, signUpForm],
+  children: [buttonOfClose, signUpForm1, signUpForm2],
 } = singUpModal;
 
-const signUpButton = singUpModal.children[2].children[0];
-const signIpButton = singUpModal.children[2].children[1];
+const signUpButton = singUpModal.children[3].children[0];
+const signIpButton = singUpModal.children[3].children[1];
 
 const closeModalSingUp = e => {
   const buttonOfCloseSvg = buttonOfClose.children[0];
@@ -49,21 +49,21 @@ const openModalSingUp = () => {
 refs.headerSignUp.addEventListener('click', openModalSingUp);
 refs.headerSignUpMenu.addEventListener('click', openModalSingUp);
 
-const checkForm = e => {
+const checkForm1 = e => {
   e.preventDefault();
-  const [name, email, password, buttonSignUp] = signUpForm;
-  const userInfo = {};
+  const [name, email, password, buttonSignUp] = signUpForm1;
+  const signUp = {};
   userInfo.name = name.value;
   userInfo.email = email.value;
   userInfo.password = password.value;
-  localStorage.setItem('userInfo', JSON.stringify(userInfo));
+  localStorage.setItem('sign-up', JSON.stringify(signUp));
   signUpForm.reset();
   buttonSignUp.disabled = true;
   buttonSignUp.style.cursor = 'auto';
 };
 
-const checkRequired = () => {
-  const [name, email, password, buttonSignUp] = signUpForm;
+const checkRequired1 = () => {
+  const [name, email, password, buttonSignUp] = signUpForm1;
   if (
     name.checkValidity() &&
     email.checkValidity() &&
@@ -77,21 +77,49 @@ const checkRequired = () => {
   }
 };
 
-signUpForm.addEventListener('submit', checkForm);
-signUpForm.addEventListener('input', checkRequired);
+signUpForm1.addEventListener('submit', checkForm1);
+signUpForm1.addEventListener('input', checkRequired1);
+
+const checkForm2 = e => {
+  e.preventDefault();
+  const [email, password, buttonSignUp] = signUpForm2;
+  const signIn = {};
+  userInfo.email = email.value;
+  userInfo.password = password.value;
+  localStorage.setItem('sign-in', JSON.stringify(signIn));
+  signUpForm.reset();
+  buttonSignUp.disabled = true;
+  buttonSignUp.style.cursor = 'auto';
+};
+
+const checkRequired2 = () => {
+  const [email, password, buttonSignUp] = signUpForm2;
+  if (email.checkValidity() && password.checkValidity()) {
+    buttonSignUp.disabled = false;
+    buttonSignUp.style.cursor = 'pointer';
+  } else {
+    buttonSignUp.disabled = true;
+    buttonSignUp.style.cursor = 'auto';
+  }
+};
+
+signUpForm2.addEventListener('submit', checkForm2);
+signUpForm2.addEventListener('input', checkRequired2);
 
 const createMarkupSignIp = () => {
   signIpButton.classList.add('sign-up-button-active');
-
   signUpButton.classList.remove('sign-up-button-active');
+  signUpForm2.classList.remove('sign-up-hidden');
+  signUpForm1.classList.add('sign-up-hidden');
 };
 
 createMarkupSignIp();
 
 const createMarkupSignUp = () => {
   signUpButton.classList.add('sign-up-button-active');
-
   signIpButton.classList.remove('sign-up-button-active');
+  signUpForm1.classList.remove('sign-up-hidden');
+  signUpForm2.classList.add('sign-up-hidden');
 };
 
 signUpButton.addEventListener('click', createMarkupSignUp);

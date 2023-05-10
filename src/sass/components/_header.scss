@@ -246,7 +246,7 @@ body {
     }
 };
 
-//  Кнопка  "sign-up"
+//  Button "sign-up" (main menu)
 
 .auth__modal-open {
     display: none;
@@ -288,7 +288,7 @@ body {
     }
 }
 
-// Модальне вікно меню
+// Modal menu window
 
 .modal-mobile-menu.is-hidden {
     opacity: 0;
@@ -313,14 +313,14 @@ body {
     z-index: 10;
 
     background-image: radial-gradient(183.6% 183.01% at 59.76% -23.42%, #4F2EE8 18.03%, #FFFFFF 100%);
-    transition: opacity 150ms linear, visibility 150ms linear;
+    transition: opacity $time $time-distribution, visibility $time $time-distribution;
 
     @include breakpoint(tab-header) {
         display: none;
     }
 }
 
-// Мобільне дроп меню
+// Mobile drop menu
 .drop-menu {
     position: relative;
     z-index: 7;
@@ -360,7 +360,7 @@ body {
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.3);
 }
 
-//  Кнопка  Sing up
+//  Button "sign-up" (mobile menu)
 .drop-sign-up-btn {
     position: absolute;
 
@@ -398,7 +398,7 @@ body {
     }
 }
 
-// Книги
+// Books
 .modal__books-list {
     position: absolute;
     top: 60%;

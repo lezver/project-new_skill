@@ -1,6 +1,6 @@
 <div class="sign-up">
   <div class="sign-up__modal">
-    <button type="button">
+    <button class="sign-up__cross" type="button">
       <svg>
         <use href="./images/icons.svg#icon-cross"></use>
       </svg>
@@ -34,12 +34,13 @@
           name="user_password"
           minlength="5"
           maxlength="12"
+          required
         />
         <svg class="sign-up__lock">
           <use href="./images/icons.svg#icon-lock"></use>
         </svg>
       </lebel>
-      <button type="submit">sign up</button>
+      <button type="submit" disabled>sign up</button>
     </form>
     <div class="sign-up__links">
       <a href="">sign up</a>

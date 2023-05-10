@@ -46,8 +46,8 @@ body {
       background-color: #8f8f8f;
     }
   }
-  &.no-scroll {
-    visibility: hidden;
+  &.no-scroll-body-js {
+    overflow: hidden;
   }
 }
 

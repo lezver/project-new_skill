@@ -6,8 +6,13 @@ import appleImage1 from '../../images/png/modal-book/book.png';
 import appleImage2 from '../../images/png/modal-book/book@2x.png';
 import bookshopImage1 from '../../images/png/modal-book/book-shop.png';
 import bookshopImage2 from '../../images/png/modal-book/book-shop@2x.png';
+
 import booksImageMob1 from '../../images/png/shopping-list/mob/books.png';
 import booksImageMob2 from '../../images/png/shopping-list/mob/books@2x.png';
+
+//import booksImageMob1 from '../../images/png/shopping-list/books.png';
+//import booksImageMob2 from '../../images/png/shopping-list/books@2x.png';
+
 import bookBasket1 from '../../images/png/shopping-list/basket/basket.png';
 import bookBasket2 from '../../images/png/shopping-list/basket/basket@2x.png';
 
@@ -47,6 +52,14 @@ if (savedSettings) {
   paginationInstance.reset(parsedSettings.length);
 }
 innerMarkup();
+
+function onClick(event) {
+  const target = event.target.closest('.button');
+  const index = parsedSettings.map(element => element._id).indexOf(target.id);
+  parsedSettings.splice(index, 1);
+  // localStorage.setItem('shopping_list', JSON.stringify(parsedSettings));
+  innerMarkup();
+}
 
 function innerMarkup() {
   offListener();

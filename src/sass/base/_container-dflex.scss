@@ -2,28 +2,36 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
-  @include breakpoint(tab) {
+  @include breakpoint(tab-aside) {
     flex-direction: column;
     gap: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
   @include breakpoint(des) {
     flex-direction: row;
     gap: 40px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   & > .aside {
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    justify-content: center;
     gap: 40px;
 
-    @include breakpoint(tab) {
+    @include breakpoint(tab-aside) {
       flex-direction: row;
+      justify-content: center;
       gap: 32px;
     }
     @include breakpoint(des) {
+      justify-content: start;
       flex-direction: column;
       flex-basis: 26.3%;
       gap: 86px;
@@ -32,6 +40,12 @@
   & > .content {
     @include breakpoint(des) {
       flex-basis: 73.7%;
+    }
+  }
+  & > .aside.aside-is-hidden {
+    display: none;
+    @include breakpoint(des) {
+      display: block;
     }
   }
 }

@@ -1,20 +1,16 @@
-import axios from 'axios';
 import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
+import { fetchBooks } from '../categories/fetchRequest';
 
-const URL = 'https://books-backend.p.goit.global/books/top-books';
-const URL_CATEGORY =
-  'https://books-backend.p.goit.global/books/category?category=';
-
-const createMarkupCategories = arr => {
-  const markup = arr.reduce((acc, { book_image, title, author }) => {
+export const createMarkupCategories = arr => {
+  const markup = arr.reduce((acc, { book_image, title, author, _id }) => {
     const img = `<img loading="lazy" src="${book_image}" alt="book" />`;
 
     return (
       acc +
       `
       <li class="home__item-category">
-        <div>
+        <div class="img__wrapper" data-id=${_id}>
           ${img ? img : refs.mobCap}
         </div>
         <h2>${title}</h2>
@@ -29,21 +25,17 @@ const createMarkupCategories = arr => {
   removeLoader();
 };
 
-const fetchCategoryBooks = async value => {
-  const response = await axios.get(URL_CATEGORY + value);
-
-  await createMarkupCategories(response.data);
-};
-
-const checkBtn = e => {
+const findCategory = async e => {
   const categoryBtn = document.querySelector('.category-btn');
 
   if (e.target.className === 'category-btn') {
-    const category = e.target.dataset.category.replace(/ /g, '+');
-
     addLoader();
 
-    fetchCategoryBooks(category);
+    const category = e.target.dataset.category.replace(/ /g, '+');
+
+    const response = await fetchBooks.getBooksByCategory(category);
+
+    await createMarkupCategories(response);
 
     refs.homeItems.classList.add('home__items-category');
 
@@ -55,17 +47,17 @@ const checkBtn = e => {
   }
 };
 
-const createMarkupBestBooks = arr => {
+export const createMarkupBestBooks = arr => {
   refs.homeItems.classList.remove('home__items-category');
   const markup = arr.reduce(
     (
       acc,
       {
         list_name,
-        books: [firstbook, secondBook, thirdBook, fourthBook, fifthBook],
+        books: [firstBook, secondBook, thirdBook, fourthBook, fifthBook],
       }
     ) => {
-      const img1 = `<img loading="lazy" src="${firstbook.book_image}" alt="book" />`;
+      const img1 = `<img loading="lazy" src="${firstBook.book_image}" alt="book" />`;
       const img2 = `<img loading="lazy" src="${secondBook.book_image}" alt="book" />`;
       const img3 = `<img loading="lazy" src="${thirdBook.book_image}" alt="book" />`;
       const img4 = `<img loading="lazy" src="${fourthBook.book_image}" alt="book" />`;
@@ -78,35 +70,35 @@ const createMarkupBestBooks = arr => {
       <p>${list_name}</p>
         <ul>
           <li>
-            <div>
+            <div class="img__wrapper" data-id=${firstBook._id}>
               ${img1 ? img1 : refs.mobCap}
             </div>
-            <h2>${firstbook.title}</h2>
-            <span>${firstbook.author}</span>
+            <h2>${firstBook.title}</h2>
+            <span>${firstBook.author}</span>
           </li>
           <li>
-            <div>
+            <div class="img__wrapper" data-id=${secondBook._id}>
               ${img2 ? img2 : refs.mobCap}
             </div>
             <h2>${secondBook.title}</h2>
             <span>${secondBook.author}</span>
           </li>
           <li>
-            <div>
+            <div class="img__wrapper" data-id=${thirdBook._id}>
               ${img3 ? img3 : refs.mobCap}
             </div>
             <h2>${thirdBook.title}</h2>
             <span>${thirdBook.author}</span>
           </li>
           <li>
-            <div>
+            <div class="img__wrapper" data-id=${fourthBook._id}>
               ${img4 ? img4 : refs.mobCap}
             </div>
             <h2>${fourthBook.title}</h2>
             <span>${fourthBook.author}</span>
           </li>
           <li>
-            <div>
+            <div class="img__wrapper" data-id=${fifthBook._id}>
               ${img5 ? img5 : refs.mobCap}
             </div>
             <h2>${fifthBook.title}</h2>
@@ -130,17 +122,18 @@ const createMarkupBestBooks = arr => {
   removeLoader();
 };
 
-const fetchTopBooks = async url => {
+const fetchTopBooks = async () => {
   try {
     addLoader();
-    const response = await axios.get(url);
 
-    await createMarkupBestBooks(response.data);
+    const response = await fetchBooks.getBestSellers();
+
+    await createMarkupBestBooks(response);
   } catch (error) {
     console.log(error);
   }
 };
 
-fetchTopBooks(URL);
+fetchTopBooks();
 
-refs.homeItems.addEventListener('click', checkBtn);
+refs.homeItems.addEventListener('click', findCategory);

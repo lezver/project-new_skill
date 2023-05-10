@@ -5,8 +5,6 @@ ul {
 }
 
 .shopping-list {
-  padding: 40px 0;
-
   @include breakpoint(tab) {
     //padding: 40px 32px;
   }

@@ -251,6 +251,7 @@
     > label {
       border-color: $background;
       > input {
+        color: $background;
         &::placeholder {
           color: $background;
         }

@@ -100,7 +100,7 @@ function onListener() {
 
 function onClickShoppingDelete(event) {
   const target = event.target.closest('.shopping-delete-button');
-  const index = parsedSettings.map(element => element._id).indexOf(target.id);
+  const index = parsedSettings.map(element => element.id).indexOf(target.id);
   parsedSettings.splice(index, 1);
   innerMarkup();
   localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))

@@ -1,3 +1,7 @@
+.home {
+  transition: background $time $time-distribution,
+    border $time $time-distribution, color $time $time-distribution;
+}
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;

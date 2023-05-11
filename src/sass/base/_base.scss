@@ -30,6 +30,7 @@ body {
   color: $black;
   position: relative;
   background-color: $background;
+  transition: background $time $time-distribution;
   &::-webkit-scrollbar {
     width: 10px;
   }

@@ -43,7 +43,7 @@ const swiper = new Swiper('.swiper', {
   slidesPerView: 'auto',
   rewind: true,
   // loop: true,
-
+  allowTouchMove: false,
   navigation: {
     nextEl: '.swiper-button-next',
   },

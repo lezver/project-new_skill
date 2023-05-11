@@ -3,10 +3,10 @@ const refs = {
   homeTitle: document.querySelector('.home__title'),
   mobCap: `<img class="img__cap" width="180" heigh="265"
   srcset="
-    ./images/png/home/icon.png    1x,
-    ./images/png/home/icon@2x.png 2x
+    ./images/png/home/cap.jpg    1x,
+    ./images/png/home/cap@2x.jpg 2x
   "
-  src="./images/png/home/icon.png"
+  src="./images/png/home/cap.jpg"
   alt="cap" loading="lazy"
 />`,
 };

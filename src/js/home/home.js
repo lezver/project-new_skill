@@ -26,14 +26,14 @@ export const createMarkupCategories = arr => {
 };
 
 const findCategory = async e => {
-  const categoryBtn = document.querySelector('.category-btn');
-
   if (e.target.className === 'category-btn') {
     addLoader();
 
     const category = e.target.dataset.category.replace(/ /g, '+');
 
     const response = await fetchBooks.getBooksByCategory(category);
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     await createMarkupCategories(response);
 

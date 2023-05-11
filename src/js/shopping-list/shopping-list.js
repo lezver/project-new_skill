@@ -103,6 +103,7 @@ function onClickShoppingDelete(event) {
   const index = parsedSettings.map(element => element._id).indexOf(target.id);
   parsedSettings.splice(index, 1);
   innerMarkup();
+  localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))
   paginationInstance.setTotalItems(parsedSettings.length);
   paginationInstance.movePageTo(paginationInstance.getCurrentPage());
 }

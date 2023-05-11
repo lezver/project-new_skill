@@ -101,16 +101,16 @@ function onListener() {
 }
 
 function onClickShoppingDelete(event) {
-    const target = event.target.closest('.shopping-delete-button');
-    const index = parsedSettings.map(element => element.id).indexOf(target.id);
-    parsedSettings.splice(index, 1);
-    innerMarkup();
-    localStorage.setItem('shopping_list', JSON.stringify(parsedSettings));
-    paginationInstance.setTotalItems(parsedSettings.length);
-    paginationInstance.movePageTo(paginationInstance.getCurrentPage());
-  }
+  const target = event.target.closest('.shopping-delete-button');
+  const index = parsedSettings.map(element => element.id).indexOf(target.id);
+  parsedSettings.splice(index, 1);
+  innerMarkup();
+  localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))
+  paginationInstance.setTotalItems(parsedSettings.length);
+  paginationInstance.movePageTo(paginationInstance.getCurrentPage());
+}
 
-  function onResize(event) {
+function onResize(event) {
     const _perPage = event.target.innerWidth <= 576 ? 4 : 3
     if (_perPage != perPage) {
         perPage = _perPage

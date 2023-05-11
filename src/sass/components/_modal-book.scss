@@ -63,12 +63,6 @@
   }
 }
 
-.black-theme-modal-window {
-  border: 2px solid $white;
-  background: $gray;
-  color: $white;
-}
-
 .close-icon-button {
   cursor: pointer;
   width: 15px;
@@ -84,7 +78,7 @@
   transition: fill 1000ms $time-distribution,
     transform 1000ms $time-distribution;
 
-  > svg {
+  svg {
     fill: $black;
   }
   &:hover,
@@ -97,10 +91,8 @@
   @include breakpoint(tab) {
     width: 15px;
     height: 15px;
-  }
-  @include breakpoint(des) {
-    width: 15px;
-    height: 15px;
+    top: 24px;
+    right: 24px;
   }
 }
 
@@ -113,14 +105,6 @@
     width: 14px;
     height: 14px;
   }
-  @include breakpoint(des) {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-.black-theme-close-icon {
-  fill: $white;
 }
 
 .modal-window-content-align {
@@ -187,13 +171,6 @@
     font-size: 24px;
     line-height: 1.17;
   }
-  @include breakpoint(des) {
-    font-size: 24px;
-    line-height: 1.17;
-    margin-bottom: 8px;
-    font-size: 24px;
-    line-height: 1.17;
-  }
 }
 
 .book-author {
@@ -208,11 +185,6 @@
     font-size: 14px;
     line-height: 1.29;
   }
-  @include breakpoint(des) {
-    margin-bottom: 20px;
-    font-size: 14px;
-    line-height: 1.29;
-  }
 }
 
 .book-description {
@@ -222,9 +194,6 @@
   letter-spacing: -0.04em;
   margin-bottom: 14px;
   @include breakpoint(tab) {
-    margin-bottom: 20px;
-  }
-  @include breakpoint(des) {
     margin-bottom: 20px;
   }
 }
@@ -242,14 +211,6 @@
 
 .logo:hover {
   filter: drop-shadow(0px 3px 3px rgba(0, 0, 0, 0.15)) grayscale(1);
-}
-
-.black-theme-amazon-logo {
-  filter: grayscale(1) brightness(1000%);
-}
-
-.black-theme-amazon-logo:hover {
-  filter: grayscale(1) brightness(1000%);
 }
 
 .add-book-button {
@@ -270,10 +231,6 @@
     padding: 20px 0px;
     font-size: 18px;
   }
-  @include breakpoint(des) {
-    padding: 20px 0px;
-    font-size: 18px;
-  }
 }
 
 .add-book-button:hover {
@@ -285,21 +242,6 @@
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
   background: $blue;
   color: $white;
-}
-
-.black-theme-add-book-button {
-  color: $white;
-  background-color: $gray;
-}
-
-.black-theme-add-book-button:hover {
-  color: $white;
-  background-color: $blue;
-}
-
-.black-theme-add-book-button:focus {
-  color: $white;
-  background-color: $blue;
 }
 
 .add-book-button-none {
@@ -334,10 +276,6 @@
     padding: 20px 100px;
     font-size: 18px;
   }
-  @include breakpoint(des) {
-    padding: 20px 100px;
-    font-size: 18px;
-  }
 }
 
 .remove-book-button:hover {
@@ -349,21 +287,6 @@
   box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.15);
   background: $blue;
   color: $white;
-}
-
-.black-theme-remove-book-button {
-  color: $white;
-  background-color: $gray;
-}
-
-.black-theme-remove-book-button:hover {
-  color: $white;
-  background-color: $blue;
-}
-
-.black-theme-remove-book-button:focus {
-  color: $white;
-  background-color: $blue;
 }
 
 .remove-book-text {
@@ -380,13 +303,59 @@
     font-size: 12px;
     line-height: 1.17;
   }
-  @include breakpoint(des) {
-    max-width: 324px;
-    font-size: 12px;
-    line-height: 1.17;
-  }
 }
 
-.black-theme-remove-book-text {
-  color: rgba(255, 255, 255, 0.5);
+// DARK MODE STYLE
+
+.dark-mode .modal-window {
+  border: 2px solid $white;
+  background: $gray;
+  color: $white;
+  > .close-icon-button {
+    &:hover,
+    &:focus {
+      > .close-icon {
+        fill: $blue;
+      }
+    }
+    .close-icon {
+      fill: $white;
+    }
+  }
+  > .modal-window-content-align {
+    > .book-content-align {
+      > .logo-align {
+        > a {
+          .amazon-logo {
+            filter: grayscale(1) brightness(1000%);
+            &:hover,
+            &:focus {
+              filter: grayscale(1) brightness(1000%);
+            }
+          }
+        }
+      }
+    }
+  }
+  .add-book-button {
+    color: $white;
+    background-color: $gray;
+    &:hover,
+    &:focus {
+      background-color: $blue;
+    }
+  }
+  > .remove-book-container {
+    .remove-book-button {
+      color: $white;
+      background-color: $gray;
+      &:hover,
+      &:focus {
+        background-color: $blue;
+      }
+      .remove-book-text {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
 }

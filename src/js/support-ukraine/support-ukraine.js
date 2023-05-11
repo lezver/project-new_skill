@@ -24,6 +24,7 @@ const renderSupportList = items => {
                 class="support__logo"
                 srcset="${img} 1x, ${img2} 2x" 
                 width="149"
+                height="auto"
                 loading="lazy"
               />
             </a>

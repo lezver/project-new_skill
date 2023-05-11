@@ -1,22 +1,27 @@
 @font-face {
   font-family: 'DMSans-400italic';
-  src: url('../fonts/dmsans-italic-webfont.woff2') format('woff2'),
+  src: local('Roboto'),
+    url('../fonts/dmsans-italic-webfont.woff2') format('woff2'),
     url('../fonts/dmsans-italic-webfont.woff') format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: 'DMSans-400';
-  src: url('../fonts/dmsans-regular.woff2') format('woff2'),
+  src: local('Roboto'), url('../fonts/dmsans-regular.woff2') format('woff2'),
     url('../fonts/dmsans-regular.woff') format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: 'DMSans-500';
-  src: url('../fonts/dmsans-medium.woff2') format('woff2'),
+  src: local('Roboto'), url('../fonts/dmsans-medium.woff2') format('woff2'),
     url('../fonts/dmsans-medium.woff') format('woff');
+  font-display: swap;
 }
 @font-face {
   font-family: 'DMSans-700';
-  src: url('../fonts/dmsans-bold.woff2') format('woff2'),
+  src: local('Roboto'), url('../fonts/dmsans-bold.woff2') format('woff2'),
     url('../fonts/dmsans-bold.woff') format('woff');
+  font-display: swap;
 }
 
 html {

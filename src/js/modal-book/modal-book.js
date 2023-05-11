@@ -3,8 +3,9 @@ import { fetchBooks } from '../categories/fetchRequest';
 const listOfBooks = document.querySelector('.home__items');
 const backdrop = document.querySelector('.backdrop');
 const modalWindow = document.querySelector('.modal-window');
-const modalWindowCloseButton = document.querySelector('.close-icon');
-let bookImage = document.querySelector('.book-image');
+const modalWindowCloseIcon = document.querySelector('.close-icon');
+const modalWindowCloseButton = document.querySelector('.close-icon-button');
+const imageContainer = document.querySelector('.image-container');
 let bookName = document.querySelector('.book-name');
 let bookAuthor = document.querySelector('.book-author');
 let bookDescription = document.querySelector('.book-description');
@@ -29,6 +30,7 @@ listOfBooks.addEventListener('click', e => {
         _id,
         book_image,
         title,
+        list_name,
         author,
         description,
         buy_links: [Amazon, appleBooks, , , bookShop],
@@ -37,7 +39,7 @@ listOfBooks.addEventListener('click', e => {
       backdrop.classList.add('backdrop-visible');
 
       modalWindow.id = await _id;
-      bookImage.src = await book_image;
+      imageContainer.innerHTML = `<img src="${book_image}" alt="Book image" class="book-image" />`;
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
       if (description) {
@@ -46,7 +48,7 @@ listOfBooks.addEventListener('click', e => {
         bookDescription.textContent = 'No description';
       } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
       const amazonUrl = await Amazon.url;
-      amazonLink.href = amazonUrl;
+      amazonLink.href = await amazonUrl;
       const bookUrl = await appleBooks.url;
       bookLink.href = await bookUrl;
       const bookShopUrl = await bookShop.url;
@@ -69,10 +71,11 @@ listOfBooks.addEventListener('click', e => {
       function AddBookToShoppingList() {
         const bookData = {
           id: _id,
-          Image: book_image,
-          Title: title,
-          Author: author,
-          Description: description,
+          book_image: book_image,
+          title: title,
+          list_name: list_name,
+          author: author,
+          description: description,
           buy_links: [Amazon, appleBooks, bookShop],
         };
         if (!objId) {
@@ -106,9 +109,11 @@ document.addEventListener('click', e => {
   if (e.target === backdrop) {
     backdrop.classList.remove('backdrop-visible');
     document.body.classList.remove('no-scroll-body-js');
-  } else if (e.target === modalWindowCloseButton) {
-    backdrop.classList.remove('backdrop-visible');
-    document.body.classList.remove('no-scroll-body-js');
+  } else {
+    if (e.target === modalWindowCloseButton) {
+      backdrop.classList.remove('backdrop-visible');
+      document.body.classList.remove('no-scroll-body-js');
+    }
   }
 });
 
@@ -126,14 +131,14 @@ function changeThemeFunc() {
   const themeMode = localStorage.getItem('darkMode');
   if (themeMode === 'true') {
     modalWindow.classList.add('black-theme-modal-window');
-    modalWindowCloseButton.classList.add('black-theme-close-icon');
+    modalWindowCloseIcon.classList.add('black-theme-close-icon');
     amazonLogo.classList.add('black-theme-amazon-logo');
     addBookButton.classList.add('black-theme-add-book-button');
     removeBookButton.classList.add('black-theme-remove-book-button');
     removeBookText.classList.add('black-theme-remove-book-text');
   } else {
     modalWindow.classList.remove('black-theme-modal-window');
-    modalWindowCloseButton.classList.remove('black-theme-close-icon');
+    modalWindowCloseIcon.classList.remove('black-theme-close-icon');
     amazonLogo.classList.remove('black-theme-amazon-logo');
     addBookButton.classList.remove('black-theme-add-book-button');
     removeBookButton.classList.remove('black-theme-remove-book-button');

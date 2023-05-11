@@ -4,7 +4,7 @@ import { fetchBooks } from '../categories/fetchRequest';
 
 export const createMarkupCategories = arr => {
   const markup = arr.reduce((acc, { book_image, title, author, _id }) => {
-    const img = `<img class="img__book" data-id=${_id} width="auto" heigh="auto" loading="lazy" src="${book_image}" alt="book" />`;
+    const img = `<img class="img__book" data-id=${_id} width="100%" heigh="auto" loading="lazy" src="${book_image}" alt="book" />`;
 
     return (
       acc +
@@ -57,11 +57,11 @@ export const createMarkupBestBooks = arr => {
         books: [firstBook, secondBook, thirdBook, fourthBook, fifthBook],
       }
     ) => {
-      const img1 = `<img class="img__book" data-id=${firstBook._id} width="auto" heigh="auto" loading="lazy" src="${firstBook.book_image}" alt="book" />`;
-      const img2 = `<img class="img__book" data-id=${secondBook._id} width="auto" heigh="auto" loading="lazy" src="${secondBook.book_image}" alt="book" />`;
-      const img3 = `<img class="img__book" data-id=${thirdBook._id} width="auto" heigh="auto" loading="lazy" src="${thirdBook.book_image}" alt="book" />`;
-      const img4 = `<img class="img__book" data-id=${fourthBook._id} width="auto" heigh="auto" loading="lazy" src="${fourthBook.book_image}" alt="book" />`;
-      const img5 = `<img class="img__book" data-id=${fifthBook._id} width="auto" heigh="auto" loading="lazy" src="${fifthBook.book_image}" alt="book" />`;
+      const img1 = `<img class="img__book" data-id=${firstBook._id} width="100%" heigh="auto" loading="lazy" src="${firstBook.book_image}" alt="book" />`;
+      const img2 = `<img class="img__book" data-id=${secondBook._id} width="100%" heigh="auto" loading="lazy" src="${secondBook.book_image}" alt="book" />`;
+      const img3 = `<img class="img__book" data-id=${thirdBook._id} width="100%" heigh="auto" loading="lazy" src="${thirdBook.book_image}" alt="book" />`;
+      const img4 = `<img class="img__book" data-id=${fourthBook._id} width="100%" heigh="auto" loading="lazy" src="${fourthBook.book_image}" alt="book" />`;
+      const img5 = `<img class="img__book" data-id=${fifthBook._id} width="100%" heigh="auto" loading="lazy" src="${fifthBook.book_image}" alt="book" />`;
 
       return (
         acc +

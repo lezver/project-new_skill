@@ -1,4 +1,5 @@
 import { bodyRef } from '../header/header';
+import svgIcons from '../../images/icons.svg';
 
 const refs = {
   headerSignUp: document.querySelector('.auth__modal-open'),
@@ -107,6 +108,7 @@ signUpForm2.addEventListener('submit', checkForm2);
 signUpForm2.addEventListener('input', checkRequired2);
 
 const createMarkupSignIp = () => {
+  const markup = ``;
   signIpButton.classList.add('sign-up-button-active');
   signUpButton.classList.remove('sign-up-button-active');
   signUpForm2.classList.remove('sign-up-hidden');
@@ -116,6 +118,7 @@ const createMarkupSignIp = () => {
 createMarkupSignIp();
 
 const createMarkupSignUp = () => {
+  const markup = ``;
   signUpButton.classList.add('sign-up-button-active');
   signIpButton.classList.remove('sign-up-button-active');
   signUpForm1.classList.remove('sign-up-hidden');

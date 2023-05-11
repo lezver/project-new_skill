@@ -204,6 +204,12 @@
     svg {
       fill: $background;
     }
+    &:hover,
+    &:focus {
+      > svg {
+        fill: $blue;
+      }
+    }
   }
   > form {
     > label {

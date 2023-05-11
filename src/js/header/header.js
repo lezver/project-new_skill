@@ -1,6 +1,4 @@
 import openCloseIcon from '../../images/icons.svg';
-import styles from '../../sass/utils/_variables.scss';
-import debounce from 'lodash.debounce';
 
 //   Light/dark theme switcher
 export const body = document.body;
@@ -15,7 +13,7 @@ window.addEventListener('storage', syncChangeDarkMode);
 
 if (darkModeLocalStored === 'true') {
   slider.checked = true;
-  // slider.setAttribute('checked', '');
+  slider.setAttribute('checked', '');
   setDarkModeStyle();
 }
 
@@ -57,14 +55,12 @@ function setLightModeStyle() {
   body.classList.remove('dark-mode');
   header.classList.remove('dark-mode');
   iconMobileMenu.classList.remove('dark-mode');
-  // sliderBall.classList.remove('dark-mode');
 }
 
 function setDarkModeStyle() {
   body.classList.add('dark-mode');
   header.classList.add('dark-mode');
   iconMobileMenu.classList.add('dark-mode');
-  // sliderBall.classList.add('dark-mode');
 }
 
 // Opening/closing a mod for the mobile version
@@ -97,34 +93,43 @@ function toggleModal() {
   }
 }
 
-// Highlighting the name of the current page in yellow (menu in the header)
+// Highlighting the name of the current page in yellow, as well as making disabled the current page 'button' (menu in the header)
 
 const menuHomeEl = document.querySelector('.menu__home');
 const menuShoppingEl = document.querySelector('.menu__shopping');
+const disabledClass = 'disabled';
 
 const setCurrentPage = () => {
   const currentPageName = window.location.pathname;
   // console.log(currentPageName);
-  // console.log(menuHomeEl);
-  // console.log(menuShoppingEl);
 
   if (
     currentPageName === '/index.html' ||
-    currentPageName === '/project-new_skill/index.html' ||
-    currentPageName === '/project-new_skill/'
+    currentPageName === '/project-new_skill/' ||
+    currentPageName === '/project-new_skill/index.html'
   ) {
     menuHomeEl.classList.add('current-page');
     menuShoppingEl.classList.remove('current-page');
+    toggleElDisabled(menuShoppingEl);
+    menuHomeEl.classList.add(disabledClass);
     return;
   }
 
   menuShoppingEl.classList.add('current-page');
   menuHomeEl.classList.remove('current-page');
+  toggleElDisabled(menuHomeEl);
+  menuShoppingEl.classList.add(disabledClass);
 };
 
 setCurrentPage();
 
-// Highlighting the name of the current page in yellow (menu in the modal)
+function toggleElDisabled(element) {
+  if (!element.classList.contains(disabledClass)) return;
+
+  element.classList.remove(disabledClass);
+}
+
+// Highlighting the name of the current page in yellow, as well as making disabled the current page 'button' (menu in the modal)
 
 const dropMenuHomeEl = document.querySelector('.drop-menu__home');
 const dropMenuShoppingEl = document.querySelector('.drop-menu__shopping');
@@ -134,12 +139,19 @@ const dropSetCurrentPage = () => {
 
   if (
     dropCurrentPageName === '/index.html' ||
+    dropCurrentPageName === '/project-new_skill/' ||
     dropCurrentPageName === '/project-new_skill/index.html'
   ) {
     dropMenuHomeEl.classList.add('current-page');
+    dropMenuShoppingEl.classList.remove('current-page');
+    toggleElDisabled(dropMenuShoppingEl);
+    dropMenuHomeEl.classList.add(disabledClass);
     return;
   }
   dropMenuShoppingEl.classList.add('current-page');
+  dropMenuHomeEl.classList.remove('current-page');
+  toggleElDisabled(dropMenuHomeEl);
+  dropMenuShoppingEl.classList.add(disabledClass);
 };
 
 dropSetCurrentPage();

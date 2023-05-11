@@ -1,41 +1,31 @@
 import { fetchBooks } from '../categories/fetchRequest';
 
-// const refs = {
-//   listOfBooks: document.querySelector('.home__items'),
-//   backdrop: document.querySelector('.backdrop'),
-//   modalWindow: document.querySelector('.modal-window'),
-//   modalWindowCloseIcon: document.querySelector('.close-icon'),
-//   modalWindowCloseButton: document.querySelector('.close-icon-button'),
-//   imageContainer: document.querySelector('.image-container'),
-//   bookName: document.querySelector('.book-name'),
-//   bookAuthor: document.querySelector('.book-author'),
-//   bookDescription: document.querySelector('.book-description'),
-//   amazonLogo: document.querySelector('.amazon-logo'),
-//   amazonLink: document.querySelector('.amazon-link'),
-// };
+const refs = {
+  listOfBooks: document.querySelector('.home__items'),
+  backdrop: document.querySelector('.backdrop'),
+  modalWindow: document.querySelector('.modal-window'),
+};
 
-const listOfBooks = document.querySelector('.home__items');
-const bookImageId = document.querySelector('.img__book');
-const backdrop = document.querySelector('.backdrop');
-const modalWindow = document.querySelector('.modal-window');
-const modalWindowCloseIcon = document.querySelector('.close-icon');
-const modalWindowCloseButton = document.querySelector('.close-icon-button');
+const modalWindowCloseIcon = refs.modalWindow.querySelector('.close-icon');
+const modalWindowCloseButton =
+  refs.modalWindow.querySelector('.close-icon-button');
 const imageContainer = document.querySelector('.image-container');
-let bookName = document.querySelector('.book-name'); ///
-let bookAuthor = document.querySelector('.book-author'); ///
-let bookDescription = document.querySelector('.book-description'); ///
-const amazonLogo = document.querySelector('.amazon-logo');
-let amazonLink = document.querySelector('.amazon-link'); ///
-let bookLink = document.querySelector('.book-link'); ///
-let bookShopLink = document.querySelector('.book-shop-link'); ///
-const addBookButton = document.querySelector('.add-book-button'); ///
-const removeBookContainer = document.querySelector('.remove-book-container'); ///
-const removeBookButton = document.querySelector('.remove-book-button');
-const removeBookText = document.querySelector('.remove-book-text');
-const themeSwitcher = document.querySelector('.switch');
+let bookName = refs.modalWindow.querySelector('.book-name');
+let bookAuthor = refs.modalWindow.querySelector('.book-author');
+let bookDescription = refs.modalWindow.querySelector('.book-description');
+let amazonLink = refs.modalWindow.querySelector('.amazon-link');
+let bookLink = refs.modalWindow.querySelector('.book-link');
+let bookShopLink = refs.modalWindow.querySelector('.book-shop-link');
+const addBookButton = refs.modalWindow.querySelector('.add-book-button');
+const removeBookContainer = refs.modalWindow.querySelector(
+  '.remove-book-container'
+);
+const removeBookButton = removeBookContainer.querySelector(
+  '.remove-book-button'
+);
 
 // MODAL WINDOW OPEN
-listOfBooks.addEventListener('click', e => {
+refs.listOfBooks.addEventListener('click', e => {
   const asd = document.querySelector('.img__wrapper');
   if (
     e.target.className === 'img__wrapper' ||
@@ -55,9 +45,9 @@ listOfBooks.addEventListener('click', e => {
         buy_links: [Amazon, appleBooks, , , bookShop],
       } = bookDataObj;
 
-      backdrop.classList.add('backdrop-visible');
+      refs.backdrop.classList.add('backdrop-visible');
 
-      modalWindow.id = await _id;
+      refs.modalWindow.id = await _id;
       imageContainer.innerHTML = `<img src="${book_image}" alt="Book image" class="book-image" />`;
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
@@ -125,12 +115,16 @@ listOfBooks.addEventListener('click', e => {
 
 // MODAL WINDOW CLOSE
 document.addEventListener('click', e => {
-  if (e.target === backdrop) {
-    backdrop.classList.remove('backdrop-visible');
+  if (e.target === refs.backdrop) {
+    refs.backdrop.classList.remove('backdrop-visible');
     document.body.classList.remove('no-scroll-body-js');
   } else {
-    if (e.target === modalWindowCloseButton) {
-      backdrop.classList.remove('backdrop-visible');
+    if (
+      e.target === modalWindowCloseButton ||
+      e.target === modalWindowCloseButton.firstElementChild ||
+      e.target === modalWindowCloseIcon.firstElementChild
+    ) {
+      refs.backdrop.classList.remove('backdrop-visible');
       document.body.classList.remove('no-scroll-body-js');
     }
   }
@@ -138,7 +132,7 @@ document.addEventListener('click', e => {
 
 document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
-    backdrop.classList.remove('backdrop-visible');
+    refs.backdrop.classList.remove('backdrop-visible');
     document.body.classList.remove('no-scroll-body-js');
   }
 });

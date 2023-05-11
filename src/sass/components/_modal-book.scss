@@ -221,7 +221,7 @@
   border-radius: 40px;
   letter-spacing: -0.01em;
   text-transform: uppercase;
-  font-family: 'DMSans-700';
+  font-weight: 700;
   font-size: 14px;
   line-height: 1.33;
   background-color: $white;
@@ -353,9 +353,9 @@
       &:focus {
         background-color: $blue;
       }
-      .remove-book-text {
-        color: rgba(255, 255, 255, 0.5);
-      }
+    }
+    .remove-book-text {
+      color: rgba(255, 255, 255, 0.5);
     }
   }
 }

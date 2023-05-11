@@ -67,8 +67,21 @@ listOfBooks.addEventListener('click', e => {
       const bookShopUrl = await bookShop.url;
       bookShopLink.href = await bookShopUrl;
       backdrop.classList.add('backdrop-visible');
-      addBookButton.addEventListener('click', toggleBookAtShoppingList); // ADD/REMOVE TO SHOPPING LIST FUNC
+      addBookButton.addEventListener('click', toggleBookAtShoppingList);
+      removeBookButton.addEventListener('click', makaka);
+      function makaka() {
+        const index = shoppingList.find(obj => obj.id === _id);
+        console.log(index);
+        if (index) {
+          shoppingList.splice(index, 1);
+          localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+          addBookButton.classList.remove('add-book-button-none');
+          removeBookContainer.classList.remove('remove-book-container-visible');
+          addBookButton.addEventListener('click', toggleBookAtShoppingList);
+        }
+      }
       function toggleBookAtShoppingList() {
+        console.log('tada');
         const bookData = {
           id: _id,
           Image: book_image,
@@ -77,23 +90,14 @@ listOfBooks.addEventListener('click', e => {
           Description: description,
           buy_links: [Amazon, appleBooks, bookShop],
         };
-
-        // let shoppingList = localStorage.getItem('shoppingList');
-        // shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
-        // const index = shoppingList.find(obj => obj.id === _id);
         if (!index) {
-          // BOOK ADD
           shoppingList.push(bookData);
           addBookButton.classList.add('add-book-button-none');
           removeBookContainer.classList.add('remove-book-container-visible');
-        } else {
-          // BOOK REMOVE
-          shoppingList.splice(index, 1);
-          addBookButton.classList.remove('add-book-button-none');
-          removeBookContainer.classList.remove('remove-book-container-visible');
         }
         localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
         addBookButton.removeEventListener('click', toggleBookAtShoppingList);
+        removeBookButton.removeEventListener('click', toggleBookAtShoppingList);
       }
 
       return;

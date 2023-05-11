@@ -7,8 +7,6 @@ const allCategoriesBtn = document.getElementById('allCategoriesBtn');
 const [listEl] = document.getElementsByClassName('categories-list');
 const [inputDarkMode] = document.getElementsByClassName('switch');
 
-// window.addEventListener('storage', changeMode);
-
 inputDarkMode.addEventListener('change', changeMode);
 
 allCategoriesBtn.classList.add('active-categories');
@@ -18,11 +16,10 @@ let [activeBtn] = document.getElementsByClassName('active-categories');
 
 changeMode();
 function changeMode(event) {
-  // console.log(event);
   localStorageMode = localStorage.getItem('darkMode');
 
   [activeBtn] = document.getElementsByClassName('active-categories');
-  // if (localStorageMode === 'true' || event.newValue === 'true') {
+
   if (localStorageMode === 'true') {
     activeBtn.classList.add('active-dark');
     listEl.classList.add('dark');

@@ -87,6 +87,19 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: fill 1000ms $time-distribution,
+    transform 1000ms $time-distribution;
+
+  > svg {
+    fill: $black;
+  }
+  &:hover,
+  &:focus {
+    transform: rotate(360deg);
+    > svg {
+      fill: $blue;
+    }
+  }
   @include breakpoint(tab) {
     width: 28px;
     height: 28px;
@@ -100,8 +113,6 @@
 .close-icon {
   width: 14px;
   height: 14px;
-  transition-duration: $time;
-  transition-timing-function: $time-distribution;
   @include breakpoint(tab) {
     width: 16px;
     height: 16px;
@@ -114,18 +125,6 @@
 
 .black-theme-close-icon {
   fill: $white;
-}
-
-.close-icon:hover {
-  fill: $blue;
-  // transform: rotate(360deg); ANIMATION
-  // transition-duration: 1s;
-}
-
-.close-icon:focus {
-  fill: $blue;
-  // transform: rotate(360deg); ANIMATION
-  // transition-duration: 1s;
 }
 
 .modal-window-content-align {

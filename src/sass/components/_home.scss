@@ -116,6 +116,7 @@
     &:focus {
       color: $white;
       background-color: $blue;
+      box-shadow: inset 0 0 40px #4f2ee8;
     }
   }
   @media screen and (min-width: 577px) and (max-width: 766px) {
@@ -139,7 +140,7 @@
       }
     }
   }
-  @media screen and (min-width: 766px) and (max-width: 891px) {
+  @media screen and (min-width: 766px) and (max-width: 892px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -160,7 +161,7 @@
       }
     }
   }
-  @media screen and (min-width: 892px) and (max-width: 1031px) {
+  @media screen and (min-width: 892px) and (max-width: 1032px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -181,7 +182,7 @@
       }
     }
   }
-  @media screen and (min-width: 1032px) and (max-width: 1235px) {
+  @media screen and (min-width: 1032px) and (max-width: 1236px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -202,7 +203,7 @@
       }
     }
   }
-  @media screen and (min-width: 1236px) and (max-width: 1439px) {
+  @media screen and (min-width: 1236px) and (max-width: 1440px) {
     max-width: 100%;
     & > ul {
       display: flex;

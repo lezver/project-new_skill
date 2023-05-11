@@ -53,7 +53,6 @@ function setDarkModeStyle() {
   // sliderBall.classList.add('dark-mode');
 }
 
-
 // Відкриття/Закриття модалки для моб.версії
 
 const modalBoxEl = document.querySelector('.data-modal');
@@ -85,8 +84,6 @@ function toggleModal() {
 }
 
 // Унеможливлення скролу мобільного меню
-
-
 
 // Виділення жовтим назву поточної сторінки (меню в хедері)
 

@@ -138,6 +138,12 @@ body {
   align-items: center;
 }
 
+.menu__home, .menu__shopping {
+  &.disabled {
+    pointer-events: none;
+  };
+}
+
 .icon-cart {
   fill: currentColor;
 }
@@ -333,6 +339,10 @@ body {
   @include breakpoint(tab-header) {
     display: none;
   }
+
+  @include breakpoint(des) {
+    display: none;
+  }
 }
 
 // Mobile drop menu
@@ -353,10 +363,6 @@ body {
 
   color: $white;
   transition: opacity $time, visibility $time;
-
-  & .is-hidden {
-    display: none;
-  }
 }
 
 .drop-menu__home,
@@ -366,6 +372,10 @@ body {
   display: flex;
   align-items: center;
   gap: 7px;
+
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 .drop-menu__home:hover,

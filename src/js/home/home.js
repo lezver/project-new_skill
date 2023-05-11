@@ -11,7 +11,7 @@ export const createMarkupCategories = arr => {
       `
       <li class="home__item-category">
         <div class="img__wrapper" data-id=${_id}>
-          ${img ? img : refs.mobCap}
+          ${img ? img : refs.mobCapImg}
         </div>
         <h2>${title}</h2>
         <span>${author}</span>
@@ -71,35 +71,35 @@ export const createMarkupBestBooks = arr => {
         <ul>
           <li>
             <div class="img__wrapper" data-id=${firstBook._id}>
-              ${img1 ? img1 : refs.mobCap}
+              ${img1 ? img1 : refs.mobCapImg}
             </div>
             <h2>${firstBook.title}</h2>
             <span>${firstBook.author}</span>
           </li>
           <li>
             <div class="img__wrapper" data-id=${secondBook._id}>
-              ${img2 ? img2 : refs.mobCap}
+              ${img2 ? img2 : refs.mobCapImg}
             </div>
             <h2>${secondBook.title}</h2>
             <span>${secondBook.author}</span>
           </li>
           <li>
             <div class="img__wrapper" data-id=${thirdBook._id}>
-              ${img3 ? img3 : refs.mobCap}
+              ${img3 ? img3 : refs.mobCapImg}
             </div>
             <h2>${thirdBook.title}</h2>
             <span>${thirdBook.author}</span>
           </li>
           <li>
             <div class="img__wrapper" data-id=${fourthBook._id}>
-              ${img4 ? img4 : refs.mobCap}
+              ${img4 ? img4 : refs.mobCapImg}
             </div>
             <h2>${fourthBook.title}</h2>
             <span>${fourthBook.author}</span>
           </li>
           <li>
             <div class="img__wrapper" data-id=${fifthBook._id}>
-              ${img5 ? img5 : refs.mobCap}
+              ${img5 ? img5 : refs.mobCapImg}
             </div>
             <h2>${fifthBook.title}</h2>
             <span>${fifthBook.author}</span>

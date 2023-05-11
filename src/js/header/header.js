@@ -2,42 +2,56 @@ import openCloseIcon from '../../images/icons.svg';
 import styles from '../../sass/utils/_variables.scss';
 import debounce from 'lodash.debounce';
 
-//   Перемикач світла/темна тема
+//   Light/dark theme switcher
 export const body = document.body;
 const header = document.querySelector('.page-nav');
 const iconMobileMenu = document.querySelector('.menu-toggle');
 const darkModeLocalStored = localStorage.getItem('darkMode');
+const darkModeId = 'darkMode';
 let slider = document.querySelector('.switch');
 
 slider.addEventListener('change', changeDarkMode);
-// window.addEventListener('storage', syncChangeDarkMode);
+window.addEventListener('storage', syncChangeDarkMode);
 
 if (darkModeLocalStored === 'true') {
   slider.checked = true;
   // slider.setAttribute('checked', '');
   setDarkModeStyle();
-}
+};
 
 function changeDarkMode() {
-  const darkModeId = 'darkMode';
-
-  // if (slider.checked) {
   if (slider.checked) {
     setDarkModeStyle();
-    localStorage.setItem(darkModeId, 'true');
+    try {
+      localStorage.setItem(darkModeId, 'true');
+    } catch (error) {
+      console.error("Set state error: ", error.message);
+    };
   } else {
     setLightModeStyle();
-    localStorage.setItem(darkModeId, 'false');
+    try {
+      localStorage.setItem(darkModeId, 'false');
+    } catch (error) {
+      console.error("Set state error: ", error.message);
+    };
+  };
+};
+
+function syncChangeDarkMode(e) {
+  // console.log(e);
+  // console.log('slider.checked', slider.checked);
+  // console.log('e.newValue', e.newValue);
+
+  if (e.newValue === 'true') {
+    slider.checked = true;
+    slider.setAttribute('checked', '');
+    setDarkModeStyle();
+  } else {
+    slider.checked = false;
+    slider.removeAttribute('checked');
+    setLightModeStyle();
   }
 }
-
-// function syncChangeDarkMode(e) {
-//   console.log(e);
-
-//   console.log(slider.checked.value);
-//   // console.log();
-//   // console.log();
-// }
 
 function setLightModeStyle() {
   body.classList.remove('dark-mode');
@@ -54,7 +68,7 @@ function setDarkModeStyle() {
 }
 
 
-// Відкриття/Закриття модалки для моб.версії
+// Opening/closing a mod for the mobile version
 
 const modalBoxEl = document.querySelector('.data-modal');
 const openModalBtnEl = document.querySelector('.js-open-menu');
@@ -68,7 +82,7 @@ signUpBtnMobile.addEventListener('click', toggleModal);
 function toggleModal() {
   if (modalBoxEl.classList.contains('is-hidden')) {
     modalBoxEl.classList.remove('is-hidden');
-    // body.classList.remove('no-scroll-body-js');
+    body.classList.add('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
     openModalBtnSvgEl.style.width = '18px';
@@ -76,7 +90,7 @@ function toggleModal() {
     return;
   } else {
     modalBoxEl.classList.add('is-hidden');
-    // body.classList.add('no-scroll-body-js');
+    body.classList.remove('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');
     openModalBtnSvgEl.style.width = '24px';
@@ -84,11 +98,7 @@ function toggleModal() {
   }
 }
 
-// Унеможливлення скролу мобільного меню
-
-
-
-// Виділення жовтим назву поточної сторінки (меню в хедері)
+// Highlighting the name of the current page in yellow (menu in the header)
 
 const menuHomeEl = document.querySelector('.menu__home');
 const menuShoppingEl = document.querySelector('.menu__shopping');
@@ -115,7 +125,7 @@ const setCurrentPage = () => {
 
 setCurrentPage();
 
-// Виділення жовтим назву поточної сторінки (меню в модалці)
+// Highlighting the name of the current page in yellow (menu in the modal)
 
 const dropMenuHomeEl = document.querySelector('.drop-menu__home');
 const dropMenuShoppingEl = document.querySelector('.drop-menu__shopping');

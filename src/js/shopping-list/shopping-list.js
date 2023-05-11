@@ -1,4 +1,6 @@
+
 import Pagination from 'tui-pagination';
+
 import amazonImage1 from '../../images/png/modal-book/amazon.png';
 import amazonImage2 from '../../images/png/modal-book/amazon@2x.png';
 import appleImage1 from '../../images/png/modal-book/book.png';
@@ -28,22 +30,22 @@ const paginationSettings = {
   centerAlign: true,
   template: {
     moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">' +
-      `<svg >
+        '<a href="#" class="tui-page-btn tui-{{type}} custom-class-{{type}}">' +
+            '<span class="tui-ico-{{type}}">' +
+                `<svg >
                     <use href = "${svgIcon}#icon-pagination-{{type}}"></use>
                 </svg>` +
-      '</span>' +
-      '</a>',
+            '</span>' +
+        '</a>',
     disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
-      '<span class="tui-ico-{{type}}">' +
-      `<svg >
+        '<span class="tui-page-btn tui-is-disabled tui-{{type}} custom-class-{{type}}">' +
+            '<span class="tui-ico-{{type}}">' +
+                `<svg >
                     <use href = "${svgIcon}#icon-pagination-{{type}}"></use>
                 </svg>` +
-      '</span>' +
-      '</span>',
-  },
+            '</span>' +
+        '</span>',
+  }
 };
 const paginationInstance = new Pagination(
   paginationContainer,
@@ -100,7 +102,7 @@ function onListener() {
 
 function onClickShoppingDelete(event) {
   const target = event.target.closest('.shopping-delete-button');
-  const index = parsedSettings.map(element => element._id).indexOf(target.id);
+  const index = parsedSettings.map(element => element.id).indexOf(target.id);
   parsedSettings.splice(index, 1);
   innerMarkup();
   localStorage.setItem('shopping_list', JSON.stringify(parsedSettings))
@@ -109,14 +111,14 @@ function onClickShoppingDelete(event) {
 }
 
 function onResize(event) {
-  const _perPage = event.target.innerWidth <= 576 ? 4 : 3;
-  if (_perPage != perPage) {
-    perPage = _perPage;
-    paginationInstance.setItemsPerPage(perPage);
-    innerMarkup();
-    paginationInstance.movePageTo(paginationInstance.getCurrentPage());
+    const _perPage = event.target.innerWidth <= 576 ? 4 : 3
+    if (_perPage != perPage) {
+        perPage = _perPage
+        paginationInstance.setItemsPerPage(perPage)
+        innerMarkup()
+        paginationInstance.movePageTo(paginationInstance.getCurrentPage());
+    }
   }
-}
 
 function buildEmptyList() {
   return `

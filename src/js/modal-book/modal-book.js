@@ -1,27 +1,46 @@
 import { fetchBooks } from '../categories/fetchRequest';
 
+// const refs = {
+//   listOfBooks: document.querySelector('.home__items'),
+//   backdrop: document.querySelector('.backdrop'),
+//   modalWindow: document.querySelector('.modal-window'),
+//   modalWindowCloseIcon: document.querySelector('.close-icon'),
+//   modalWindowCloseButton: document.querySelector('.close-icon-button'),
+//   imageContainer: document.querySelector('.image-container'),
+//   bookName: document.querySelector('.book-name'),
+//   bookAuthor: document.querySelector('.book-author'),
+//   bookDescription: document.querySelector('.book-description'),
+//   amazonLogo: document.querySelector('.amazon-logo'),
+//   amazonLink: document.querySelector('.amazon-link'),
+// };
+
 const listOfBooks = document.querySelector('.home__items');
+const bookImageId = document.querySelector('.img__book');
 const backdrop = document.querySelector('.backdrop');
 const modalWindow = document.querySelector('.modal-window');
 const modalWindowCloseIcon = document.querySelector('.close-icon');
 const modalWindowCloseButton = document.querySelector('.close-icon-button');
 const imageContainer = document.querySelector('.image-container');
-let bookName = document.querySelector('.book-name');
-let bookAuthor = document.querySelector('.book-author');
-let bookDescription = document.querySelector('.book-description');
+let bookName = document.querySelector('.book-name'); ///
+let bookAuthor = document.querySelector('.book-author'); ///
+let bookDescription = document.querySelector('.book-description'); ///
 const amazonLogo = document.querySelector('.amazon-logo');
-let amazonLink = document.querySelector('.amazon-link');
-let bookLink = document.querySelector('.book-link');
-let bookShopLink = document.querySelector('.book-shop-link');
-const addBookButton = document.querySelector('.add-book-button');
-const removeBookContainer = document.querySelector('.remove-book-container');
+let amazonLink = document.querySelector('.amazon-link'); ///
+let bookLink = document.querySelector('.book-link'); ///
+let bookShopLink = document.querySelector('.book-shop-link'); ///
+const addBookButton = document.querySelector('.add-book-button'); ///
+const removeBookContainer = document.querySelector('.remove-book-container'); ///
 const removeBookButton = document.querySelector('.remove-book-button');
 const removeBookText = document.querySelector('.remove-book-text');
 const themeSwitcher = document.querySelector('.switch');
 
 // MODAL WINDOW OPEN
 listOfBooks.addEventListener('click', e => {
-  if (e.target.classList.contains('img__wrapper')) {
+  const asd = document.querySelector('.img__wrapper');
+  if (
+    e.target.className === 'img__wrapper' ||
+    e.target.className === 'img__book'
+  ) {
     document.body.classList.add('no-scroll-body-js');
 
     async function fetchBook() {
@@ -123,25 +142,3 @@ document.addEventListener('keydown', function (e) {
     document.body.classList.remove('no-scroll-body-js');
   }
 });
-
-// THEME MOD TOGGLE
-themeSwitcher.addEventListener('change', changeThemeFunc);
-changeThemeFunc();
-function changeThemeFunc() {
-  const themeMode = localStorage.getItem('darkMode');
-  if (themeMode === 'true') {
-    modalWindow.classList.add('black-theme-modal-window');
-    modalWindowCloseIcon.classList.add('black-theme-close-icon');
-    amazonLogo.classList.add('black-theme-amazon-logo');
-    addBookButton.classList.add('black-theme-add-book-button');
-    removeBookButton.classList.add('black-theme-remove-book-button');
-    removeBookText.classList.add('black-theme-remove-book-text');
-  } else {
-    modalWindow.classList.remove('black-theme-modal-window');
-    modalWindowCloseIcon.classList.remove('black-theme-close-icon');
-    amazonLogo.classList.remove('black-theme-amazon-logo');
-    addBookButton.classList.remove('black-theme-add-book-button');
-    removeBookButton.classList.remove('black-theme-remove-book-button');
-    removeBookText.classList.remove('black-theme-remove-book-text');
-  }
-}

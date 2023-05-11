@@ -231,17 +231,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 24px;
+  height: 24px;
 
   background-color: transparent;
   cursor: pointer;
   border: none;
 
+  transition: fill $time $time-distribution;
+
   &.dark-mode > svg {
     fill: $white;
   }
 
-  & :hover,
-  :focus {
+  &:hover,
+  &:focus {
     fill: $blue;
   }
 

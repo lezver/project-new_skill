@@ -125,7 +125,7 @@
       box-shadow: inset 0 0 40px #4f2ee8;
     }
   }
-  @media screen and (min-width: 577px) and (max-width: 780px) {
+  @media screen and (min-width: 577px) and (max-width: 766px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -146,7 +146,7 @@
       }
     }
   }
-  @media screen and (min-width: 780px) and (max-width: 892px) {
+  @media screen and (min-width: 766px) and (max-width: 892px) {
     max-width: 100%;
     & > ul {
       display: flex;
@@ -352,14 +352,4 @@
       }
     }
   }
-}
-
-.home__item > ul > li:nth-child(-n + 5) > div > .img__cap {
-  width: 58px;
-  height: 50px;
-}
-
-.home__item-category > div > .img__cap {
-  width: 58px;
-  height: 50px;
 }

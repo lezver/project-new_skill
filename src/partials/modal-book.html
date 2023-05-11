@@ -6,7 +6,16 @@
       </svg>
     </button>
     <div class="modal-window-content-align">
-      <div class="image-container"></div>
+      <div class="image-container">
+        <img
+          src="./images/png/home/Icon.png"
+          srcset="
+            ./images/png/home/Icon.png    1x,
+            ./images/png/home/Icon@2x.png 2x
+          "
+          alt="book"
+        />
+      </div>
       <div class="book-content-align">
         <h2 class="book-name"></h2>
         <span class="book-author"></span>
@@ -50,17 +59,13 @@
         </div>
       </div>
     </div>
-    <div class="buttons">
-      <button class="add-book-button">Add to shopping list</button>
-      <div class="remove-book-container">
-        <button class="remove-book-button">
-          Remove from the shopping list
-        </button>
-        <span class="remove-book-text"
-          >Сongratulations! You have added the book to the shopping list. To
-          delete, press the button “Remove from the shopping list”.</span
-        >
-      </div>
+    <button class="add-book-button">Add to shopping list</button>
+    <div class="remove-book-container">
+      <button class="remove-book-button">Remove from the shopping list</button>
+      <span class="remove-book-text"
+        >Сongratulations! You have added the book to the shopping list. To
+        delete, press the button “Remove from the shopping list”.</span
+      >
     </div>
   </div>
 </div>

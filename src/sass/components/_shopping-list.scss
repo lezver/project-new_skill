@@ -5,12 +5,6 @@ ul {
 }
 
 .shopping-list {
-  @include breakpoint(tab) {
-    //padding: 40px 32px;
-  }
-  @include breakpoint(des) {
-    //padding: 40px 24px 40px 0;
-  }
   &-item {
     display: flex;
     gap: 14px;
@@ -22,27 +16,18 @@ ul {
     box-shadow: inset 0 0 0 rgba($blue, 0.02);
     transition: all 0.3s ease-in-out;
 
-      &:hover {
-        box-shadow: inset 0 0 150px rgba($blue, 0.4);
-       }
+    &:hover {
+      box-shadow: inset 0 0 150px rgba($blue, 0.4);
+    }
     @include breakpoint(tab) {
       gap: 24px;
       height: 213px;
       padding: 24px;
     }
-    @include breakpoint(des) {
-      gap: 24px;
-      height: 213px;
-      padding: 24px;
-    }
-
     & .book_image {
       width: 100px;
       height: 100%;
       @include breakpoint(tab) {
-        width: 116px;
-      }
-      @include breakpoint(des) {
         width: 116px;
       }
     }
@@ -71,10 +56,6 @@ ul {
       font-size: 48px;
       line-height: 1.08;
     }
-    @include breakpoint(des) {
-      font-size: 48px;
-      line-height: 1.08;
-    }
   }
   &-empty {
     width: 265px;
@@ -89,10 +70,6 @@ ul {
       letter-spacing: -0.02em;
       color: rgba(0, 0, 0, 0.6);
       @include breakpoint(tab) {
-        font-size: 18px;
-        line-height: 1.33;
-      }
-      @include breakpoint(des) {
         font-size: 18px;
         line-height: 1.33;
       }
@@ -136,9 +113,6 @@ ul {
       @include breakpoint(tab) {
         margin-bottom: 14px;
       }
-      @include breakpoint(des) {
-        margin-bottom: 14px;
-      }
     }
     .shopping-delete-button {
       border-radius: 50%;
@@ -152,16 +126,16 @@ ul {
       background-color: $blue;
       border: none;
       transition: all 0.3s ease-in-out;
-        &:hover {
-         color: $black;
-         box-shadow: inset 0 0 40px rgba($yellow, 1);
-         .basket {
-            filter: invert(1);
-           }
+      &:hover {
+        color: $black;
+        box-shadow: inset 0 0 40px rgba($yellow, 1);
+        .basket {
+          filter: invert(1);
         }
+      }
     }
     .basket {
-        transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
       width: 16px;
       height: 16px;
     }
@@ -201,10 +175,6 @@ ul {
         -webkit-line-clamp: 1;
         max-width: none;
       }
-      @include breakpoint(des) {
-        -webkit-line-clamp: 1;
-        max-width: none;
-      }
     }
     .list-buy {
       display: flex;
@@ -217,11 +187,6 @@ ul {
       filter: grayscale(1);
       transition: filter $time $time-distribution;
       @include breakpoint(tab) {
-        width: 48px;
-        height: 15px;
-        transition: filter $time $time-distribution;
-      }
-      @include breakpoint(des) {
         width: 48px;
         height: 15px;
         transition: filter $time $time-distribution;
@@ -240,10 +205,6 @@ ul {
         width: 28px;
         height: 27px;
       }
-      @include breakpoint(des) {
-        width: 28px;
-        height: 27px;
-      }
     }
     .link-applebooks:hover,
     .link-applebooks:focus {
@@ -254,10 +215,6 @@ ul {
       height: 16px;
       filter: grayscale(1);
       @include breakpoint(tab) {
-        width: 32px;
-        height: 30px;
-      }
-      @include breakpoint(des) {
         width: 32px;
         height: 30px;
       }
@@ -323,10 +280,6 @@ ul {
     width: 44px;
     height: 44px;
   }
-  @include breakpoint(des) {
-    width: 44px;
-    height: 44px;
-  }
 
   svg {
     width: 14px;
@@ -375,9 +328,6 @@ ul {
   @include breakpoint(tab) {
     margin-right: 16px;
   }
-  @include breakpoint(des) {
-    margin-right: 16px;
-  }
 }
 
 .tui-next {
@@ -385,13 +335,10 @@ ul {
   @include breakpoint(tab) {
     margin-left: 16px;
   }
-  @include breakpoint(des) {
-    margin-left: 16px;
-  }
 }
 
 // === DARK MODE ===
-body.dark {
+body.dark-mode {
   .shopping-list {
     .page-title {
       color: $white;
@@ -404,7 +351,7 @@ body.dark {
     &-item {
       background-color: $black;
     }
-    
+
     .book-tittle,
     .description {
       color: $white;
@@ -428,14 +375,15 @@ body.dark {
     }
 
     .tui-page-btn:not(.tui-first):not(.tui-prev):not(.tui-next):not(.tui-last) {
-        border-color: $white;
-        color: $white;
-      }
+      border-color: $white;
+      color: $white;
+    }
 
-      .tui-page-btn.tui-is-selected:not(.tui-first):not(.tui-prev):not(.tui-next):not(.tui-last) {
-        color: $black;
-        background-color: $white;
-      }
-      
+    .tui-page-btn.tui-is-selected:not(.tui-first):not(.tui-prev):not(
+        .tui-next
+      ):not(.tui-last) {
+      color: $black;
+      background-color: $white;
+    }
   }
 }

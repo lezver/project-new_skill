@@ -6,28 +6,29 @@
       </svg>
     </button>
     <form>
-      <lebel>
+      <label>
         <input
-          type="name"
+          type="text"
           placeholder="name"
           name="user_name"
           required
           pattern="^[a-zA-Z]+$"
         />
-      </lebel>
-      <lebel>
+      </label>
+      <label>
         <input
           type="email"
           placeholder="email"
           name="user_email"
           required
           title="your@mail.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
         />
         <svg class="sign-up__email">
           <use href="./images/icons.svg#icon-email"></use>
         </svg>
-      </lebel>
-      <lebel>
+      </label>
+      <label>
         <input
           type="password"
           placeholder="password"
@@ -39,12 +40,41 @@
         <svg class="sign-up__lock">
           <use href="./images/icons.svg#icon-lock"></use>
         </svg>
-      </lebel>
+      </label>
+      <button type="submit" disabled>sign up</button>
+    </form>
+    <form class="sign-up-hidden">
+      <label>
+        <input
+          type="email"
+          placeholder="email"
+          name="user_email"
+          required
+          title="your@mail.com"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        />
+        <svg class="sign-up__email">
+          <use href="./images/icons.svg#icon-email"></use>
+        </svg>
+      </label>
+      <label>
+        <input
+          type="password"
+          placeholder="password"
+          name="user_password"
+          minlength="5"
+          maxlength="12"
+          required
+        />
+        <svg class="sign-up__lock">
+          <use href="./images/icons.svg#icon-lock"></use>
+        </svg>
+      </label>
       <button type="submit" disabled>sign up</button>
     </form>
     <div class="sign-up__links">
-      <a href="">sign up</a>
-      <a href="">sign in</a>
+      <button type="button">sign up</button>
+      <button type="button">sign in</button>
     </div>
   </div>
 </div>

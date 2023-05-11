@@ -2,130 +2,86 @@ import openCloseIcon from '../../images/icons.svg';
 import styles from '../../sass/utils/_variables.scss';
 import debounce from 'lodash.debounce';
 
-//   Перемикач світла/темна тема
+//   Light/dark theme switcher
 export const body = document.body;
-
 const header = document.querySelector('.page-nav');
-const isDarkModeStored = localStorage.getItem('darkMode') === 'true';
+const iconMobileMenu = document.querySelector('.menu-toggle');
+const darkModeLocalStored = localStorage.getItem('darkMode');
+const darkModeId = 'darkMode';
 let slider = document.querySelector('.switch');
 
-const switchModeElStyles = {
-  body: {
-    lightMode: {
-      bgColor: '#f6f6f6',
-      mainTextColor: '#111111',
-    },
-    darkMode: {
-      bgColor: '#202024',
-      mainTextColor: '#fff',
-    },
-  },
-
-  header: {
-    lightMode: {
-      bgColor: '#fff',
-      mainTextColor: '#111111',
-      borderColor: '#111111',
-    },
-    darkMode: {
-      bgColor: '#111111',
-      mainTextColor: '#fff',
-      borderColor: '#fff',
-    },
-  },
-};
-
 slider.addEventListener('change', changeDarkMode);
+window.addEventListener('storage', syncChangeDarkMode);
 
-if (isDarkModeStored) {
+if (darkModeLocalStored === 'true') {
   slider.checked = true;
-  setDarkModeBodyStyle();
-  setDarkModeHeaderStyle();
-
-  // body.classList.add('dark');
-  // header.classList.add('dark');
+  // slider.setAttribute('checked', '');
+  setDarkModeStyle();
 }
 
 function changeDarkMode() {
-  const darkModeId = 'darkMode';
-
   if (slider.checked) {
-    // body.classList.add('dark');
-    // header.classList.add('dark');
-
-    localStorage.setItem(darkModeId, 'true');
-    setDarkModeBodyStyle();
-    setDarkModeHeaderStyle();
-    document.querySelector('.icon-href').setAttribute('fill', 'white');
+    setDarkModeStyle();
+    try {
+      localStorage.setItem(darkModeId, 'true');
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
   } else {
-    // body.classList.remove('dark');
-    // header.classList.remove('dark');
-
-    localStorage.setItem(darkModeId, 'false');
-    setLightModeBodyStyle();
-    setLightModeHeaderStyle();
-    document.querySelector('.icon-href').setAttribute('fill', 'black');
+    setLightModeStyle();
+    try {
+      localStorage.setItem(darkModeId, 'false');
+    } catch (error) {
+      console.error('Set state error: ', error.message);
+    }
   }
 }
 
-function setLightModeBodyStyle() {
-  // if (slider.checked) {
-  //     body.style.backgroundColor = bgColor;
-  //     body.style.color = mainTextColor;
-  // } else {
-  //     body.style.backgroundColor = bgColor;
-  //     body.style.color = mainTextColor;
-  // };
+function syncChangeDarkMode(e) {
+  // console.log(e);
+  // console.log('slider.checked', slider.checked);
+  // console.log('e.newValue', e.newValue);
 
-  const { bgColor, mainTextColor } = switchModeElStyles.body.lightMode;
-
-  body.style.backgroundColor = bgColor;
-  body.style.color = mainTextColor;
+  if (e.newValue === 'true') {
+    slider.checked = true;
+    slider.setAttribute('checked', '');
+    setDarkModeStyle();
+  } else {
+    slider.checked = false;
+    slider.removeAttribute('checked');
+    setLightModeStyle();
+  }
 }
 
-function setDarkModeBodyStyle() {
-  const { bgColor, mainTextColor } = switchModeElStyles.body.darkMode;
-
-  body.style.backgroundColor = bgColor;
-  body.style.color = mainTextColor;
+function setLightModeStyle() {
+  body.classList.remove('dark-mode');
+  header.classList.remove('dark-mode');
+  iconMobileMenu.classList.remove('dark-mode');
+  // sliderBall.classList.remove('dark-mode');
 }
 
-function setLightModeHeaderStyle() {
-  const { bgColor, mainTextColor, borderColor } =
-    switchModeElStyles.header.lightMode;
-
-  header.style.backgroundColor = bgColor;
-  header.style.color = mainTextColor;
-  header.style.borderColor = borderColor;
+function setDarkModeStyle() {
+  body.classList.add('dark-mode');
+  header.classList.add('dark-mode');
+  iconMobileMenu.classList.add('dark-mode');
+  // sliderBall.classList.add('dark-mode');
 }
 
-function setDarkModeHeaderStyle() {
-  const { bgColor, mainTextColor, borderColor } =
-    switchModeElStyles.header.darkMode;
-
-  header.style.backgroundColor = bgColor;
-  header.style.color = mainTextColor;
-  header.style.borderColor = borderColor;
-}
-
-//   Відкриття/Закриття модалки для моб.версії
+// Opening/closing a mod for the mobile version
 
 const modalBoxEl = document.querySelector('.data-modal');
 const openModalBtnEl = document.querySelector('.js-open-menu');
 const openModalBtnSvgEl = document.querySelector('.icon-burger');
+const signUpBtnMobile = document.querySelector('.sign-up-btn-js');
 const iconHrefEl = document.querySelector('.icon-href');
 
 openModalBtnEl.addEventListener('click', toggleModal);
-
-if (isDarkModeStored) {
-  iconHrefEl.setAttribute('fill', 'white');
-} else {
-  iconHrefEl.setAttribute('fill', 'black');
-}
+signUpBtnMobile.addEventListener('click', toggleModal);
 
 function toggleModal() {
   if (modalBoxEl.classList.contains('is-hidden')) {
     modalBoxEl.classList.remove('is-hidden');
+    body.classList.add('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
     openModalBtnSvgEl.style.width = '18px';
@@ -133,6 +89,7 @@ function toggleModal() {
     return;
   } else {
     modalBoxEl.classList.add('is-hidden');
+    body.classList.remove('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');
     openModalBtnSvgEl.style.width = '24px';
@@ -140,7 +97,7 @@ function toggleModal() {
   }
 }
 
-// Виділення жовтим назву поточної сторінки (меню в хедері)
+// Highlighting the name of the current page in yellow (menu in the header)
 
 const menuHomeEl = document.querySelector('.menu__home');
 const menuShoppingEl = document.querySelector('.menu__shopping');
@@ -167,7 +124,7 @@ const setCurrentPage = () => {
 
 setCurrentPage();
 
-// Виділення жовтим назву поточної сторінки (меню в модалці)
+// Highlighting the name of the current page in yellow (menu in the modal)
 
 const dropMenuHomeEl = document.querySelector('.drop-menu__home');
 const dropMenuShoppingEl = document.querySelector('.drop-menu__shopping');
@@ -186,32 +143,3 @@ const dropSetCurrentPage = () => {
 };
 
 dropSetCurrentPage();
-
-// Обрізання назви Shopping list при певній довжині екрану
-
-// const mediaQuery = window.matchMedia('(min-width: 577px) and (max-width: 640px)'); // визначаємо порогове значення
-// const menuShoppingRef = document.getElementById('menu__shopping-list');
-// const DEBOUNCE_DELAY = 400;
-
-// function handleMediaChange(event) {
-//     if (event.matches) {
-//         menuShoppingRef.textContent = 'Shopping...'; // змінюємо текстовий вміст елементу
-//     } else {
-//         menuShoppingRef.textContent = '';
-//         menuShoppingRef.insertAdjacentHTML('beforeend', `Shopping list
-//             <svg class="icon-cart" width="13.33" height="16.67">
-//                 <use href="/src/images/icons.svg#icon-email"></use>
-//             </svg>
-//         `); // змінюємо текстовий вміст елементу назад
-//         // menuShoppingRef.setAttribute();
-//     }
-// }
-
-// // function setShortNameShopList() {
-// //     menuShoppingRef.textContent = 'Shopping...';
-// // }
-
-// mediaQuery.addEventListener('change', debounce(handleMediaChange, DEBOUNCE_DELAY)); // додаємо слухача на подію зміни медіа-запиту
-
-// // викликаємо функцію handleMediaChange при завантаженні сторінки, щоб встановити початковий текстовий вміст елементу
-// handleMediaChange(mediaQuery);

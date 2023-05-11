@@ -1,9 +1,7 @@
 const [loaderOverlay] = document.getElementsByClassName('loader__overlay');
 
 const removeLoader = () => {
-  setTimeout(() => {
-    loaderOverlay.classList.remove('on-loader');
-  }, 250);
+  loaderOverlay.classList.remove('on-loader');
 };
 
 const addLoader = () => {

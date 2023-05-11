@@ -1,25 +1,16 @@
 .hidden {
   display: none;
 }
-.dark {
-  color: rgba(255, 255, 255, 0.6) !important;
-}
 
-.active-dark {
-  color: #eac645 !important;
-}
-.span-purple {
+ul > li > .span-purple {
   color: $blue;
 }
 .categories__ul {
   background-color: inherit;
   overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
 
-  &::-webkit-scrollbar-track {
-    background-color: #d8d8d85e;
+  &::-webkit-scrollbar {
+    width: 5px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -41,7 +32,12 @@
     @include breakpoint(des) {
       gap: 32px;
     }
-
+    button {
+      &:hover,
+      &:focus {
+        color: $blue;
+      }
+    }
     .categories-list__button {
       background-color: inherit;
       letter-spacing: -0.02em;
@@ -55,9 +51,12 @@
       line-height: 18px;
     }
     .active-categories {
-      color: #4f2ee8;
+      color: $blue;
       text-transform: uppercase;
       font-weight: 700;
+    }
+    .active-dark {
+      color: $yellow;
     }
   }
   height: 228px;
@@ -75,6 +74,15 @@
   @include breakpoint(des) {
     width: 356px;
     height: 472px;
+  }
+  .dark {
+    color: $almost-gray;
+    button {
+      &:hover,
+      &:focus {
+        color: $yellow;
+      }
+    }
   }
 }
 .flex-direction {

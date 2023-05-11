@@ -22,6 +22,7 @@
     "firebase": "^9.21.0",
     "lodash.debounce": "^4.0.8",
     "modern-normalize": "^1.1.0",
+    "notiflix": "^3.2.6",
     "swiper": "^9.2.4",
     "tui-pagination": "^3.4.1"
   },
@@ -30,6 +31,7 @@
     "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "console-browserify": "^1.2.0",
+    "os-browserify": "^0.3.0",
     "parcel": "^2.6.0",
     "parcel-reporter-clean-dist": "^1.0.4",
     "posthtml-include": "^1.7.4",

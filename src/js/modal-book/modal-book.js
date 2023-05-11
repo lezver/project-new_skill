@@ -1,5 +1,19 @@
 import { fetchBooks } from '../categories/fetchRequest';
 
+// const refs = {
+//   listOfBooks: document.querySelector('.home__items'),
+//   backdrop: document.querySelector('.backdrop'),
+//   modalWindow: document.querySelector('.modal-window'),
+//   modalWindowCloseIcon: document.querySelector('.close-icon'),
+//   modalWindowCloseButton: document.querySelector('.close-icon-button'),
+//   imageContainer: document.querySelector('.image-container'),
+//   bookName: document.querySelector('.book-name'),
+//   bookAuthor: document.querySelector('.book-author'),
+//   bookDescription: document.querySelector('.book-description'),
+//   amazonLogo: document.querySelector('.amazon-logo'),
+//   amazonLink: document.querySelector('.amazon-link'),
+// };
+
 const listOfBooks = document.querySelector('.home__items');
 const backdrop = document.querySelector('.backdrop');
 const modalWindow = document.querySelector('.modal-window');
@@ -21,7 +35,8 @@ const themeSwitcher = document.querySelector('.switch');
 
 // MODAL WINDOW OPEN
 listOfBooks.addEventListener('click', e => {
-  if (e.target.classList.contains('img__wrapper')) {
+  const asd = document.querySelector('.img__wrapper');
+  if (e.target.className === 'img__wrapper' || e.target.nodeName === 'IMG') {
     document.body.classList.add('no-scroll-body-js');
 
     async function fetchBook() {

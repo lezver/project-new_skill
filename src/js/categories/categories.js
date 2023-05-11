@@ -2,6 +2,7 @@ import { fetchBooks } from './fetchRequest';
 import { refs } from '../home/refsOfTags';
 import { createMarkupCategories, createMarkupBestBooks } from '../home/home';
 import { addLoader } from '../loader/loader';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const allCategoriesBtn = document.getElementById('allCategoriesBtn');
 const [listEl] = document.getElementsByClassName('categories-list');
@@ -43,6 +44,18 @@ const clearSelectedCategories = () => {
 const createCategoryList = async () => {
   try {
     const categoriesList = await fetchBooks.getCategoriesList();
+    categoriesList.sort(function (a, b) {
+      const categoryA = a.list_name;
+      const categoryB = b.list_name;
+      if (categoryA < categoryB) {
+        return -1;
+      }
+      if (categoryA > categoryB) {
+        return 1;
+      }
+      return 0;
+    });
+
     const makeNewButtons = categoriesList
       .map(
         category =>
@@ -53,7 +66,7 @@ const createCategoryList = async () => {
     const buttons = document.querySelectorAll('.categories-list__button');
     addEventListenerForCategory(buttons);
   } catch (error) {
-    console.log(error);
+    Notify.failure('Server error! Please try again later');
   }
 };
 createCategoryList();

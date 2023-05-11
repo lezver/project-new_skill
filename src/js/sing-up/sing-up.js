@@ -1,4 +1,4 @@
-import { body } from '../header/header';
+import { bodyRef } from '../header/header';
 
 const refs = {
   headerSignUp: document.querySelector('.auth__modal-open'),
@@ -27,20 +27,20 @@ const closeModalSingUp = e => {
     e.target === buttonOfCloseSvg ||
     e.target === buttonOfCloseUse
   ) {
-    body.classList.remove('no-scroll-body-js');
+    bodyRef.classList.remove('no-scroll-body-js');
     refs.signUp.classList.remove('sign-up-hidden');
   }
 };
 
 const escapeCloseModalSingUp = e => {
   if (e.code === 'Escape') {
-    body.classList.remove('no-scroll-body-js');
+    bodyRef.classList.remove('no-scroll-body-js');
     refs.signUp.classList.remove('sign-up-hidden');
   }
 };
 
 const openModalSingUp = () => {
-  body.classList.add('no-scroll-body-js');
+  bodyRef.classList.add('no-scroll-body-js');
   refs.signUp.classList.add('sign-up-hidden');
   refs.signUp.addEventListener('click', closeModalSingUp);
   document.addEventListener('keydown', escapeCloseModalSingUp);

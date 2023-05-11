@@ -1,7 +1,7 @@
 import openCloseIcon from '../../images/icons.svg';
 
 //   Light/dark theme switcher
-export const body = document.body;
+export const bodyRef = document.body;
 const header = document.querySelector('.page-nav');
 const iconMobileMenu = document.querySelector('.menu-toggle');
 const darkModeLocalStored = localStorage.getItem('darkMode');

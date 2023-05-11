@@ -39,6 +39,9 @@
     & > li {
       width: 100%;
       & > div {
+        margin: 0 auto;
+        width: 280px;
+        height: 480px;
         cursor: pointer;
         margin-bottom: 14px;
         overflow: hidden;
@@ -48,6 +51,8 @@
         justify-content: center;
         align-items: center;
         & > img {
+          width: 280px;
+          height: 480px;
           object-fit: cover;
           object-position: center;
           width: 335px;
@@ -80,6 +85,14 @@
         &:hover::after,
         &:focus::after {
           transform: translateY(0%);
+        }
+        @media screen and (min-widht: 375px) {
+          width: 335px;
+          height: 535px;
+          > img {
+            width: 335px;
+            height: 535px;
+          }
         }
       }
       & > h2 {
@@ -254,26 +267,24 @@
 }
 
 .home__items.home__items-category {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
   @include breakpoint(tab) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
     gap: 40px 25px;
-
-    flex-wrap: wrap;
   }
   @include breakpoint(des) {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 40px 24px;
   }
 }
 
 .home__item-category {
-  max-width: 335px;
+  width: 280px;
   & > div {
+    width: 280px;
+    height: 480px;
     cursor: pointer;
     margin-bottom: 14px;
     overflow: hidden;
@@ -283,9 +294,10 @@
     justify-content: center;
     align-items: center;
     & > img {
+      width: 280px;
+      height: 480px;
       object-fit: cover;
       object-position: center;
-      width: 335px;
     }
     &::after {
       content: 'quick view';
@@ -328,6 +340,17 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+  }
+  @media screen and (min-width: 375px) {
+    width: 335px;
+    > div {
+      width: 335px;
+      height: 535px;
+      > img {
+        width: 335px;
+        height: 535px;
+      }
+    }
   }
   @include breakpoint(tab) {
     width: 218px;

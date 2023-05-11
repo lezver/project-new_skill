@@ -25,7 +25,7 @@
 .modal-window {
   color: $black;
   position: absolute;
-  width: 90%;
+  width: 285px;
   top: 50%;
   left: 50%;
   padding: 40px 24px;
@@ -147,7 +147,7 @@
 }
 
 .image-container {
-  width: 227px;
+  width: 232px;
   height: 350px;
   border-radius: 8px;
   display: flex;
@@ -164,7 +164,7 @@
 }
 
 .book-image {
-  width: 227px;
+  width: 232px;
   height: 350px;
   border-radius: 8px;
   @media screen and (min-width: 375px) {

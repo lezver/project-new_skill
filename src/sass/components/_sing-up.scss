@@ -113,6 +113,12 @@
         text-transform: uppercase;
         color: $black;
       }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px $background inset !important;
+      }
     }
     & > button {
       padding: 16px 0;
@@ -232,6 +238,12 @@
         &::placeholder {
           color: $background;
         }
+      }
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px $gray inset !important;
       }
       > svg {
         fill: $background;

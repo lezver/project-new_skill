@@ -157,7 +157,6 @@ function buildBooks({
       book_image = bookPlug1;
       book_image_x2 = bookPlug2
     }
-    
   }
   return `
   <li class="border shopping-list-item">
@@ -170,11 +169,11 @@ function buildBooks({
                     <p class = "list-name">${list_name}</p>
                 </div>
                 <button id="${id}" class="shopping-delete-button">
-                    <img srcset=" ${bookBasket1} 1x, ${bookBasket2} 2x"   src="${bookBasket1}" alt="basket" class = "basket">
+                    <img srcset=" ${bookBasket1} 1x, ${bookBasket2} 2x" src="${bookBasket1}" alt="basket" class = "basket">
                 </button>
             </div>
         <div  class="description-info">
-            <p class = "description">${description}</p>
+            <p class = "description">${description|| '&nbsp;'}</p>
         </div>
     </div>
     <div class="shopping-list-item-buy">

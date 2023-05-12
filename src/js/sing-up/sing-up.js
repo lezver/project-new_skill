@@ -31,8 +31,6 @@ const createDataForm = e => {
     signUp.email = email.value;
     signUp.password = password.value;
 
-    console.log(signUp);
-
     localStorage.setItem('signUp', JSON.stringify(signUp));
 
     form.reset();

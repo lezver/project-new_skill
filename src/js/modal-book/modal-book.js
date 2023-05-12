@@ -50,10 +50,10 @@ refs.listOfBooks.addEventListener('click', e => {
       refs.modalWindow.id = await _id;
 
       const defaultImage = `<img class="img__cap" width="180" height="265" srcset="
-				./images/png/home/icon.png    1x,
-				./images/png/home/icon@2x.png 2x
+				./images/png/home/cap.jpg    1x,
+				./images/png/home/cap@2x.jpg 2x
 			"
-			src="./images/png/home/icon.png"
+			src="./images/png/home/cap.jpg"
 			alt="cap" loading="lazy"
 			/>`;
       const bookImage = `<img src="${book_image}" load="lazy" alt="Book image" class="book-image" />`;

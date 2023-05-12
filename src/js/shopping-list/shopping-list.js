@@ -12,6 +12,7 @@ import booksImageMob2 from '../../images/png/shopping-list/books@2x.png';
 import bookBasket1 from '../../images/png/shopping-list/basket/basket.png';
 import bookBasket2 from '../../images/png/shopping-list/basket/basket@2x.png';
 import bookPlug1 from '../../images/png/home/cap.jpg'
+import bookPlug2 from '../../images/png/home/cap@2x.jpg'
 import svgIcon from '../../images/icons.svg';
 
 const galleryEl = document.querySelector('.gallery');
@@ -140,6 +141,7 @@ function buildBooks({
   let urlAmazon = '';
   let urlApplebooks = '';
   let urlBookshop = '';
+  let book_image_x2 = book_image
   if (buy_links) {
     const names = buy_links.map(item => item.name);
     const indexAmazon = names.indexOf('Amazon');
@@ -150,13 +152,16 @@ function buildBooks({
 
     const indexBookshop = names.indexOf('Bookshop');
     urlBookshop = buy_links[indexBookshop].url;
-    if(!book_image){
+    
+    if(book_image){
       book_image = bookPlug1;
+      book_image_x2 = bookPlug2
     }
+    
   }
   return `
   <li class="border shopping-list-item">
-    <img src="${book_image}" alt="${title}" class="book_image">
+    <img srcset = "${book_image} 1x, ${book_image_x2} 2x" src="${book_image}" alt="${title}" class="book_image">
     <div class = "book-info">
         <div>
             <div class="shopping-list-item-action">

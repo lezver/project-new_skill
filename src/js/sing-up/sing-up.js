@@ -1,6 +1,10 @@
 import { bodyRef } from '../header/header';
 import svgIcons from '../../images/icons.svg';
 
+setTimeout(() => {
+  refs.signUp.classList.add('sign-up-display-block-js');
+}, 250);
+
 const refs = {
   headerSignUp: document.querySelector('.auth__modal-open'),
   headerSignUpMenu: document.querySelector('.sign-up-btn-js'),
@@ -12,21 +16,23 @@ const {
 } = refs.signUp;
 
 const {
-  children: [buttonOfClose, signUpForm1, signUpForm2],
+  children: [closeBtn, form, switcher],
 } = singUpModal;
 
-const signUpButton = singUpModal.children[3].children[0];
-const signIpButton = singUpModal.children[3].children[1];
+console.log(form);
+
+const signUpBtn = switcher.children[0];
+const signInBtn = switcher.children[1];
 
 const closeModalSingUp = e => {
-  const buttonOfCloseSvg = buttonOfClose.children[0];
-  const buttonOfCloseUse = buttonOfClose.children[0].children[0];
+  const closeBtnSvg = closeBtn.firstElementChild;
+  const closeBtnUse = closeBtn.firstElementChild.firstElementChild;
 
   if (
-    e.target.className === 'sign-up sign-up-hidden' ||
+    e.target.className === 'sign-up sign-up-display-block-js sign-up-hidden' ||
     e.target.className === 'sign-up__cross' ||
-    e.target === buttonOfCloseSvg ||
-    e.target === buttonOfCloseUse
+    e.target === closeBtnSvg ||
+    e.target === closeBtnUse
   ) {
     bodyRef.classList.remove('no-scroll-body-js');
     refs.signUp.classList.remove('sign-up-hidden');
@@ -50,82 +56,117 @@ const openModalSingUp = () => {
 refs.headerSignUp.addEventListener('click', openModalSingUp);
 refs.headerSignUpMenu.addEventListener('click', openModalSingUp);
 
-const checkForm1 = e => {
-  e.preventDefault();
-  const [name, email, password, buttonSignUp] = signUpForm1;
-  const signUp = {};
-  signUp.name = name.value;
-  signUp.email = email.value;
-  signUp.password = password.value;
-  localStorage.setItem('sign-up', JSON.stringify(signUp));
-  signUpForm1.reset();
-  buttonSignUp.disabled = true;
-  buttonSignUp.style.cursor = 'auto';
-};
+// const createDataForm = e => {
+//   e.preventDefault();
+//   const [name, email, password, buttonSignUp] = form;
+//   const signUp = {};
+//   signUp.name = name.value;
+//   signUp.email = email.value;
+//   signUp.password = password.value;
+//   localStorage.setItem('sign-up', JSON.stringify(signUp));
+//   signUpForm1.reset();
+//   buttonSignUp.disabled = true;
+//   buttonSignUp.style.cursor = 'auto';
+// };
 
-const checkRequired1 = () => {
-  const [name, email, password, buttonSignUp] = signUpForm1;
-  if (
-    name.checkValidity() &&
-    email.checkValidity() &&
-    password.checkValidity()
-  ) {
-    buttonSignUp.disabled = false;
-    buttonSignUp.style.cursor = 'pointer';
-  } else {
-    buttonSignUp.disabled = true;
-    buttonSignUp.style.cursor = 'auto';
-  }
-};
+// const checkRequiredForm = () => {
+//   const [name, email, password, buttonSignUp] = form;
+//   if (
+//     name.checkValidity() &&
+//     email.checkValidity() &&
+//     password.checkValidity()
+//   ) {
+//     buttonSignUp.disabled = false;
+//     buttonSignUp.style.cursor = 'pointer';
+//   } else {
+//     buttonSignUp.disabled = true;
+//     buttonSignUp.style.cursor = 'auto';
+//   }
+// };
 
-signUpForm1.addEventListener('submit', checkForm1);
-signUpForm1.addEventListener('input', checkRequired1);
-
-const checkForm2 = e => {
-  e.preventDefault();
-  const [email, password, buttonSignUp] = signUpForm2;
-  const signIn = {};
-  signIn.email = email.value;
-  signIn.password = password.value;
-  localStorage.setItem('sign-in', JSON.stringify(signIn));
-  signUpForm2.reset();
-  buttonSignUp.disabled = true;
-  buttonSignUp.style.cursor = 'auto';
-};
-
-const checkRequired2 = () => {
-  const [email, password, buttonSignUp] = signUpForm2;
-  if (email.checkValidity() && password.checkValidity()) {
-    buttonSignUp.disabled = false;
-    buttonSignUp.style.cursor = 'pointer';
-  } else {
-    buttonSignUp.disabled = true;
-    buttonSignUp.style.cursor = 'auto';
-  }
-};
-
-signUpForm2.addEventListener('submit', checkForm2);
-signUpForm2.addEventListener('input', checkRequired2);
+// form.addEventListener('submit', createDataForm);
+// form.addEventListener('input', checkRequiredForm);
 
 const createMarkupSignIp = () => {
-  const markup = ``;
-  signIpButton.classList.add('sign-up-button-active');
-  signUpButton.classList.remove('sign-up-button-active');
-  signUpForm2.classList.remove('sign-up-hidden');
-  signUpForm1.classList.add('sign-up-hidden');
+  const markup = `
+  <label>
+    <input
+      type="email"
+      placeholder="email"
+      name="user_email"
+      required
+      title="your@mail.com"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,4}$"
+    />
+    <svg class="sign-up__email">
+      <use href="./images/iconsvg#icon-email"></use>
+    </svg>
+  </label>
+  <label>
+    <input
+      type="password"
+      placeholder="password"
+      name="user_password"
+      minlength="5"
+      maxlength="12"
+      required
+    />
+    <svg class="sign-up__lock">
+      <use href="./images/iconsvg#icon-lock"></use>
+    </svg>
+  </label>
+  <button type="submit" disabled>sign up</button>
+  `;
+  form.innerHTML = markup;
+  signInBtn.classList.add('sign-up-button-active');
+  signUpBtn.classList.remove('sign-up-button-active');
 };
-
-createMarkupSignIp();
 
 const createMarkupSignUp = () => {
-  const markup = ``;
-  signUpButton.classList.add('sign-up-button-active');
-  signIpButton.classList.remove('sign-up-button-active');
-  signUpForm1.classList.remove('sign-up-hidden');
-  signUpForm2.classList.add('sign-up-hidden');
+  const markup = `
+  <label>
+    <input
+      type="text"
+      placeholder="name"
+      name="user_name"
+      required
+      pattern="^[a-zA-Z]+$"
+    />
+  </label>
+  <label>
+    <input
+      type="email"
+      placeholder="email"
+      name="user_email"
+      required
+      title="your@mail.com"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+    />
+    <svg class="sign-up__email">
+      <use href="./images/icons.svg#icon-email"></use>
+    </svg>
+  </label>
+  <label>
+    <input
+      type="password"
+      placeholder="password"
+      name="user_password"
+      minlength="5"
+      maxlength="12"
+      required
+    />
+    <svg class="sign-up__lock">
+      <use href="./images/icons.svg#icon-lock"></use>
+    </svg>
+  </label>
+  <button type="submit" disabled>sign up</button>
+  `;
+  form.innerHTML = markup;
+  signUpBtn.classList.add('sign-up-button-active');
+  signInBtn.classList.remove('sign-up-button-active');
 };
 
-signUpButton.addEventListener('click', createMarkupSignUp);
-signIpButton.addEventListener('click', createMarkupSignIp);
+signUpBtn.addEventListener('click', createMarkupSignUp);
+signInBtn.addEventListener('click', createMarkupSignIp);
 
 createMarkupSignUp();

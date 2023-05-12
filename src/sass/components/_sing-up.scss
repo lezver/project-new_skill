@@ -1,4 +1,5 @@
 .sign-up {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -7,9 +8,6 @@
   background-color: $blue;
   z-index: 30;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
   font-family: 'DMSans-700';
   transform: scale(1.5);
 
@@ -28,6 +26,11 @@
     pointer-events: auto;
     visibility: visible;
     transform: scale(1);
+  }
+  &.sign-up-display-block-js {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 .sign-up__modal {
@@ -115,11 +118,8 @@
         background-color: $almost-gray;
       }
     }
-    &.sign-up-hidden {
-      display: none;
-    }
   }
-  .sign-up__links {
+  .sign-up__switcher {
     display: flex;
     justify-content: center;
     gap: 20px;

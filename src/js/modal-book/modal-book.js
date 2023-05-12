@@ -24,7 +24,7 @@ const removeBookButton = removeBookContainer.querySelector(
   '.remove-book-button'
 );
 
-// MODAL WINDOW OPEN
+// OPEN MODAL WINDOW
 refs.listOfBooks.addEventListener('click', e => {
   const asd = document.querySelector('.img__wrapper');
   if (
@@ -32,7 +32,7 @@ refs.listOfBooks.addEventListener('click', e => {
     e.target.className === 'img__book'
   ) {
     document.body.classList.add('no-scroll-body-js');
-
+    // FETCH BOOK FUNCTION
     async function fetchBook() {
       const bookDataObj = await fetchBooks.getBookById(e.target.dataset.id);
       const {
@@ -48,13 +48,24 @@ refs.listOfBooks.addEventListener('click', e => {
       refs.backdrop.classList.add('backdrop-visible');
 
       refs.modalWindow.id = await _id;
-      imageContainer.innerHTML = `<img src="${book_image}" alt="Book image" class="book-image" />`;
+
+      const defaultImage = `<img class="img__cap" width="180" height="265" srcset="
+			./images/png/home/icon.png    1x,
+    	./images/png/home/icon@2x.png 2x
+  	"
+  		src="./images/png/home/icon.png"
+  		alt="cap" loading="lazy"
+			/>`;
+      const bookImage = `<img src="${book_image}" load="lazy" alt="Book image" class="book-image" />`;
+      imageContainer.innerHTML = book_image ? bookImage : defaultImage;
+
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
       if (description) {
+        bookDescription.style.display = 'block';
         bookDescription.textContent = description;
       } else {
-        bookDescription.textContent = 'No description';
+        bookDescription.style.display = 'none';
       } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
       const amazonUrl = await Amazon.url;
       amazonLink.href = await amazonUrl;
@@ -65,18 +76,24 @@ refs.listOfBooks.addEventListener('click', e => {
 
       let shoppingList = localStorage.getItem('shopping_list');
       shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
-      const objId = shoppingList.find(obj => obj.id === _id);
+      const objTitle = shoppingList.find(obj => obj.title === title);
+      // const objId = shoppingList.find(obj => obj.id === _id);
+      // ID OF BOOKS IS DIFFERENT, SO, IN CASE IF YOU WANT TO DO IT MORE CORECTLY
+      // YOU CAN ADD " || objId" IN BRAKETS  ON LINE 84 AFTER "!objTitle"
 
-      if (!objId) {
+      if (!objTitle) {
+        refs.modalWindow.classList.remove('colored-modal-border');
         addBookButton.classList.remove('add-book-button-none');
         removeBookContainer.classList.remove('remove-book-container-visible');
       } else {
         addBookButton.classList.add('add-book-button-none');
+        refs.modalWindow.classList.add('colored-modal-border');
         removeBookContainer.classList.add('remove-book-container-visible');
       }
 
       addBookButton.addEventListener('click', AddBookToShoppingList);
       removeBookButton.addEventListener('click', RemoveBookFromShoppingList);
+      // ADD BOOK TO SHOPPING LIST
       function AddBookToShoppingList() {
         const bookData = {
           id: _id,
@@ -87,25 +104,27 @@ refs.listOfBooks.addEventListener('click', e => {
           description: description,
           buy_links: [Amazon, appleBooks, bookShop],
         };
-        if (!objId) {
+        if (!objTitle) {
           shoppingList.push(bookData);
           addBookButton.classList.add('add-book-button-none');
+          refs.modalWindow.classList.add('colored-modal-border');
           removeBookContainer.classList.add('remove-book-container-visible');
         }
         localStorage.setItem('shopping_list', JSON.stringify(shoppingList));
         addBookButton.removeEventListener('click', AddBookToShoppingList);
-        removeBookButton.removeEventListener('click', AddBookToShoppingList);
       }
-
+      // REMOVE BOOK FROM SHOPPING LIST
       function RemoveBookFromShoppingList() {
-        const index = shoppingList.find(obj => obj.id === _id);
+        const index = shoppingList.find(obj => obj.title === title);
         if (index) {
           shoppingList.splice(index, 1);
           localStorage.setItem('shopping_list', JSON.stringify(shoppingList));
           addBookButton.classList.remove('add-book-button-none');
+          refs.modalWindow.classList.remove('colored-modal-border');
           removeBookContainer.classList.remove('remove-book-container-visible');
           addBookButton.addEventListener('click', AddBookToShoppingList);
         }
+        removeBookButton.removeEventListener('click', AddBookToShoppingList);
       }
       return;
     }
@@ -113,7 +132,7 @@ refs.listOfBooks.addEventListener('click', e => {
   }
 });
 
-// MODAL WINDOW CLOSE
+// CLOSE MODAL WINDOW
 document.addEventListener('click', e => {
   if (e.target === refs.backdrop) {
     refs.backdrop.classList.remove('backdrop-visible');

@@ -2,6 +2,8 @@ import { addLoader, removeLoader } from '../loader/loader';
 import { refs } from './refsOfTags';
 import { fetchBooks } from '../categories/fetchRequest';
 
+// CREATE MARKUP CATEGORIES >
+
 export const createMarkupCategories = arr => {
   const markup = arr.reduce((acc, { book_image, title, author, _id }) => {
     const img = `<img class="img__book" data-id=${_id} width="180" heigh="265" loading="lazy" src="${book_image}" alt="book" />`;
@@ -25,6 +27,10 @@ export const createMarkupCategories = arr => {
   removeLoader();
 };
 
+// >
+
+// FIND CATEGORIES >>
+
 const findCategory = async e => {
   if (e.target.className === 'category-btn') {
     addLoader();
@@ -46,6 +52,10 @@ const findCategory = async e => {
     }, 1000);
   }
 };
+
+// >>
+
+// CREATE MARKUP BEST BOOKS >>>
 
 export const createMarkupBestBooks = arr => {
   refs.homeItems.classList.remove('home__items-category');
@@ -122,6 +132,10 @@ export const createMarkupBestBooks = arr => {
   removeLoader();
 };
 
+// >>>
+
+// FIND BEST BOOOKS >>>>
+
 const fetchTopBooks = async () => {
   try {
     addLoader();
@@ -135,5 +149,7 @@ const fetchTopBooks = async () => {
 };
 
 fetchTopBooks();
+
+// >>>>
 
 refs.homeItems.addEventListener('click', findCategory);

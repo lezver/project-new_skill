@@ -97,7 +97,7 @@ const addCheckedForm = () => {
 
 // >
 
-// CRESTE MURKUP MODAL'S WINDOW >>
+// CREATE MARKUP MODAL'S WINDOW >>
 
 const createMarkupSignIn = () => {
   const markup = `

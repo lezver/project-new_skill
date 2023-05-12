@@ -63,7 +63,7 @@ ul {
     & p {
       margin-top: 120px;
       text-align: center;
-      font-family: 'DM Sans';
+      font-family: 'DMSans-400';
       font-weight: 400;
       font-size: 14px;
       line-height: 1.28;
@@ -89,7 +89,7 @@ ul {
         width: 100%;
       }
       &-tittle {
-        font-family: 'DM Sans';
+        font-family: 'DMSans-700';
         font-size: 16px;
         line-height: 1.12;
         letter-spacing: -0.04em;
@@ -104,7 +104,7 @@ ul {
       white-space: pre-wrap;
     }
     .list-name {
-      font-family: 'DM Sans';
+      font-family: 'DMSans-500';
       font-size: 12px;
       line-height: 1.16;
       letter-spacing: 0.03em;
@@ -141,7 +141,7 @@ ul {
     }
 
     .description {
-      font-family: 'DM Sans';
+      font-family: 'DMSans-400';
       font-size: 14px;
       line-height: 1.28;
       letter-spacing: -0.04em;
@@ -165,7 +165,7 @@ ul {
       -webkit-box-orient: vertical;
       overflow: hidden;
       white-space: pre-wrap;
-      font-family: 'DM Sans';
+      font-family: 'DMSans-400';
       font-style: italic;
       font-size: 12px;
       line-height: 1.16;
@@ -249,8 +249,7 @@ ul {
 }
 
 .tui-page-btn {
-  font-family: 'DM Sans';
-  font-weight: 700;
+  font-family: 'DMSans-700';
   font-size: 18px;
   line-height: 1.22;
   border: 1px solid black;

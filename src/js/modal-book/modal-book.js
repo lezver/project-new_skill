@@ -50,11 +50,11 @@ refs.listOfBooks.addEventListener('click', e => {
       refs.modalWindow.id = await _id;
 
       const defaultImage = `<img class="img__cap" width="180" height="265" srcset="
-			./images/png/home/icon.png    1x,
-    	./images/png/home/icon@2x.png 2x
-  	"
-  		src="./images/png/home/icon.png"
-  		alt="cap" loading="lazy"
+				./images/png/home/icon.png    1x,
+				./images/png/home/icon@2x.png 2x
+			"
+			src="./images/png/home/icon.png"
+			alt="cap" loading="lazy"
 			/>`;
       const bookImage = `<img src="${book_image}" load="lazy" alt="Book image" class="book-image" />`;
       imageContainer.innerHTML = book_image ? bookImage : defaultImage;
@@ -76,12 +76,14 @@ refs.listOfBooks.addEventListener('click', e => {
 
       let shoppingList = localStorage.getItem('shopping_list');
       shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
-      const objTitle = shoppingList.find(obj => obj.title === title);
-      // const objId = shoppingList.find(obj => obj.id === _id);
-      // ID OF BOOKS IS DIFFERENT, SO, IN CASE IF YOU WANT TO DO IT MORE CORRECTLY
-      // YOU CAN ADD " || objId" IN BRAKETS ON LINE 84 AFTER "!objTitle"
 
-      if (!objTitle) {
+      const objId = shoppingList.find(obj => obj.id === _id);
+      // const objTitle = shoppingList.find(obj => obj.title === title);
+      // BOOK IDS ARE DIFFERENT DUE TO THE VARIETY OF GENRES, OR AN ISSUE WITH THE BACKEND SYSTEM.
+      // SO, IF YOU WANT TO SEARCH FOR A BOOK MORE ACCURATELY BY ITS TITLE,
+      // YOU CAN UNCOMMENT LINE 81 AND CHANGE '!objId' TO '!objTitle' IN BRACKETS ON LINES 86 AND 109.
+
+      if (!objId) {
         refs.modalWindow.classList.remove('colored-modal-border');
         addBookButton.classList.remove('add-book-button-none');
         removeBookContainer.classList.remove('remove-book-container-visible');
@@ -104,7 +106,7 @@ refs.listOfBooks.addEventListener('click', e => {
           description: description,
           buy_links: [Amazon, appleBooks, bookShop],
         };
-        if (!objTitle) {
+        if (!objId) {
           shoppingList.push(bookData);
           addBookButton.classList.add('add-book-button-none');
           refs.modalWindow.classList.add('colored-modal-border');
@@ -155,3 +157,8 @@ document.addEventListener('keydown', function (e) {
     document.body.classList.remove('no-scroll-body-js');
   }
 });
+
+// A BUG FIX WAS MADE TO PREVENT THE MODAL WINDOW FROM APPEARING FOR A FEW SECONDS DURING PAGE RELOADING
+setTimeout(() => {
+  refs.backdrop.classList.add('backdrop-display-block-js');
+}, 250);

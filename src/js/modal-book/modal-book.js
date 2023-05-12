@@ -78,8 +78,8 @@ refs.listOfBooks.addEventListener('click', e => {
       shoppingList = shoppingList ? JSON.parse(shoppingList) : [];
       const objTitle = shoppingList.find(obj => obj.title === title);
       // const objId = shoppingList.find(obj => obj.id === _id);
-      // ID OF BOOKS IS DIFFERENT, SO, IN CASE IF YOU WANT TO DO IT MORE CORECTLY
-      // YOU CAN ADD " || objId" IN BRAKETS  ON LINE 84 AFTER "!objTitle"
+      // ID OF BOOKS IS DIFFERENT, SO, IN CASE IF YOU WANT TO DO IT MORE CORRECTLY
+      // YOU CAN ADD " || objId" IN BRAKETS ON LINE 84 AFTER "!objTitle"
 
       if (!objTitle) {
         refs.modalWindow.classList.remove('colored-modal-border');

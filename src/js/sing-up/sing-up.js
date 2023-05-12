@@ -1,9 +1,5 @@
 import { bodyRef } from '../header/header';
-import svgIcons from '../../images/icons.svg';
-
-setTimeout(() => {
-  refs.signUp.classList.add('sign-up-display-block-js');
-}, 250);
+import icons from '../../images/icons.svg';
 
 const refs = {
   headerSignUp: document.querySelector('.auth__modal-open'),
@@ -19,75 +15,91 @@ const {
   children: [closeBtn, form, switcher],
 } = singUpModal;
 
-console.log(form);
-
 const signUpBtn = switcher.children[0];
 const signInBtn = switcher.children[1];
 
-const closeModalSingUp = e => {
-  const closeBtnSvg = closeBtn.firstElementChild;
-  const closeBtnUse = closeBtn.firstElementChild.firstElementChild;
+// CHECKED AND CREATE DATA >
 
-  if (
-    e.target.className === 'sign-up sign-up-display-block-js sign-up-hidden' ||
-    e.target.className === 'sign-up__cross' ||
-    e.target === closeBtnSvg ||
-    e.target === closeBtnUse
-  ) {
-    bodyRef.classList.remove('no-scroll-body-js');
-    refs.signUp.classList.remove('sign-up-hidden');
+const createDataForm = e => {
+  e.preventDefault();
+  if (form.length === 4) {
+    const [name, email, password, submitBtn] = form;
+
+    const signUp = {};
+
+    signUp.name = name.value;
+    signUp.email = email.value;
+    signUp.password = password.value;
+
+    console.log(signUp);
+
+    localStorage.setItem('signUp', JSON.stringify(signUp));
+
+    form.reset();
+
+    submitBtn.disabled = true;
+    submitBtn.style.cursor = 'auto';
+  }
+  if (form.length === 3) {
+    const [email, password, submitBtn] = form;
+
+    const signIn = {};
+    signIn.email = email.value;
+    signIn.password = password.value;
+
+    localStorage.setItem('signIn', JSON.stringify(signIn));
+
+    form.reset();
+
+    submitBtn.disabled = true;
+    submitBtn.style.cursor = 'auto';
   }
 };
 
-const escapeCloseModalSingUp = e => {
-  if (e.code === 'Escape') {
-    bodyRef.classList.remove('no-scroll-body-js');
-    refs.signUp.classList.remove('sign-up-hidden');
+const checkRequiredForm = () => {
+  if (form.length === 4) {
+    const [name, email, password, submitBtn] = form;
+
+    if (
+      name.checkValidity() &&
+      email.checkValidity() &&
+      password.checkValidity()
+    ) {
+      submitBtn.disabled = false;
+      submitBtn.style.cursor = 'pointer';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.style.cursor = 'auto';
+    }
+  }
+  if (form.length === 3) {
+    const [email, password, submitBtn] = form;
+
+    if (email.checkValidity() && password.checkValidity()) {
+      submitBtn.disabled = false;
+      submitBtn.style.cursor = 'pointer';
+    } else {
+      submitBtn.disabled = true;
+      submitBtn.style.cursor = 'auto';
+    }
   }
 };
 
-const openModalSingUp = () => {
-  bodyRef.classList.add('no-scroll-body-js');
-  refs.signUp.classList.add('sign-up-hidden');
-  refs.signUp.addEventListener('click', closeModalSingUp);
-  document.addEventListener('keydown', escapeCloseModalSingUp);
+const removeCheckedForm = () => {
+  form.removeEventListener('submit', createDataForm);
+  form.removeEventListener('input', checkRequiredForm);
 };
 
-refs.headerSignUp.addEventListener('click', openModalSingUp);
-refs.headerSignUpMenu.addEventListener('click', openModalSingUp);
+const addCheckedForm = () => {
+  form.addEventListener('submit', createDataForm);
+  form.addEventListener('input', checkRequiredForm);
+};
 
-// const createDataForm = e => {
-//   e.preventDefault();
-//   const [name, email, password, buttonSignUp] = form;
-//   const signUp = {};
-//   signUp.name = name.value;
-//   signUp.email = email.value;
-//   signUp.password = password.value;
-//   localStorage.setItem('sign-up', JSON.stringify(signUp));
-//   signUpForm1.reset();
-//   buttonSignUp.disabled = true;
-//   buttonSignUp.style.cursor = 'auto';
-// };
+// >
 
-// const checkRequiredForm = () => {
-//   const [name, email, password, buttonSignUp] = form;
-//   if (
-//     name.checkValidity() &&
-//     email.checkValidity() &&
-//     password.checkValidity()
-//   ) {
-//     buttonSignUp.disabled = false;
-//     buttonSignUp.style.cursor = 'pointer';
-//   } else {
-//     buttonSignUp.disabled = true;
-//     buttonSignUp.style.cursor = 'auto';
-//   }
-// };
+// CRESTE MURKUP MODAL'S WINDOW >>
 
-// form.addEventListener('submit', createDataForm);
-// form.addEventListener('input', checkRequiredForm);
-
-const createMarkupSignIp = () => {
+const createMarkupSignIn = () => {
   const markup = `
   <label>
     <input
@@ -99,7 +111,7 @@ const createMarkupSignIp = () => {
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,4}$"
     />
     <svg class="sign-up__email">
-      <use href="./images/iconsvg#icon-email"></use>
+      <use href="${icons}#icon-email"></use>
     </svg>
   </label>
   <label>
@@ -112,7 +124,7 @@ const createMarkupSignIp = () => {
       required
     />
     <svg class="sign-up__lock">
-      <use href="./images/iconsvg#icon-lock"></use>
+      <use href="${icons}#icon-lock"></use>
     </svg>
   </label>
   <button type="submit" disabled>sign up</button>
@@ -143,7 +155,7 @@ const createMarkupSignUp = () => {
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
     />
     <svg class="sign-up__email">
-      <use href="./images/icons.svg#icon-email"></use>
+      <use href="${icons}#icon-email"></use>
     </svg>
   </label>
   <label>
@@ -156,7 +168,7 @@ const createMarkupSignUp = () => {
       required
     />
     <svg class="sign-up__lock">
-      <use href="./images/icons.svg#icon-lock"></use>
+      <use href="${icons}#icon-lock"></use>
     </svg>
   </label>
   <button type="submit" disabled>sign up</button>
@@ -167,6 +179,51 @@ const createMarkupSignUp = () => {
 };
 
 signUpBtn.addEventListener('click', createMarkupSignUp);
-signInBtn.addEventListener('click', createMarkupSignIp);
+signInBtn.addEventListener('click', createMarkupSignIn);
 
 createMarkupSignUp();
+
+// >>
+
+//  OPEN OR CLOSED MODAL's WINDOW >>>
+
+const closeModalSingUp = e => {
+  const closeBtnSvg = closeBtn.firstElementChild;
+  const closeBtnUse = closeBtn.firstElementChild.firstElementChild;
+
+  if (
+    e.target.className === 'sign-up sign-up-display-block-js sign-up-hidden' ||
+    e.target.className === 'sign-up__cross' ||
+    e.target === closeBtnSvg ||
+    e.target === closeBtnUse
+  ) {
+    bodyRef.classList.remove('no-scroll-body-js');
+    refs.signUp.classList.remove('sign-up-hidden');
+    removeCheckedForm();
+  }
+};
+
+const escapeCloseModalSingUp = e => {
+  if (e.code === 'Escape') {
+    bodyRef.classList.remove('no-scroll-body-js');
+    refs.signUp.classList.remove('sign-up-hidden');
+    removeCheckedForm();
+  }
+};
+
+const openModalSingUp = () => {
+  bodyRef.classList.add('no-scroll-body-js');
+  refs.signUp.classList.add('sign-up-hidden');
+  refs.signUp.addEventListener('click', closeModalSingUp);
+  document.addEventListener('keydown', escapeCloseModalSingUp);
+  addCheckedForm();
+};
+
+refs.headerSignUp.addEventListener('click', openModalSingUp);
+refs.headerSignUpMenu.addEventListener('click', openModalSingUp);
+
+// >>>
+
+setTimeout(() => {
+  refs.signUp.classList.add('sign-up-display-block-js');
+}, 250);

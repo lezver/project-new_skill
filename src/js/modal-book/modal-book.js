@@ -61,12 +61,8 @@ refs.listOfBooks.addEventListener('click', e => {
 
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
-      if (description) {
-        bookDescription.style.display = 'block';
-        bookDescription.textContent = description;
-      } else {
-        bookDescription.style.display = 'none';
-      } // ВИЯСНИТИ ЧОМУ З/БЕЗ AWAIT
+      bookDescription.innerHTML = description ? description : '';
+
       const amazonUrl = await Amazon.url;
       amazonLink.href = await amazonUrl;
       const bookUrl = await appleBooks.url;

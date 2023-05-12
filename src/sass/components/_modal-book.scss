@@ -273,14 +273,14 @@
   letter-spacing: -0.01em;
   text-transform: uppercase;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.33;
   background-color: $white;
   margin-bottom: 8px;
   transition-duration: $time;
   transition-timing-function: $time-distribution;
   @include breakpoint(tab) {
-    padding: 20px 100px;
+    padding: 20px 0px;
     font-size: 18px;
   }
 }

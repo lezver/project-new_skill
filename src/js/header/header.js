@@ -69,14 +69,26 @@ const modalBoxEl = document.querySelector('.data-modal');
 const openModalBtnEl = document.querySelector('.js-open-menu');
 const openModalBtnSvgEl = document.querySelector('.icon-burger');
 const signUpBtnMobile = document.querySelector('.sign-up-btn-js');
+const booksImg = document.querySelector('.modal__books-list');
 const iconHrefEl = document.querySelector('.icon-href');
 
 openModalBtnEl.addEventListener('click', toggleModal);
 signUpBtnMobile.addEventListener('click', toggleModal);
 
-function toggleModal() {
+function openModalTransition() {
+  modalBoxEl.style.right = '0';
+  booksImg.style.scale = '1.2';
+}
+
+function closeModalTransition() {
+  modalBoxEl.style.right = '-100%';
+  booksImg.style.scale = '1';
+}
+
+function toggleModal(e) {
   if (modalBoxEl.classList.contains('is-hidden')) {
     modalBoxEl.classList.remove('is-hidden');
+    setTimeout(openModalTransition, 0);
     bodyRef.classList.add('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
@@ -84,7 +96,16 @@ function toggleModal() {
     openModalBtnSvgEl.style.height = '18px';
     return;
   } else {
-    modalBoxEl.classList.add('is-hidden');
+    
+    if (e.target === signUpBtnMobile) {
+      modalBoxEl.classList.add('is-hidden');
+    } else {
+      setTimeout(function () {
+        modalBoxEl.classList.add('is-hidden');
+      }, 250);
+    }
+
+    setTimeout(closeModalTransition, 0);
     bodyRef.classList.remove('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');

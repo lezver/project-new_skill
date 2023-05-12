@@ -1,7 +1,7 @@
 import openCloseIcon from '../../images/icons.svg';
 
 //   Light/dark theme switcher
-export const body = document.body;
+export const bodyRef = document.body;
 const header = document.querySelector('.page-nav');
 const iconMobileMenu = document.querySelector('.menu-toggle');
 const darkModeLocalStored = localStorage.getItem('darkMode');
@@ -52,13 +52,13 @@ function syncChangeDarkMode(e) {
 }
 
 function setLightModeStyle() {
-  body.classList.remove('dark-mode');
+  bodyRef.classList.remove('dark-mode');
   header.classList.remove('dark-mode');
   iconMobileMenu.classList.remove('dark-mode');
 }
 
 function setDarkModeStyle() {
-  body.classList.add('dark-mode');
+  bodyRef.classList.add('dark-mode');
   header.classList.add('dark-mode');
   iconMobileMenu.classList.add('dark-mode');
 }
@@ -77,7 +77,7 @@ signUpBtnMobile.addEventListener('click', toggleModal);
 function toggleModal() {
   if (modalBoxEl.classList.contains('is-hidden')) {
     modalBoxEl.classList.remove('is-hidden');
-    body.classList.add('no-scroll-body-js');
+    bodyRef.classList.add('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-cross`);
     document.body.classList.add('modal-open');
     openModalBtnSvgEl.style.width = '18px';
@@ -85,7 +85,7 @@ function toggleModal() {
     return;
   } else {
     modalBoxEl.classList.add('is-hidden');
-    body.classList.remove('no-scroll-body-js');
+    bodyRef.classList.remove('no-scroll-body-js');
     iconHrefEl.setAttribute('href', `${openCloseIcon}#icon-menu`);
     document.body.classList.remove('modal-open');
     openModalBtnSvgEl.style.width = '24px';

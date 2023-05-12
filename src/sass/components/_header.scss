@@ -317,7 +317,7 @@ body {
   position: absolute;
 
   top: 0px;
-  left: 0px;
+  right: -100%;
 
   width: 100%;
   height: 100vh;
@@ -334,7 +334,7 @@ body {
     #ffffff 100%
   );
   transition: opacity $time $time-distribution,
-    visibility $time $time-distribution;
+    visibility $time $time-distribution, right $time $time-distribution;
 
   @include breakpoint(tab-header) {
     display: none;
@@ -433,4 +433,5 @@ body {
 
   width: 130%;
   transform: rotate(-15deg);
+  transition: scale $time $time-distribution;
 }

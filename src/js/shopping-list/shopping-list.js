@@ -153,7 +153,7 @@ function buildBooks({
     const indexBookshop = names.indexOf('Bookshop');
     urlBookshop = buy_links[indexBookshop].url;
     
-    if(book_image){
+    if(!book_image){
       book_image = bookPlug1;
       book_image_x2 = bookPlug2
     }

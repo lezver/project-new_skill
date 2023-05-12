@@ -5,10 +5,16 @@
 .home__title {
   font-family: 'DMSans-700';
   font-size: 32px;
+  line-height: 1.19;
+
   color: inherit;
   margin-bottom: 40px;
   & > span {
     color: $blue;
+  }
+  @include breakpoint(tab) {
+    font-size: 48px;
+    line-height: 1.08;
   }
 }
 

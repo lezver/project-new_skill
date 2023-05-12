@@ -59,7 +59,23 @@ const createDataForm = e => {
 const checkRequiredForm = () => {
   if (form.length === 4) {
     const [name, email, password, submitBtn] = form;
+    console.log(name);
 
+    if (!name.checkValidity()) {
+      name.style.color = 'rgba(255, 99, 71, 1)';
+    } else {
+      name.style.color = 'rgb(60, 179, 113)';
+    }
+    if (!email.checkValidity()) {
+      email.style.color = 'rgba(255, 99, 71, 1)';
+    } else {
+      email.style.color = 'rgb(60, 179, 113)';
+    }
+    if (!password.checkValidity()) {
+      password.style.color = 'rgba(255, 99, 71, 1)';
+    } else {
+      password.style.color = 'rgb(60, 179, 113)';
+    }
     if (
       name.checkValidity() &&
       email.checkValidity() &&
@@ -74,6 +90,16 @@ const checkRequiredForm = () => {
   }
   if (form.length === 3) {
     const [email, password, submitBtn] = form;
+    if (!email.checkValidity()) {
+      email.style.color = 'rgba(255, 99, 71, 1)';
+    } else {
+      email.style.color = 'rgb(60, 179, 113)';
+    }
+    if (!password.checkValidity()) {
+      password.style.color = 'rgba(255, 99, 71, 1)';
+    } else {
+      password.style.color = 'rgb(60, 179, 113)';
+    }
 
     if (email.checkValidity() && password.checkValidity()) {
       submitBtn.disabled = false;

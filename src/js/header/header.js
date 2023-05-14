@@ -44,7 +44,8 @@ function syncChangeDarkMode(e) {
     slider.checked = true;
     slider.setAttribute('checked', '');
     setDarkModeStyle();
-  } else {
+  }
+  if (e.newValue === 'false') {
     slider.checked = false;
     slider.removeAttribute('checked');
     setLightModeStyle();
@@ -96,7 +97,6 @@ function toggleModal(e) {
     openModalBtnSvgEl.style.height = '18px';
     return;
   } else {
-    
     if (e.target === signUpBtnMobile) {
       modalBoxEl.classList.add('is-hidden');
     } else {

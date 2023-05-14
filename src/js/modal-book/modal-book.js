@@ -61,7 +61,7 @@ refs.listOfBooks.addEventListener('click', e => {
 
       bookName.textContent = await title;
       bookAuthor.textContent = await author;
-      bookDescription.innerHTML = description ? description : '';
+      bookDescription.innerHTML = description ? description : '&nbsp;';
 
       const amazonUrl = await Amazon.url;
       amazonLink.href = await amazonUrl;

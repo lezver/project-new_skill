@@ -22,8 +22,9 @@ const signInBtn = switcher.children[1];
 
 const createDataForm = e => {
   e.preventDefault();
-  if (form.length === 4) {
-    const [name, email, password, submitBtn] = form;
+
+  if (form.length === 5) {
+    const [name, email, password, , submitBtn] = form;
 
     const signUp = {};
 
@@ -38,8 +39,9 @@ const createDataForm = e => {
     submitBtn.disabled = true;
     submitBtn.style.cursor = 'auto';
   }
-  if (form.length === 3) {
-    const [email, password, submitBtn] = form;
+
+  if (form.length === 4) {
+    const [email, password, , submitBtn] = form;
 
     const signIn = {};
     signIn.email = email.value;
@@ -55,9 +57,14 @@ const createDataForm = e => {
 };
 
 const checkRequiredForm = () => {
-  if (form.length === 4) {
-    const [name, email, password, submitBtn] = form;
-    console.log(name);
+  if (form.length === 5) {
+    const [name, email, password, seePassword, submitBtn] = form;
+
+    if (seePassword.checked === true) {
+      password.type = 'text';
+    } else {
+      password.type = 'password';
+    }
 
     if (!name.checkValidity()) {
       name.style.color = 'rgba(255, 99, 71, 1)';
@@ -74,6 +81,7 @@ const checkRequiredForm = () => {
     } else {
       password.style.color = 'rgb(60, 179, 113)';
     }
+
     if (
       name.checkValidity() &&
       email.checkValidity() &&
@@ -86,8 +94,16 @@ const checkRequiredForm = () => {
       submitBtn.style.cursor = 'auto';
     }
   }
-  if (form.length === 3) {
-    const [email, password, submitBtn] = form;
+
+  if (form.length === 4) {
+    const [email, password, seePassword, submitBtn] = form;
+
+    if (seePassword.checked === true) {
+      password.type = 'text';
+    } else {
+      password.type = 'password';
+    }
+
     if (!email.checkValidity()) {
       email.style.color = 'rgba(255, 99, 71, 1)';
     } else {
@@ -125,11 +141,12 @@ const addCheckedForm = () => {
 
 const createMarkupSignIn = () => {
   const markup = `
-  <label>
+  <label class="sign-up-email">
     <input
       type="email"
       placeholder="email"
       name="user_email"
+      minlength="2"
       required
       title="your@mail.com"
       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+[a-z]{2,4}$"
@@ -138,7 +155,7 @@ const createMarkupSignIn = () => {
       <use href="${icons}#icon-email"></use>
     </svg>
   </label>
-  <label>
+  <label class="sign-up-password">
     <input
       type="password"
       placeholder="password"
@@ -151,6 +168,10 @@ const createMarkupSignIn = () => {
       <use href="${icons}#icon-lock"></use>
     </svg>
   </label>
+  <input type="checkbox" id="see" name="checked password"/>
+  <label for="see" class="sign-up-checkbox" name="checked password">
+    see password
+  </label>
   <button type="submit" disabled>sign up</button>
   `;
   form.innerHTML = markup;
@@ -160,16 +181,17 @@ const createMarkupSignIn = () => {
 
 const createMarkupSignUp = () => {
   const markup = `
-  <label>
+  <label class="sign-up-name">
     <input
       type="text"
       placeholder="name"
       name="user_name"
+      minlength="2"
       required
       pattern="^[a-zA-Z]+$"
     />
   </label>
-  <label>
+  <label class="sign-up-email">
     <input
       type="email"
       placeholder="email"
@@ -182,7 +204,7 @@ const createMarkupSignUp = () => {
       <use href="${icons}#icon-email"></use>
     </svg>
   </label>
-  <label>
+  <label class="sign-up-password">
     <input
       type="password"
       placeholder="password"
@@ -194,6 +216,10 @@ const createMarkupSignUp = () => {
     <svg class="sign-up__lock">
       <use href="${icons}#icon-lock"></use>
     </svg>
+  </label>
+  <input type="checkbox" id="see" name="checked password"/>
+  <label for="see" class="sign-up-checkbox" name="checked password">
+    see password
   </label>
   <button type="submit" disabled>sign up</button>
   `;

@@ -19,5 +19,5 @@ Section - Support Ukraine
 5) Developer - Oleh Linskyi
 Section - Shopping list and Pagination
 
-6) Developer - Yaroslav Sich
+6) Developer - Yaroslav Sych
 Section - Modal window (book opening window)
